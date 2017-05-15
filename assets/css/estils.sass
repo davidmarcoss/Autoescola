@@ -1,0 +1,95 @@
+@import "_variables"
+
+body
+    background-color: $bgColor !important
+
+.card-box 
+    background-color: white
+    padding: 10px
+    border-radius: 5px
+
+    .card-accent
+        color: $accentColor
+        font-size: 30px
+
+    .card-body-title
+        font-size: 25px
+
+    .card-body-text
+        color: grey
+        font-weight: bold
+
+.card-box-test
+    background-color: rgba(0,0,0,0) !important
+    border: 1px solid $primaryColor
+    span
+        color: $primaryColor !important
+    &:hover
+        background-color: $primaryColor !important
+        span
+            color: white !important
+    .card-test-accent
+        color: white
+        font-weight: bold
+
+.panel-default
+    .panel-heading
+        background-color: $primaryColorDark !important
+        color: white !important
+        h5
+            font-size: 18px !important
+            font-weight: normal !important
+
+.active
+    color: $accentColor
+  
+
+nav 
+    background-color: $primaryColorDark !important
+
+    .navbar-brand
+        color: white !important
+
+        &:hover 
+            color: $accentColor !important
+
+    .navbar-nav
+        .active
+            background-color: rgba(0,0,0,0) !important
+            color: $accentColor !important
+
+        li 
+            a
+                font-weight: bold
+                color: white !important
+
+                &:hover
+                    color: $accentColor !important
+                    
+    .navbar-right
+        .dropdown
+            li
+                a
+                    color: black !important
+
+        .open > a, 
+        .open > a:hover, 
+        .open > a:focus
+            background-color: transparent !important
+            color: $accentColor !important
+
+        .dropdown-menu
+            text-align: right !important
+            min-width: 200px
+
+            a
+                font-weight: normal !important
+
+            p
+                padding-right: 20px
+
+            .cerrar-sesion
+                color: red !important
+
+        .cerrar-sesion
+            color: $errorColor !important

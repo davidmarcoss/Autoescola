@@ -1,0 +1,156 @@
+@font-face {
+  font-family: "Pacifico";
+  src: url("../fonts/Pacifico-Regular.ttf"); }
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../fonts/Ubuntu-Light.ttf") format("truetype"); }
+.bodyLogin {
+  background: url("../../images/header.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover; }
+  .bodyLogin .login-container {
+    position: relative;
+    width: 350px;
+    margin: 100px auto;
+    padding: 20px 40px 40px;
+    background: #fff;
+    border: 1px solid #ccc; }
+
+.container-titol {
+  text-align: center;
+  color: #f7f7f7; }
+  .container-titol .titol {
+    font-size: 64px;
+    font-family: Pacifico !important;
+    margin-top: 130px; }
+  .container-titol p {
+    font-size: 18px; }
+
+#output {
+  position: absolute;
+  width: 300px;
+  top: -75px;
+  left: 0;
+  color: #fff; }
+
+#output.alert-success {
+  background: #19cc19; }
+
+#output.alert-danger {
+  background: #e46969; }
+
+.login-container::before, .login-container::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 3.5px;
+  left: 0;
+  background: #fff;
+  z-index: -1;
+  -webkit-transform: rotateZ(4deg);
+  -moz-transform: rotateZ(4deg);
+  -ms-transform: rotateZ(4deg);
+  border: 1px solid #ccc; }
+
+.login-container::after {
+  top: 5px;
+  z-index: -2;
+  -webkit-transform: rotateZ(-2deg);
+  -moz-transform: rotateZ(-2deg);
+  -ms-transform: rotateZ(-2deg); }
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  margin: 10px auto 30px;
+  border-radius: 100%;
+  border: 2px solid #aaa;
+  background-size: cover; }
+
+.form-box button.login {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: 0; }
+
+@font-face {
+  font-family: "Pacifico";
+  src: url("../fonts/Pacifico-Regular.ttf"); }
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../fonts/Ubuntu-Light.ttf") format("truetype"); }
+body {
+  background-color: #CFD8DC !important; }
+
+.card-box {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px; }
+  .card-box .card-accent {
+    color: #4CAF50;
+    font-size: 30px; }
+  .card-box .card-body-title {
+    font-size: 25px; }
+  .card-box .card-body-text {
+    color: grey;
+    font-weight: bold; }
+
+.card-box-test {
+  background-color: transparent !important;
+  border: 1px solid #34495e; }
+  .card-box-test span {
+    color: #34495e !important; }
+  .card-box-test:hover {
+    background-color: #34495e !important; }
+    .card-box-test:hover span {
+      color: white !important; }
+  .card-box-test .card-test-accent {
+    color: white;
+    font-weight: bold; }
+
+.panel-default .panel-heading {
+  background-color: #2c3e50 !important;
+  color: white !important; }
+  .panel-default .panel-heading h5 {
+    font-size: 18px !important;
+    font-weight: normal !important; }
+
+.active {
+  color: #4CAF50; }
+
+nav {
+  background-color: #2c3e50 !important; }
+  nav .navbar-brand {
+    color: white !important; }
+    nav .navbar-brand:hover {
+      color: #4CAF50 !important; }
+  nav .navbar-nav .active {
+    background-color: transparent !important;
+    color: #4CAF50 !important; }
+  nav .navbar-nav li a {
+    font-weight: bold;
+    color: white !important; }
+    nav .navbar-nav li a:hover {
+      color: #4CAF50 !important; }
+  nav .navbar-right .dropdown li a {
+    color: black !important; }
+  nav .navbar-right .open > a,
+  nav .navbar-right .open > a:hover,
+  nav .navbar-right .open > a:focus {
+    background-color: transparent !important;
+    color: #4CAF50 !important; }
+  nav .navbar-right .dropdown-menu {
+    text-align: right !important;
+    min-width: 200px; }
+    nav .navbar-right .dropdown-menu a {
+      font-weight: normal !important; }
+    nav .navbar-right .dropdown-menu p {
+      padding-right: 20px; }
+    nav .navbar-right .dropdown-menu .cerrar-sesion {
+      color: red !important; }
+  nav .navbar-right .cerrar-sesion {
+    color: #f44336 !important; }
+
+/*# sourceMappingURL=main.css.map */
