@@ -9,10 +9,7 @@ class LoginController extends MY_Controller
     {
         parent::__construct();
 		
-		if($this->session->userdata)
-		{
-			session_destroy();
-		}
+
     }
 	
 	public function index()
@@ -29,7 +26,7 @@ class LoginController extends MY_Controller
 
 		if($usuari = $this->Usuari->login($data['correu'], md5($data['password'])))
 		{
-			$this->session->set_userdata('user_data', array('nif' => $usuari[0]['nif'], 'nom' => $usuari[0]['nom'], 'cognoms' => $usuari[0]['cognoms'], 'correu' => $usuari[0]['correu']));
+			$this->session->set_userdata(array('nif' => $usuari[0]['nif'], 'nom' => $usuari[0]['nom'], 'cognoms' => $usuari[0]['cognoms'], 'correu' => $usuari[0]['correu']));
 
 			if($this->session->userdata('rol'))
 			{

@@ -24,9 +24,9 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Tests</a></li>
-                    <li><a href="#">Mis Prácticas</a></li>
+                    <li><a href="<?php echo site_url('HomeController/index'); ?>">Inicio</a></li>
+                    <li><a href="<?php echo site_url('TestsController/index'); ?>">Tests</a></li>
+                    <li><a href="<?php echo site_url('PractiquesController/index'); ?>">Prácticas</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">

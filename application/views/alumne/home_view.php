@@ -3,7 +3,7 @@
 		<div class="col-lg-4 col-md-4">
 			<div class="card-box">
 				<div class="text-center">
-					<p class="card-body-title"> <span class="card-accent">3</span> / 30 </p>
+					<p class="card-body-title"> <span class="card-accent"> <?php echo isset($testsCount) ? $testsCount : 0; ?> </span> / 30 </p>
 					<p class="card-body-text">Mis tests realizados</p>
 				</div>
 			</div>
@@ -12,7 +12,7 @@
 		<div class="col-lg-4 col-md-4">
 			<div class="card-box">
 				<div class="text-center">
-					<p class="card-body-title"> <span class="card-accent">2</span> / 3 </p>
+					<p class="card-body-title"> <span class="card-accent"> <?php echo isset($testsAprobats) ? $testsAprobats : 0; ?> </span> / <?php echo isset($testsCount) ? $testsCount : 0; ?> </p>
 					<p class="card-body-text">Mis tests aprobados</p>
 				</div>
 			</div>
@@ -36,40 +36,65 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h5 class="header-title"><strong>Mis tests realizados</strong></h5>
+					<h5>Mis tests realizados</h5>
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table class="table">
+						<?php if(isset($tests)): ?>
+						<table class="table table-hover">
 							<thead>
-							<tr>
-								<th>#</th>
-								<th>Tipo</th>
-								<th>Fecha</th>
-								<th>Resultado</th>
-							</tr>
+								<tr>
+									<th>#</th>
+									<th>Tipo de test</th>
+									<th>Fecha de realización</th>
+									<th>Resultado</th>
+								</tr>
 							</thead>
 							<tbody>
-							<tr>
-								<td>TEST 01</td>
-								<td>Básico</td>
-								<td>01/01/2016</td>
-								<td><span class="label label-danger">Suspendido</span></td>
-							</tr>
-							<tr>
-								<td>TEST 02</td>
-								<td>Básico</td>
-								<td>01/01/2016</td>
-								<td><span class="label label-warning">Aprobado con fallos</span></td>
-							</tr>
-							<tr>
-								<td>TEST 03</td>
-								<td>Examen</td>
-								<td>01/05/2016</td>
-								<td><span class="label label-success">Aprobado</span></td>
-							</tr>
+							<?php foreach($mytests as $test): ?>
+								<tr style="cursor:pointer" data-id="<?php echo $test['id']; ?>" class="accordeon" data-toggle="collapse" href="#desplegar_<?php echo $test['id']; ?>">
+									<td> <?php echo $test['nom']; ?> </td>
+									<td> <?php echo $test['tipus']; ?> </td>
+									<td> <?php echo $test['data_inici']; ?> </td>
+									<?php
+										if($test['nota'] == 'excelente') $respostaFormat = 'label-success';
+										else if($test['nota'] == 'aprobado') $respostaFormat = 'label-warning';
+										else if($test['nota'] == 'suspendido') $respostaFormat = 'label-danger';
+									?>
+									<td> <span class="label <?php echo $respostaFormat; ?>"> <?php echo $test['nota']; ?> </span> </td>
+								</tr>
+								<?php if($test['preguntes']): ?>
+								<tr class="tr-no-hover">
+									<td colspan="4" class="quitar-borde-superior">
+										<div id="desplegar_<?php echo $test['id']; ?>" class="collapse">
+											<table class="table taula-respostes-test">
+												<thead>
+													<tr>
+														<th> Pregunta </th>
+														<th> La meva resposta </th>
+														<th> Correcta? </th>
+													</tr>
+												<thead>
+												<tbody>
+													<?php foreach($test['preguntes'] as $pregunta): ?>
+													<tr>
+														<td> <?php echo $pregunta['pregunta']; ?> </td>
+														<td> <?php echo $pregunta['resposta_alumne']; ?> </td>
+														<td> <?php echo $pregunta['isCorrecta']; ?> </td>
+													</tr>
+													<?php endforeach; ?>
+												</tbody>
+											</table>
+										</div>
+									</td>
+								</tr>
+								<?php endif; ?>
+							<?php endforeach; ?>
 							</tbody>
 						</table>
+						<?php else: ?>
+							<p class="text-muted">No has realitzat cap test</p>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>

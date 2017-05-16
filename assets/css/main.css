@@ -153,4 +153,21 @@ nav {
   nav .navbar-right .cerrar-sesion {
     color: #f44336 !important; }
 
+.taula-respostes-test {
+  border: 0px !important;
+  width: 90% !important;
+  margin: 0 auto; }
+
+.taula-respostes-test tr,
+.taula-respostes-test td,
+.taula-respostes-test th {
+  padding: 0px !important;
+  border: 0px !important; }
+
+.tr-no-hover:hover {
+  background-color: white !important; }
+
+.quitar-borde-superior {
+  border-top: none !important; }
+
 /*# sourceMappingURL=main.css.map */

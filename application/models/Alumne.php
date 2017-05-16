@@ -11,27 +11,6 @@ class Alumne extends CI_Model
         parent::__construct();
     }
 
-    public function check_user($correu)
-    {
-        $this->db->where('correu', $correu);
-
-        $query = $this->db->get('usuari');
-        
-        if($query->num_rows() > 0) return true;
-        else return false;
-    }
-
-    public function login($correu, $password)
-    {
-        $this->db->where('correu', $correu);
-        $this->db->where('password', $password);
-
-        $query = $this->db->get('usuari');
-
-        if($query->num_rows() > 0) { return $query->result_array(); }
-        else { return false; }
-    }
-
     function select()
     {
         $this->db->select('nif, nom, cognoms, telefon, data_naix, correu');
