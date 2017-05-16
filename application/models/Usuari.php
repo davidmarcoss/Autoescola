@@ -30,7 +30,15 @@ class Usuari extends CI_Model
             else $this->session->set_userdata('rol', 'professor');
         }
 
-        if($query->num_rows() > 0) { return $query->result_array(); }
-        else { return false; }
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
+    public function carnet_actual($nif)
+    {
+        $this->db->where('alumne_nif', $nif);
+
+        $query = $this->db->get('alumne_carnets');
+
+        return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 }

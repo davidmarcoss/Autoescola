@@ -3,7 +3,7 @@
 		<div class="col-lg-4 col-md-4">
 			<div class="card-box">
 				<div class="text-center">
-					<p class="card-body-title"> <span class="card-accent"> <?php echo isset($testsCount) ? $testsCount : 0; ?> </span> / 30 </p>
+					<p class="card-body-title"> <span class="card-accent"> <?php echo isset($tests_realitzats) ? $tests_realitzats : 0; ?> </span> / 30 </p>
 					<p class="card-body-text">Mis tests realizados</p>
 				</div>
 			</div>
@@ -12,7 +12,7 @@
 		<div class="col-lg-4 col-md-4">
 			<div class="card-box">
 				<div class="text-center">
-					<p class="card-body-title"> <span class="card-accent"> <?php echo isset($testsAprobats) ? $testsAprobats : 0; ?> </span> / <?php echo isset($testsCount) ? $testsCount : 0; ?> </p>
+					<p class="card-body-title"> <span class="card-accent"> <?php echo isset($tests_aprobats) ? $tests_aprobats : 0; ?> </span> / <?php echo isset($testsCount) ? $testsCount : 0; ?> </p>
 					<p class="card-body-text">Mis tests aprobados</p>
 				</div>
 			</div>
@@ -41,7 +41,7 @@
 				<div class="panel-body">
 					<div class="table-responsive">
 						<?php if(isset($tests)): ?>
-						<table class="table table-hover">
+						<table class="table table-sm table-hover">
 							<thead>
 								<tr>
 									<th>#</th>
@@ -51,7 +51,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							<?php foreach($mytests as $test): ?>
+							<?php foreach($tests as $test): ?>
 								<tr style="cursor:pointer" data-id="<?php echo $test['id']; ?>" class="accordeon" data-toggle="collapse" href="#desplegar_<?php echo $test['id']; ?>">
 									<td> <?php echo $test['nom']; ?> </td>
 									<td> <?php echo $test['tipus']; ?> </td>

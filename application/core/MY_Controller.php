@@ -8,7 +8,6 @@ class MY_Controller extends CI_controller
     {
         parent::__construct();
 
-
         if($this->session->userdata('rol') == 'admin' || $this->session->userdata('rol') == 'professor')
         { 
             $this->layout = 'layout/admin_layout';
@@ -17,7 +16,6 @@ class MY_Controller extends CI_controller
         {
             $this->layout = 'layout/alumne_layout';
         }
-        
     }
 
     public function is_logged_in()

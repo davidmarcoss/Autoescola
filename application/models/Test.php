@@ -14,6 +14,28 @@ class Test extends CI_Model
         parent::__construct();
     }
 
+    function select_by_carnet($carnet)
+    {
+        $this->db->from($this->table_tests);
+        $this->db->where('carnet_codi', $carnet);
+
+        $query = $this->db->get();
+
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
+    function select_by_codi($codi)
+    {
+        $this->db->from($this->table_tests);
+        $this->db->join($this->table_preguntes, 'preguntes.test_codi = tests.codi');
+        $this->db->where('tests.codi', $codi);
+        $this->db->order_by('tests.codi, preguntes.codi');
+
+        $query = $this->db->get();
+
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
     function select_where_alumne($alumneNIF)
     {
         $this->db->select('alumne_tests.*, tests.*');
@@ -24,8 +46,8 @@ class Test extends CI_Model
         
         $query = $this->db->get();
 
-        if($query->num_rows() > 0) return $query->result_array();
-        else return false;
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+
     }
 
     function select_respostes_where_test($testCodi)
@@ -38,7 +60,6 @@ class Test extends CI_Model
 
         $query = $this->db->get();
 
-        if($query->num_rows() > 0) return $query->result_array();
-        else return false;
+        return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 }

@@ -8,8 +8,6 @@ class LoginController extends MY_Controller
     function __construct()
     {
         parent::__construct();
-		
-
     }
 	
 	public function index()
@@ -32,6 +30,10 @@ class LoginController extends MY_Controller
 			{
 				redirect('admin/GestioHomeController/index');
 			}
+
+			$carnet = $this->Usuari->carnet_actual($this->session->userdata('nif'));
+			$this->session->set_userdata('carnet', $carnet[0]['carnet_codi']);
+
 			redirect('HomeController/index');
 		}
 		else

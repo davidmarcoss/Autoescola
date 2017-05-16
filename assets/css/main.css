@@ -100,11 +100,11 @@ body {
 .card-box-test {
   background-color: transparent !important;
   border: 1px solid #34495e; }
-  .card-box-test span {
+  .card-box-test a, .card-box-test span {
     color: #34495e !important; }
   .card-box-test:hover {
     background-color: #34495e !important; }
-    .card-box-test:hover span {
+    .card-box-test:hover a, .card-box-test:hover span {
       color: white !important; }
   .card-box-test .card-test-accent {
     color: white;
@@ -161,7 +161,7 @@ nav {
 .taula-respostes-test tr,
 .taula-respostes-test td,
 .taula-respostes-test th {
-  padding: 0px !important;
+  padding: 5px !important;
   border: 0px !important; }
 
 .tr-no-hover:hover {

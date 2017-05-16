@@ -50,7 +50,8 @@ create table alumne_carnets(
     id int not null,
     alumne_nif varchar(9),
     carnet_codi varchar(4),
-    data_alta date,
+    data_alta timestamp,
+    actual varchar(1) check(actual in('S', 'N')),
 
     primary key(alumne_nif, carnet_codi),
     foreign key(alumne_nif) references alumnes(nif),
@@ -131,7 +132,6 @@ create table index_taules(
     primary key(taula_nom)
 );
 
-
 insert into administradors values('11111111A', 'Admin', 'Gotera', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 insert into administradors values('11111111B', 'Professor', 'Gotera', 'professor@gmail.com', '3f9cd3c7b11eb1bae99dddb3d05da3c5', 'professor');
 
@@ -141,7 +141,8 @@ insert into carnets values('A');
 insert into carnets values('A1');
 insert into carnets values('B');
 
-insert into alumne_carnets values(1,'11111111C', 'B', '2017-05-15');
+insert into alumne_carnets values(1,'11111111C', 'A2', '2016-05-15', 'N');
+insert into alumne_carnets values(2,'11111111C', 'B', '2017-05-15', 'S');
 
 insert into tests values('TEST0001', 'TEST 0001', 'basico', 'B');
 insert into tests values('TEST0002', 'TEST 0002', 'basico', 'B');

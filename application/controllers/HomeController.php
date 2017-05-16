@@ -2,7 +2,8 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class HomeController extends MY_Controller {
+class HomeController extends MY_Controller 
+{
 
     function __construct()
     {
@@ -16,11 +17,11 @@ class HomeController extends MY_Controller {
 		$data['titol'] = 'Inici';
 		$data['content'] = 'alumne/home_view';
 
-		$data['tests'] = $this->Test->select_where_alumne($this->session->userdata('nif'));
-		$data['mytests'] = $this->get_preguntes_per_test($data['tests']);
-		$data['testsCount'] = count($data['tests']);
-		$data['testsAprobats'] = $this->get_count_tests_aprobats($data['tests']);
-		//var_dump($data['mytests']); exit;
+		$data['tests_sense_preguntes'] = $this->Test->select_where_alumne($this->session->userdata('nif'));
+		$data['tests'] = $this->get_preguntes_per_test($data['tests_sense_preguntes']);
+		$data['tests_realitzats'] = count($data['tests']);
+		$data['tests_aprobats'] = $this->get_count_tests_aprobats($data['tests']);
+
 		$this->load->view($this->layout, $data);
 	}
 

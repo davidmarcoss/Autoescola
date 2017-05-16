@@ -6,17 +6,16 @@
 					<h5>Tests básicos</h5>
 				</div>
                 <div class="panel-body">
+                <?php foreach($tests as $test): ?>
+                    <?php if($test['tipus'] == 'basico'): ?>
                     <div class="card-box card-box-test">
                         <div class="text-center">
-                            <span class="card-test-accent">TEST 00001</span>
+                            <a class="card-test-accent" href="<?php echo site_url('TestsController/show/' . $test['codi']); ?>"> <?php echo $test['nom']; ?></a>
                         </div>
                     </div>
                     <br/>
-                    <div class="card-box card-box-test">
-                        <div class="text-center">
-                            <span class="card-test-accent">TEST 00002</span>
-                        </div>
-                    </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
                 </div>
             </div>
 		</div>
@@ -29,13 +28,13 @@
                 <div class="panel-body">
                     <div class="card-box card-box-test">
                         <div class="text-center">
-                            <span class="card-test-accent">TEST 00006</span>
+                            <a class="card-test-accent">TEST 00006</a>
                         </div>
                     </div>
                     <br/>
                     <div class="card-box card-box-test">
                         <div class="text-center">
-                            <span class="card-test-accent">TEST 000010</span>
+                            <a class="card-test-accent">TEST 000010</a>
                         </div>
                     </div>
                 </div>
@@ -50,13 +49,13 @@
                 <div class="panel-body">
                     <div class="card-box card-box-test">
                         <div class="text-center">
-                            <span class="card-test-accent">TEST 00011</span>
+                            <a class="card-test-accent">TEST 00011</a>
                         </div>
                     </div>
                     <br/>
                     <div class="card-box card-box-test">
                         <div class="text-center">
-                            <span class="card-test-accent">TEST 00012</span>
+                            <a class="card-test-accent">TEST 00012</a>
                         </div>
                     </div>
                 </div>
