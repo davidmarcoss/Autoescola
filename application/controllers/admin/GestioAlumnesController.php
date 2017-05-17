@@ -9,6 +9,11 @@ class GestioAlumnesController extends MY_Controller
     {
         parent::__construct();
 
+        if ( ! $this->is_logged_in())
+        {
+            redirect('LoginController/index');
+        }
+		
 		$this->load->model('Alumne');
     }
 
@@ -20,6 +25,15 @@ class GestioAlumnesController extends MY_Controller
 		$data['alumnes'] = $this->Alumne->select();
 
 		$this->load->view($this->layout, $data);
+	}
+
+	public function update()
+	{
+		$alumne = $this->input->post();
+
+		$this->Alumne->update($alumne);
+
+		redirect('admin/GestioAlumnesController/index');
 	}
 
 }

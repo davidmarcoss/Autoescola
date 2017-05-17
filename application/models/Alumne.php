@@ -47,15 +47,11 @@ class Alumne extends CI_Model
 		return ($this->db->affected_rows() != 1) ? false : true;
     }
 
-    function update($usuari)
+    function update($alumne)
     {
-        $data = array(
-               'nom' => $usuari['nom']
-        );
+        $this->db->where('nif', $alumne['nif']);
 
-        $this->db->where('id', $usuari['id']);
-
-        $this->db->update('usuaris', $data);
+        $this->db->update('alumnes', $alumne);
 
         return ($this->db->affected_rows() != 1) ? false : true;
     }

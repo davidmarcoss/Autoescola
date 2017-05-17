@@ -43,7 +43,7 @@
                             <li><a class="text-muted"> <?php echo $this->session->correu; ?> </a></li>
                             <li><a href="#">Ajustes</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#" class="cerrar-sesion"> Cerrar sesión </a></li>
+                            <li><a href="<?php echo site_url('HomeController/logout'); ?>" class="cerrar-sesion"> Cerrar sesión </a></li>
                         </ul>
                     </li>
                 </ul>

@@ -9,6 +9,11 @@ class GestioProfessorsController extends MY_Controller
     {
         parent::__construct();
 
+        if ( ! $this->is_logged_in())
+        {
+            redirect('LoginController/index');
+        }
+		
 		$this->load->model('Alumne');
     }
 

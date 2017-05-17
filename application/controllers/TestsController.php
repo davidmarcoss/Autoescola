@@ -9,6 +9,11 @@ class TestsController extends MY_Controller
     {
         parent::__construct();
 
+		if ( ! $this->is_logged_in())
+        {
+            redirect('LoginController/index');
+        }
+
 		$this->load->model('Test');
     }
 
@@ -31,4 +36,15 @@ class TestsController extends MY_Controller
 
 		$this->load->view($this->layout, $data);
     }
+
+	public function check()
+	{
+		$data = $this->input->post();
+		
+		echo json_encode($data);
+		
+		//$respostaCorrecta = ;
+
+		
+	}
 }

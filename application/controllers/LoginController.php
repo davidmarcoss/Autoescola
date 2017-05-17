@@ -19,28 +19,35 @@ class LoginController extends MY_Controller
 	{
 		$data = $this->input->post();
 
-		$this->load->model('Usuari');
-
-
-		if($usuari = $this->Usuari->login($data['correu'], md5($data['password'])))
+		if(isset($data) && count($data) > 0)
 		{
-			$this->session->set_userdata(array('nif' => $usuari[0]['nif'], 'nom' => $usuari[0]['nom'], 'cognoms' => $usuari[0]['cognoms'], 'correu' => $usuari[0]['correu'], 'rol' => $usuari[0]['rol']));
+			$this->load->model('Usuari');
 
-			if($this->session->userdata('rol') == 'admin' ||$this->session->userdata('rol') == 'professor')
+
+			if($usuari = $this->Usuari->login($data['correu'], md5($data['password'])))
 			{
-				redirect('admin/GestioHomeController/index');
-			}
-			
-			$carnet = $this->Usuari->carnet_actual($this->session->userdata('nif'));
-			$this->session->set_userdata('carnet', $carnet[0]['carnet_codi']);
+				$this->session->set_userdata(array('nif' => $usuari[0]['nif'], 'nom' => $usuari[0]['nom'], 'cognoms' => $usuari[0]['cognoms'], 'correu' => $usuari[0]['correu'], 'rol' => $usuari[0]['rol']));
 
-			redirect('HomeController/index');
+				if($this->session->userdata('rol') == 'admin' ||$this->session->userdata('rol') == 'professor')
+				{
+					redirect('admin/GestioHomeController/index');
+				}
+				
+				$carnet = $this->Usuari->carnet_actual($this->session->userdata('nif'));
+				$this->session->set_userdata('carnet', $carnet[0]['carnet_codi']);
+
+				redirect('HomeController/index');
+			}
+			else
+			{
+				$data['error'] = array(
+					'login' => 'Error al iniciar sesión, datos incorrectos.'
+				);
+
+				$this->load->view('login_view', $data);
+			}
 		}
-		else
-		{
-			$data['error'] = array(
-				'login' => 'Error al iniciar sesión, datos incorrectos.'
-			);
-		}
+
+		$this->load->view('login_view', $data);
 	}
 }

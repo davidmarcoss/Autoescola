@@ -7,6 +7,12 @@ class PractiquesController extends MY_Controller {
     function __construct()
     {
         parent::__construct();
+
+		if ( ! $this->is_logged_in())
+        {
+            redirect('LoginController/index');
+        }
+
     }
 
 	public function index()
