@@ -20,13 +20,15 @@ class MY_Controller extends CI_controller
 
     public function is_logged_in()
     {
-        $user = $this->session->userdata('user_data');
+        $user = $this->session->correu;
+
         return isset($user);
     }
 
     public function logout()
     {
-        session_start();
         session_destroy();
+        
+        redirect('LoginController/index');
     }
 }

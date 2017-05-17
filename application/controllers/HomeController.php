@@ -9,7 +9,7 @@ class HomeController extends MY_Controller
     {
         parent::__construct();
 
-		$this->load->model('Test');
+		$this->load->model('Alumne');
     }
 
 	public function index()
@@ -17,15 +17,15 @@ class HomeController extends MY_Controller
 		$data['titol'] = 'Inici';
 		$data['content'] = 'alumne/home_view';
 
-		$data['tests_sense_preguntes'] = $this->Test->select_where_alumne($this->session->userdata('nif'));
-		$data['tests'] = $this->get_preguntes_per_test($data['tests_sense_preguntes']);
+		$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'));
+		$data['tests'] = $this->get_respostes_per_test($data['tests_sense_preguntes']);
 		$data['tests_realitzats'] = count($data['tests']);
-		$data['tests_aprobats'] = $this->get_count_tests_aprobats($data['tests']);
+		$data['tests_aprobats'] = $this->tests_aprobats_count($data['tests']);	
 
 		$this->load->view($this->layout, $data);
 	}
 
-	public function get_count_tests_aprobats($tests)
+	private function tests_aprobats_count($tests)
 	{
 		$testsAprobats = 0;
 		
@@ -40,11 +40,11 @@ class HomeController extends MY_Controller
 		return $testsAprobats;
 	}
 
-	public function get_preguntes_per_test($tests)
+	private function get_respostes_per_test($tests)
 	{
 		foreach($tests as &$test)
 		{
-			$test['preguntes'] = $this->Test->select_respostes_where_test($test['test_codi']);
+			$test['preguntes'] = $this->Alumne->select_respostes_test($test['test_codi']);
 		}
 
 		return $tests;

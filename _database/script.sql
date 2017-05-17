@@ -47,11 +47,9 @@ create table carnets(
 );
 
 create table alumne_carnets(
-    id int not null,
     alumne_nif varchar(9),
     carnet_codi varchar(4),
     data_alta timestamp,
-    actual varchar(1) check(actual in('S', 'N')),
 
     primary key(alumne_nif, carnet_codi),
     foreign key(alumne_nif) references alumnes(nif),
@@ -96,14 +94,14 @@ create table alumne_tests(
 
 create table alumne_preguntes_respostes(
     id int not null,
-    pregunta varchar(300) not null,
+    pregunta_codi varchar(300) not null,
     resposta_alumne varchar(255) not null,
     isCorrecta varchar(1) check(isCorrecta in("S", "N")),
     alumne_test int,
 
     primary key(id),
     foreign key(alumne_test) references alumne_tests(id),
-    foreign key(pregunta) references preguntes(codi)
+    foreign key(pregunta_codi) references preguntes(codi)
 );
 
 create table cotxes(
@@ -135,14 +133,14 @@ create table index_taules(
 insert into administradors values('11111111A', 'Admin', 'Gotera', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 insert into administradors values('11111111B', 'Professor', 'Gotera', 'professor@gmail.com', '3f9cd3c7b11eb1bae99dddb3d05da3c5', 'professor');
 
-insert into alumnes values('11111111C', 'Alumne', 'Los Palotes', 'alumne@gmail.com', 'c98a0d7fe575cc92f0cc931db5e31552', 'Masquefa', 'Major 28', '937725050', '11111111A');
+insert into alumnes values('11111111C', 'Alumne', 'Los Palotes', 'alumne@gmail.com', 'c98a0d7fe575cc92f0cc931db5e31552', 'Masquefa', 'Major 28', '937725050', '11111111B');
 
 insert into carnets values('A');
-insert into carnets values('A1');
+insert into carnets values('A2');
 insert into carnets values('B');
 
-insert into alumne_carnets values(1,'11111111C', 'A2', '2016-05-15', 'N');
-insert into alumne_carnets values(2,'11111111C', 'B', '2017-05-15', 'S');
+insert into alumne_carnets values('11111111C', 'A2', '2016-05-15');
+insert into alumne_carnets values('11111111C', 'B', '2017-05-15');
 
 insert into tests values('TEST0001', 'TEST 0001', 'basico', 'B');
 insert into tests values('TEST0002', 'TEST 0002', 'basico', 'B');

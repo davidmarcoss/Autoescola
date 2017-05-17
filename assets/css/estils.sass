@@ -66,22 +66,22 @@ nav
                 &:hover
                     color: $accentColor !important
                     
+    
+    .dropdown
+        li
+            a
+                color: black !important
+
+    .open > a, 
+    .open > a:hover, 
+    .open > a:focus
+        background-color: transparent !important
+        color: $accentColor !important
+        
     .navbar-right
-        .dropdown
-            li
-                a
-                    color: black !important
-
-        .open > a, 
-        .open > a:hover, 
-        .open > a:focus
-            background-color: transparent !important
-            color: $accentColor !important
-
         .dropdown-menu
             text-align: right !important
             min-width: 200px
-
             a
                 font-weight: normal !important
 
@@ -94,19 +94,22 @@ nav
         .cerrar-sesion
             color: $errorColor !important
 
+.table > tbody > tr > td    
+    vertical-align: middle
+
+
 .taula-respostes-test
-    border: 0px !important
     width: 90% !important
-    margin: 0 auto
+    margin: 0 auto !important
 
 .taula-respostes-test tr, 
 .taula-respostes-test td, 
 .taula-respostes-test th
+    color: grey !important
     padding: 5px !important
-    border: 0px !important
 
 .tr-no-hover:hover 
     background-color: white !important
 
-.quitar-borde-superior 
-    border-top: none !important
+.fa
+    font-size: 18px !important

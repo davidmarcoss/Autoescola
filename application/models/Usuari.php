@@ -24,10 +24,6 @@ class Usuari extends CI_Model
             $this->db->where('password', $password);
             $query = $this->db->get('administradors');
 
-            $data = $query->result_array();
-            $isAdmin = $data[0]['rol'];
-            if($isAdmin == 'admin') $this->session->set_userdata('rol', 'admin');
-            else $this->session->set_userdata('rol', 'professor');
         }
 
         return $query->num_rows() > 0 ? $query->result_array() : false;
@@ -36,6 +32,8 @@ class Usuari extends CI_Model
     public function carnet_actual($nif)
     {
         $this->db->where('alumne_nif', $nif);
+        $this->db->order_by('data_alta', 'desc');
+        $this->db->limit(1);
 
         $query = $this->db->get('alumne_carnets');
 

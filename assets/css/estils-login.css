@@ -3,7 +3,7 @@
   src: url("../fonts/Pacifico-Regular.ttf"); }
 @font-face {
   font-family: "Ubuntu";
-  src: url("../fonts/Ubuntu-Light.ttf"); }
+  src: url("../fonts/Ubuntu-Light.ttf") format("truetype"); }
 .bodyLogin {
   background: url("../../images/header.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -22,11 +22,9 @@
   text-align: center;
   color: #f7f7f7; }
   .container-titol h1 {
-    font-size: 64px;
+    font-size: 60px;
     font-family: Pacifico !important;
-    margin-top: 130px; }
-  .container-titol p {
-    font-size: 18px; }
+    color: #34495e !important; }
 
 #output {
   position: absolute;
@@ -61,14 +59,6 @@
   -webkit-transform: rotateZ(-2deg);
   -moz-transform: rotateZ(-2deg);
   -ms-transform: rotateZ(-2deg); }
-
-.avatar {
-  width: 100px;
-  height: 100px;
-  margin: 10px auto 30px;
-  border-radius: 100%;
-  border: 2px solid #aaa;
-  background-size: cover; }
 
 .form-box button.login {
   margin-top: 15px;

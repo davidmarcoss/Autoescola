@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="<?php echo base_url("assets/bootstrap/css/bootstrap.css"); ?>" />
     <link rel="stylesheet" href="<?php echo base_url("assets/css/main.css"); ?>" />
     <link rel="stylesheet" href="<?php echo base_url("assets/font-awesome/css/font-awesome.css"); ?>" />
+    <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.1.1.min.js"); ?>"></script>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">
@@ -24,16 +25,22 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Gestión de usuarios</a></li>
-                    <li><a href="#">Gestión de tests</a></li>
-                    <li><a href="#">Gestión de prácticas</a></li>
+                    <li><a href="<?php echo site_url('admin/GestioHomeController/index'); ?>">Inicio</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Gestión de usuarios<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                        <li><a href="<?php echo site_url('admin/GestioProfessorsController/index'); ?>"> Profesores </a></li>
+                        <li><a href="<?php echo site_url('admin/GestioAlumnesController/index'); ?>"> Alumnos </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="<?php echo site_url('admin/GestioTestsController/index'); ?>">Gestión de tests</a></li>
+                    <li><a href="<?php echo site_url('admin/GestioPractiquesController/index'); ?>">Gestión de prácticas</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> John Doe <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $this->session->nom; ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="text-muted">johndoe@gmail.com</a></li>
+                            <li><a class="text-muted"> <?php echo $this->session->correu; ?> </a></li>
                             <li><a href="#">Ajustes</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#" class="cerrar-sesion"> Cerrar sesión </a></li>
@@ -48,7 +55,6 @@
         <?php $this->load->view($content); ?>
 	</div>
 
-    <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.1.1.min.js"); ?>"></script>
 	<!-- Bootstrap Query -->
 	<script type="text/javascript" src="<?php echo base_url("assets/bootstrap/js/bootstrap.min.js"); ?>"></script>
 </body>

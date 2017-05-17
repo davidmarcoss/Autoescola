@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="<?php echo base_url("assets/css/estils-login.css"); ?>" />
 </head>
 <body class="bodyLogin">
-    <div class="container container-titol">
-        <h1 class="titol">Autoescola</h1>
-    </div>
 
     <div class="container">
         <div class="login-container">
+            <div class="container-titol">
+                <h1 class="titol">Autoescola</h1>
+            </div>
+            <br/><br/>
             <div id="output"></div>
-            <div class="avatar"></div>
             <div class="form-box">
                 <form method="POST" action="<?php echo site_url("LoginController/login") ?>">
                     <div class="form-group">

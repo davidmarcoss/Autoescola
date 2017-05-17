@@ -21,12 +21,10 @@
 .container-titol {
   text-align: center;
   color: #f7f7f7; }
-  .container-titol .titol {
-    font-size: 64px;
+  .container-titol h1 {
+    font-size: 60px;
     font-family: Pacifico !important;
-    margin-top: 130px; }
-  .container-titol p {
-    font-size: 18px; }
+    color: #34495e !important; }
 
 #output {
   position: absolute;
@@ -61,14 +59,6 @@
   -webkit-transform: rotateZ(-2deg);
   -moz-transform: rotateZ(-2deg);
   -ms-transform: rotateZ(-2deg); }
-
-.avatar {
-  width: 100px;
-  height: 100px;
-  margin: 10px auto 30px;
-  border-radius: 100%;
-  border: 2px solid #aaa;
-  background-size: cover; }
 
 .form-box button.login {
   margin-top: 15px;
@@ -134,11 +124,11 @@ nav {
     color: white !important; }
     nav .navbar-nav li a:hover {
       color: #4CAF50 !important; }
-  nav .navbar-right .dropdown li a {
+  nav .dropdown li a {
     color: black !important; }
-  nav .navbar-right .open > a,
-  nav .navbar-right .open > a:hover,
-  nav .navbar-right .open > a:focus {
+  nav .open > a,
+  nav .open > a:hover,
+  nav .open > a:focus {
     background-color: transparent !important;
     color: #4CAF50 !important; }
   nav .navbar-right .dropdown-menu {
@@ -153,21 +143,23 @@ nav {
   nav .navbar-right .cerrar-sesion {
     color: #f44336 !important; }
 
+.table > tbody > tr > td {
+  vertical-align: middle; }
+
 .taula-respostes-test {
-  border: 0px !important;
   width: 90% !important;
-  margin: 0 auto; }
+  margin: 0 auto !important; }
 
 .taula-respostes-test tr,
 .taula-respostes-test td,
 .taula-respostes-test th {
-  padding: 5px !important;
-  border: 0px !important; }
+  color: grey !important;
+  padding: 5px !important; }
 
 .tr-no-hover:hover {
   background-color: white !important; }
 
-.quitar-borde-superior {
-  border-top: none !important; }
+.fa {
+  font-size: 18px !important; }
 
 /*# sourceMappingURL=main.css.map */
