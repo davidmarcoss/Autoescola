@@ -34,6 +34,8 @@ class TestsController extends MY_Controller
 
 		$data['test'] = $this->Test->select_by_codi($codi);
 
+		$this->session->set_userdata(array('codi_test' => $codi, 'nom_test' => $data['test'][0]['nom']));
+
 		$this->load->view($this->layout, $data);
     }
 
@@ -41,10 +43,70 @@ class TestsController extends MY_Controller
 	{
 		$data = $this->input->post();
 		
-		echo json_encode($data);
-		
-		//$respostaCorrecta = ;
+		$dataRespostes = array();
+		$errades = 0;
+		$nota = 0;
 
-		
+		foreach($data as $key => $value)
+		{
+			$pregunta = $this->Test->select_pregunta($key);
+
+			if($value == $pregunta[0]['opcio_correcta'])
+			{
+				$isCorrecta = 'S';
+				$correcta = null;
+			}
+			else
+			{
+				$isCorrecta = 'N';
+				$correcta = $pregunta[0]['opcio_correcta'];
+				$errades++;
+			}
+
+			$dataRespostes[] = array(
+				'pregunta_codi' => $key,
+				'resposta_alumne' => $value,
+				'isCorrecta' => $isCorrecta,
+				'correcta' => $correcta
+			);
+		}
+
+		if($errades == 0) $nota = 'excelente';
+		else if($errades > 0 && $errades <= 3) $nota = 'aprobado';
+		else $nota = 'suspendido';
+
+		$this->insert($dataRespostes, $nota);
+
+		echo json_encode($dataRespostes);
 	}
+
+	private function insert($dataRespostes, $nota)
+	{
+		$dataTest = array(
+			'data_fi' => date('Y-m-d h:i:s'),
+			'alumne_nif' => $this->session->userdata('nif'),
+			'test_codi' => $this->session->userdata('codi_test'),
+			'nota' => $nota
+		);
+
+		$this->Test->insert($dataTest, $dataRespostes);
+	}
+
+	public function insert_prova()
+	{
+		$dataTest = array(
+			'data_fi' => date('Y-m-d h:i:s'),
+			'alumne_nif' => $this->session->userdata('nif'),
+			'test_codi' => $this->session->userdata('codi_test'),
+			'nota' => 'excelente'
+		);			
+		$dataRespostes[] = array(
+			'pregunta_codi' => 'P000001',
+			'resposta_alumne' => 'asd',
+			'isCorrecta' => 'S',
+		);
+
+		$this->Test->insert($dataTest, $dataRespostes);
+	}
+
 }

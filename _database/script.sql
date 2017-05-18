@@ -72,7 +72,6 @@ create table preguntes(
     opcio_correcta varchar(255) not null,
     opcio_2 varchar(255) not null,
     opcio_3 varchar(255),
-    tematica varchar(20),
     imatge varchar(50),
     test_codi varchar(10),
 
@@ -82,7 +81,7 @@ create table preguntes(
 
 create table alumne_tests(
     id int not null,
-    data_inici timestamp,
+    data_fi timestamp,
     alumne_nif varchar(9),
     test_codi varchar(10),
     nota varchar(10) check(nota in ('suspendido', 'aprobado', 'excelente')),
@@ -143,26 +142,42 @@ insert into alumne_carnets values('11111111C', 'A2', '2016-05-15');
 insert into alumne_carnets values('11111111C', 'B', '2017-05-15');
 
 insert into tests values('TEST0001', 'TEST 0001', 'basico', 'B');
-insert into tests values('TEST0002', 'TEST 0002', 'basico', 'B');
-insert into tests values('TEST0003', 'TEST 0003', 'basico', 'B');
-insert into tests values('TEST0004', 'TEST 0004', 'basico', 'B');
-insert into tests values('TEST0005', 'TEST 0005', 'basico', 'B');
 
-insert into preguntes values('P000001', '¿Pregunta 1 TEST0001?', 'Opcio 1.', 'Opcio 2.', 'Opcio 3.', 'Mantenimiento', NULL, 'TEST0001');
-insert into preguntes values('P000002', '¿Pregunta 2 TEST0001?', 'Opcio 1.', 'Opcio 2.', NULL, 'Remolques', NULL, 'TEST0001');
-insert into preguntes values('P000003', '¿Pregunta 1 TEST0002?', 'Opcio 1.', 'Opcio 2.', 'Opcio 3.', 'Señales', NULL, 'TEST0002');
-insert into preguntes values('P000004', '¿Pregunta 2 TEST0002?', 'Opcio 1.', 'Opcio 2.', 'Opcio 3.', 'Intersecciones', NULL, 'TEST0002');
-insert into preguntes values('P000005', '¿Pregunta 1 TEST0003?', 'Opcio 1.', 'Opcio 2.', 'Opcio 3.', 'Mantenimiento', NULL, 'TEST0003');
-insert into preguntes values('P000006', '¿Pregunta 2 TEST0003?', 'Opcio 1.', 'Opcio 2.', 'Opcio 3.', 'Remolques', NULL, 'TEST0003');
+insert into preguntes values('P000001', 'Pregunta 1', 'Respuesta 1 Pregunta 1', 'Respuesta 2 Pregunta 1', 'Respuesta 3 Pregunta 1', NULL, 'TEST0001');
+insert into preguntes values('P000002', 'Pregunta 2', 'Respuesta 1 Pregunta 2', 'Respuesta 2 Pregunta 2', 'Respuesta 3 Pregunta 2', NULL, 'TEST0001');
+insert into preguntes values('P000003', 'Pregunta 3', 'Respuesta 1 Pregunta 3', 'Respuesta 2 Pregunta 3', 'Respuesta 3 Pregunta 3', NULL, 'TEST0001');
+insert into preguntes values('P000004', 'Pregunta 4', 'Respuesta 1 Pregunta 4', 'Respuesta 2 Pregunta 4', 'Respuesta 3 Pregunta 4', NULL, 'TEST0001');
+insert into preguntes values('P000005', 'Pregunta 5', 'Respuesta 1 Pregunta 5', 'Respuesta 2 Pregunta 5', 'Respuesta 3 Pregunta 5', NULL, 'TEST0001');
+insert into preguntes values('P000006', 'Pregunta 6', 'Respuesta 1 Pregunta 6', 'Respuesta 2 Pregunta 6', 'Respuesta 3 Pregunta 6', NULL, 'TEST0001');
+insert into preguntes values('P000007', 'Pregunta 7', 'Respuesta 1 Pregunta 7', 'Respuesta 2 Pregunta 7', 'Respuesta 3 Pregunta 7', NULL, 'TEST0001');
+insert into preguntes values('P000008', 'Pregunta 8', 'Respuesta 1 Pregunta 8', 'Respuesta 2 Pregunta 8', 'Respuesta 3 Pregunta 8', NULL, 'TEST0001');
+insert into preguntes values('P000009', 'Pregunta 9', 'Respuesta 1 Pregunta 9', 'Respuesta 2 Pregunta 9', 'Respuesta 3 Pregunta 9', NULL, 'TEST0001');
+insert into preguntes values('P000010', 'Pregunta 10', 'Respuesta 1 Pregunta 10', 'Respuesta 2 Pregunta 10', 'Respuesta 3 Pregunta 10', NULL, 'TEST0001');
+insert into preguntes values('P000011', 'Pregunta 11', 'Respuesta 1 Pregunta 11', 'Respuesta 2 Pregunta 11', 'Respuesta 3 Pregunta 11', NULL, 'TEST0001');
+insert into preguntes values('P000012', 'Pregunta 12', 'Respuesta 1 Pregunta 12', 'Respuesta 2 Pregunta 12', 'Respuesta 3 Pregunta 12', NULL, 'TEST0001');
+insert into preguntes values('P000013', 'Pregunta 13', 'Respuesta 1 Pregunta 13', 'Respuesta 2 Pregunta 13', 'Respuesta 3 Pregunta 13', NULL, 'TEST0001');
+insert into preguntes values('P000014', 'Pregunta 14', 'Respuesta 1 Pregunta 14', 'Respuesta 2 Pregunta 14', 'Respuesta 3 Pregunta 14', NULL, 'TEST0001');
+insert into preguntes values('P000015', 'Pregunta 15', 'Respuesta 1 Pregunta 15', 'Respuesta 2 Pregunta 15', 'Respuesta 3 Pregunta 15', NULL, 'TEST0001');
+insert into preguntes values('P000016', 'Pregunta 16', 'Respuesta 1 Pregunta 16', 'Respuesta 2 Pregunta 16', 'Respuesta 3 Pregunta 16', NULL, 'TEST0001');
+insert into preguntes values('P000017', 'Pregunta 17', 'Respuesta 1 Pregunta 17', 'Respuesta 2 Pregunta 17', 'Respuesta 3 Pregunta 17', NULL, 'TEST0001');
+insert into preguntes values('P000018', 'Pregunta 18', 'Respuesta 1 Pregunta 18', 'Respuesta 2 Pregunta 18', 'Respuesta 3 Pregunta 18', NULL, 'TEST0001');
+insert into preguntes values('P000019', 'Pregunta 19', 'Respuesta 1 Pregunta 19', 'Respuesta 2 Pregunta 19', 'Respuesta 3 Pregunta 19', NULL, 'TEST0001');
+insert into preguntes values('P000020', 'Pregunta 20', 'Respuesta 1 Pregunta 20', 'Respuesta 2 Pregunta 20', 'Respuesta 3 Pregunta 20', NULL, 'TEST0001');
+insert into preguntes values('P000021', 'Pregunta 21', 'Respuesta 1 Pregunta 21', 'Respuesta 2 Pregunta 21', 'Respuesta 3 Pregunta 21', NULL, 'TEST0001');
+insert into preguntes values('P000022', 'Pregunta 22', 'Respuesta 1 Pregunta 22', 'Respuesta 2 Pregunta 22', 'Respuesta 3 Pregunta 22', NULL, 'TEST0001');
+insert into preguntes values('P000023', 'Pregunta 23', 'Respuesta 1 Pregunta 23', 'Respuesta 2 Pregunta 23', 'Respuesta 3 Pregunta 23', NULL, 'TEST0001');
+insert into preguntes values('P000024', 'Pregunta 24', 'Respuesta 1 Pregunta 24', 'Respuesta 2 Pregunta 24', 'Respuesta 3 Pregunta 24', NULL, 'TEST0001');
+insert into preguntes values('P000025', 'Pregunta 25', 'Respuesta 1 Pregunta 25', 'Respuesta 2 Pregunta 25', 'Respuesta 3 Pregunta 25', NULL, 'TEST0001');
+insert into preguntes values('P000026', 'Pregunta 26', 'Respuesta 1 Pregunta 26', 'Respuesta 2 Pregunta 26', 'Respuesta 3 Pregunta 26', NULL, 'TEST0001');
+insert into preguntes values('P000027', 'Pregunta 27', 'Respuesta 1 Pregunta 27', 'Respuesta 2 Pregunta 27', 'Respuesta 3 Pregunta 27', NULL, 'TEST0001');
+insert into preguntes values('P000028', 'Pregunta 28', 'Respuesta 1 Pregunta 28', 'Respuesta 2 Pregunta 28', 'Respuesta 3 Pregunta 28', NULL, 'TEST0001');
+insert into preguntes values('P000029', 'Pregunta 29', 'Respuesta 1 Pregunta 29', 'Respuesta 2 Pregunta 29', 'Respuesta 3 Pregunta 29', NULL, 'TEST0001');
+insert into preguntes values('P000030', 'Pregunta 30', 'Respuesta 1 Pregunta 30', 'Respuesta 2 Pregunta 30', 'Respuesta 3 Pregunta 30', NULL, 'TEST0001');
+
 
 insert into alumne_tests values(1, '2017-05-15 15:00:00', '11111111C', 'TEST0001', 'excelente');
-insert into alumne_tests values(2, '2017-05-15 15:30:00', '11111111C', 'TEST0002', 'suspendido');
-insert into alumne_tests values(3, '2017-05-15 16:00:00', '11111111C', 'TEST0003', 'aprobado');
 
-insert into alumne_preguntes_respostes values(1, 'P000001', 'Con los neumáticos fríos.', 'N', 1);
-insert into alumne_preguntes_respostes values(2, 'P000002', 'No.', 'S', 1);
-insert into alumne_preguntes_respostes values(3, 'P000003', 'Con los neumáticos fríos.', 'N', 2);
-insert into alumne_preguntes_respostes values(4, 'P000004', 'Con los neumáticos fríos.', 'N', 2);
+insert into alumne_preguntes_respostes values(1, 'P000001', 'Respuesta 1 Pregunta 1', 'S', 1);
 
 insert into cotxes values('1010-ABC', 'Honda', 'Civic', 'gasoil');
 insert into cotxes values('2020-ABC', 'Renault', 'Clio', 'benzina');

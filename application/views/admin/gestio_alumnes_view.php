@@ -56,7 +56,7 @@
             <form method="post" action="<?php echo site_url('admin/GestioAlumnesController/update'); ?>">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Edición del alumno <strong><span id="nom-alumne-title"> </span></strong> </h4>
+                    <h4 class="modal-title"> Añadir alumno </h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-warning">Guardar cambios</button>
+                    <button type="submit" class="btn btn-success">Guardar cambios</button>
                 </div>
             </form>
         </div>

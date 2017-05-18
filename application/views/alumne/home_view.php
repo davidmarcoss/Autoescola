@@ -3,7 +3,7 @@
 		<div class="col-lg-4 col-md-4">
 			<div class="card-box">
 				<div class="text-center">
-					<p class="card-body-title"> <span class="card-accent"> <?php echo $this->session->carnet; ?> </span> </p>
+					<p class="card-body-title"> <span class="card-accent"><?php echo $this->session->carnet; ?></span> </p>
 					<p class="card-body-text">Permiso de conducir</p>
 				</div>
 			</div>
@@ -12,7 +12,7 @@
 		<div class="col-lg-4 col-md-4">
 			<div class="card-box">
 				<div class="text-center">
-					<p class="card-body-title"> <span class="card-accent"> <?php echo isset($tests_realitzats) ? $tests_realitzats : 0; ?> </span> / 30 </p>
+					<p class="card-body-title"> <span class="card-accent"><?php echo isset($tests_realitzats) ? $tests_realitzats : 0; ?></span> <strong>/ 30</strong> </p>
 					<p class="card-body-text">Tests realizados</p>
 				</div>
 			</div>
@@ -21,7 +21,7 @@
 		<div class="col-lg-4 col-md-4">
 			<div class="card-box">
 				<div class="text-center">
-					<p class="card-body-title"> <span class="card-accent"> <?php echo isset($tests_aprobats) ? $tests_aprobats : 0; ?> </span> / <?php echo isset($tests_realitzats) ? $tests_realitzats : 0; ?> </p>
+					<p class="card-body-title"> <span class="card-accent"><?php echo isset($tests_aprobats) ? $tests_aprobats : 0; ?></span> / <strong><?php echo isset($tests_realitzats) ? $tests_realitzats : 0; ?></strong> </p>
 					<p class="card-body-text">Tests aprobados</p>
 				</div>
 			</div>
@@ -57,7 +57,7 @@
 									<td> <i class="fa fa-eye" aria-hidden="true"></i> </td>
 									<td class="text-left"> <?php echo $test['nom']; ?> </td>
 									<td class="text-center"> <?php echo $test['tipus']; ?> </td>
-									<td class="text-center"> <?php echo $test['data_inici']; ?> </td>
+									<td class="text-center"> <?php echo $test['data_fi']; ?> </td>
 									<?php
 										if($test['nota'] == 'excelente') $respostaFormat = 'label-success';
 										else if($test['nota'] == 'aprobado') $respostaFormat = 'label-warning';
@@ -85,16 +85,16 @@
 														<?php
 															if($pregunta['isCorrecta'] == 'N') 
 															{
-																$isCorrectaFormat = "label-danger";
-																$text = '<i class="fa fa-times" aria-hidden="true"></i>';
+																$isCorrectaFormat = "label-danger label-resultat";
+																$text = 'No';
 															}
 															else 
 															{
-																$isCorrectaFormat = 'label-success';
-																$text = '<i class="fa fa-check" aria-hidden="true"></i>';
+																$isCorrectaFormat = 'label-success label-resultat';
+																$text = 'Si';
 															}
 														?>
-														<td class="text-center"> <span class="label <?php echo $isCorrectaFormat; ?>"> <?php echo $text; ?> </span> </td>
+														<td class="text-center"> <span class="label <?php echo $isCorrectaFormat; ?>"><?php echo $text; ?></span> </td>
 													</tr>
 													<?php endforeach; ?>
 												</tbody>

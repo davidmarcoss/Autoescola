@@ -2,7 +2,7 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Usuari extends CI_Model
+class Usuari extends MY_Model
 {
     private $table_alumnes = 'alumnes';
     private $table_professors = 'administradors';
