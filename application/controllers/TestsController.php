@@ -92,21 +92,4 @@ class TestsController extends MY_Controller
 		$this->Test->insert($dataTest, $dataRespostes);
 	}
 
-	public function insert_prova()
-	{
-		$dataTest = array(
-			'data_fi' => date('Y-m-d h:i:s'),
-			'alumne_nif' => $this->session->userdata('nif'),
-			'test_codi' => $this->session->userdata('codi_test'),
-			'nota' => 'excelente'
-		);			
-		$dataRespostes[] = array(
-			'pregunta_codi' => 'P000001',
-			'resposta_alumne' => 'asd',
-			'isCorrecta' => 'S',
-		);
-
-		$this->Test->insert($dataTest, $dataRespostes);
-	}
-
 }

@@ -36,13 +36,11 @@ class Alumne extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
-    function insert($usuari)
+    function insert($alumne)
     {
-        $usuari = array(
-            'nom' => $usuari['nom']
-        );
+        $alumne['desactivat'] = 0;
 
-        $this->db->insert('usuaris',$usuari);
+        $this->db->insert('alumnes', $alumne);
 		
 		return ($this->db->affected_rows() != 1) ? false : true;
     }
@@ -56,11 +54,11 @@ class Alumne extends MY_Model
         return ($this->db->affected_rows() != 1) ? false : true;
     }
 
-    function delete($id)
+    function delete($nif)
     {
-        $this->db->where('id', $id);
+        $this->db->where('nif', $nif);
 
-        $this->db->delete('empleats');
+        $this->db->delete('alumnes');
 
         return ($this->db->affected_rows() != 1) ? false : true;
     }
@@ -80,9 +78,23 @@ class Alumne extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
-    function select_tests_alumne($alumneNIF)
+    function select_tests_alumne($alumneNIF, $limit, $start)
     {
         $this->db->select('alumne_tests.*, tests.*');
+        $this->db->from($this->table_alumne_tests);
+        $this->db->join($this->table_tests, 'tests.codi = alumne_tests.test_codi');
+        $this->db->where('alumne_nif', $alumneNIF);
+        $this->db->group_by('alumne_tests.test_codi');
+        $this->db->limit($limit,$start);
+        
+        $query = $this->db->get();
+
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
+    function select_tests_alumne_count($alumneNIF)
+    {
+        $this->db->select('count(*)');
         $this->db->from($this->table_alumne_tests);
         $this->db->join($this->table_tests, 'tests.codi = alumne_tests.test_codi');
         $this->db->where('alumne_nif', $alumneNIF);
@@ -90,6 +102,6 @@ class Alumne extends MY_Model
         
         $query = $this->db->get();
 
-        return $query->num_rows() > 0 ? $query->result_array() : false;
+        return count($query);
     }
 }

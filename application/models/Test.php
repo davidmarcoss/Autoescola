@@ -16,6 +16,8 @@ class Test extends MY_Model
     {
         $this->db->from($this->table_tests);
         $this->db->where('carnet_codi', $carnet);
+        $this->db->join('alumne_tests', 'tests.codi = alumne_tests.test_codi', 'left outer');
+        $this->db->group_by('tests.codi');
 
         $query = $this->db->get();
 
@@ -69,7 +71,5 @@ class Test extends MY_Model
         {
                 $this->db->trans_commit();
         }
-
     }
-
 }

@@ -8,7 +8,11 @@
                 <div class="panel-body">
                 <?php foreach($tests as $test): ?>
                     <?php if($test['tipus'] == 'basico'): ?>
-                        <a class="btn btn-default btn-block" href="<?php echo site_url('TestsController/show/' . $test['codi']); ?>"> <?php echo $test['nom']; ?></a>
+                        <?php if($test['codi'] == $test['test_codi']): ?>
+                            <a class="btn btn-success btn-block" href="<?php echo site_url('TestsController/show/' . $test['codi']); ?>"> <?php echo $test['nom']; ?></a>
+                        <?php else: ?>
+                            <a class="btn btn-default btn-block" href="<?php echo site_url('TestsController/show/' . $test['codi']); ?>"> <?php echo $test['nom']; ?></a>
+                        <?php endif ?>
                         <br/>
                     <?php endif; ?>
                 <?php endforeach; ?>

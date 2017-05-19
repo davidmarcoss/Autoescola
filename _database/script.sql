@@ -35,6 +35,7 @@ create table alumnes(
     adreca varchar(20) not null,
     telefon varchar(9) not null,
     professor_nif varchar(9),
+    desactivat int(1) not null check(desactivat in(0, 1)),
 
     primary key(nif),
     foreign key(professor_nif) references administradors(nif)
@@ -132,7 +133,7 @@ create table index_taules(
 insert into administradors values('11111111A', 'Admin', 'Gotera', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 insert into administradors values('11111111B', 'Professor', 'Gotera', 'professor@gmail.com', '3f9cd3c7b11eb1bae99dddb3d05da3c5', 'professor');
 
-insert into alumnes values('11111111C', 'Alumne', 'Los Palotes', 'alumne@gmail.com', 'c98a0d7fe575cc92f0cc931db5e31552', 'Masquefa', 'Major 28', '937725050', '11111111B');
+insert into alumnes values('11111111C', 'Alumne', 'Los Palotes', 'alumne@gmail.com', 'c98a0d7fe575cc92f0cc931db5e31552', 'Masquefa', 'Major 28', '937725050', '11111111B', 0);
 
 insert into carnets values('A');
 insert into carnets values('A2');
@@ -174,10 +175,9 @@ insert into preguntes values('P000028', 'Pregunta 28', 'Respuesta 1 Pregunta 28'
 insert into preguntes values('P000029', 'Pregunta 29', 'Respuesta 1 Pregunta 29', 'Respuesta 2 Pregunta 29', 'Respuesta 3 Pregunta 29', NULL, 'TEST0001');
 insert into preguntes values('P000030', 'Pregunta 30', 'Respuesta 1 Pregunta 30', 'Respuesta 2 Pregunta 30', 'Respuesta 3 Pregunta 30', NULL, 'TEST0001');
 
+--insert into alumne_tests values(1, '2017-05-15 15:00:00', '11111111C', 'TEST0001', 'excelente');
 
-insert into alumne_tests values(1, '2017-05-15 15:00:00', '11111111C', 'TEST0001', 'excelente');
-
-insert into alumne_preguntes_respostes values(1, 'P000001', 'Respuesta 1 Pregunta 1', 'S', 1);
+--insert into alumne_preguntes_respostes values(1, 'P000001', 'Respuesta 1 Pregunta 1', 'S', 1);
 
 insert into cotxes values('1010-ABC', 'Honda', 'Civic', 'gasoil');
 insert into cotxes values('2020-ABC', 'Renault', 'Clio', 'benzina');

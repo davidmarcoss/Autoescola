@@ -16,6 +16,8 @@ class MY_Controller extends CI_controller
         {
             $this->layout = 'layout/alumne_layout';
         }
+
+        //$this->output->enable_profiler(true);
     }
 
     public function is_logged_in()

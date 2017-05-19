@@ -40,7 +40,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
-						<?php if(isset($tests)): ?>
+						<?php if($tests && isset($tests) && count($tests) > 0): ?>
 						<table class="table table-sm table-hover">
 							<thead>
 								<tr>
@@ -106,6 +106,7 @@
 							<?php endforeach; ?>
 							</tbody>
 						</table>
+						<?php echo $paginacion ?>
 						<?php else: ?>
 							<p class="text-muted">No has realitzat cap test</p>
 						<?php endif; ?>

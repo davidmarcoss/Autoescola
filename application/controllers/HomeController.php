@@ -22,10 +22,26 @@ class HomeController extends MY_Controller
 		$data['titol'] = 'Inici';
 		$data['content'] = 'alumne/home_view';
 
-		$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'));
+		// PAGINACIÓ
+		$this->load->library('pagination');
+	
+		$opciones = array();
+		$desde = $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+
+		$opciones['per_page'] = 15;
+		$opciones['base_url'] = base_url().'index.php/HomeController/index';
+		$opciones['total_rows'] = $this->Alumne->select_tests_alumne_count($this->session->userdata('nif'));
+		$opciones['uri_segment'] = 3;
+
+		$this->pagination->initialize($opciones);
+		// FI PAGINACIÓ
+		
+		$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'), $opciones['per_page'], $desde);
 		$data['tests'] = $this->get_respostes_per_test($data['tests_sense_preguntes']);
 		$data['tests_realitzats'] = count($data['tests']);
 		$data['tests_aprobats'] = $this->tests_aprobats_count($data['tests']);	
+
+		$data['paginacion'] = $this->pagination->create_links();
 
 		$this->load->view($this->layout, $data);
 	}
@@ -34,11 +50,14 @@ class HomeController extends MY_Controller
 	{
 		$testsAprobats = 0;
 		
-		foreach($tests as $test)
+		if($tests && count($tests) > 0)
 		{
-			if($test['nota'] == 'excelente' || $test['nota'] == 'aprobado') 
+			foreach($tests as $test)
 			{
-				$testsAprobats++;
+				if($test['nota'] == 'excelente' || $test['nota'] == 'aprobado') 
+				{
+					$testsAprobats++;
+				}
 			}
 		}
 
@@ -47,9 +66,12 @@ class HomeController extends MY_Controller
 
 	private function get_respostes_per_test($tests)
 	{
-		foreach($tests as &$test)
+		if($tests && count($tests) > 0)
 		{
-			$test['preguntes'] = $this->Alumne->select_respostes_test($test['test_codi']);
+			foreach($tests as &$test)
+			{
+				$test['preguntes'] = $this->Alumne->select_respostes_test($test['test_codi']);
+			}
 		}
 
 		return $tests;
