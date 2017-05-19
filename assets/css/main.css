@@ -110,6 +110,10 @@ body {
 .active {
   color: #4CAF50; }
 
+.fa {
+  font-size: 18px !important;
+  vertical-align: middle !important; }
+
 nav {
   background-color: #2c3e50 !important;
   color: white !important; }
@@ -163,7 +167,7 @@ nav {
 .label-resultat {
   width: 40px !important; }
   .label-resultat .fa {
-    font-size: 16px !important; }
+    font-size: 18px !important; }
 
 .modal-danger .modal-header {
   background-color: #f44336 !important;
@@ -177,7 +181,7 @@ nav {
   bottom: 50px;
   right: 50px; }
   .btn-float-add .fa {
-    line-height: 50px;
-    font-size: 25px !important; }
+    line-height: 45px;
+    font-size: 20px !important; }
 
 /*# sourceMappingURL=main.css.map */

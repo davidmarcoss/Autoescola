@@ -43,6 +43,29 @@ class Test extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    function insert_test($dataTest, $dataPreguntes)
+    {
+        $this->db->trans_begin();
+
+        $this->db->insert('tests', $dataTest);
+
+        foreach($dataPreguntes as $dataPregunta)
+        {
+            $this->db->insert('preguntes', $dataPregunta);
+        }
+
+        if( ! $this->db->trans_status())
+        {
+            $this->db->trans_rollback();
+            return false;
+        }
+        else
+        {
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+
     function insert($dataTest, $dataRespostes)
     {
         $this->db->trans_begin();

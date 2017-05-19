@@ -64,7 +64,7 @@ create table tests(
     carnet_codi varchar(4),
 
     primary key(codi),
-    foreign key(carnet_codi) references carnets(codi)
+    foreign key(carnet_codi) references carnets(codi) on delete cascade
 );
 
 create table preguntes(
@@ -77,7 +77,7 @@ create table preguntes(
     test_codi varchar(10),
 
     primary key(codi),
-    foreign key(test_codi) references tests(codi)
+    foreign key(test_codi) references tests(codi) on delete cascade
 );
 
 create table alumne_tests(
@@ -89,7 +89,7 @@ create table alumne_tests(
 
     primary key(id),
     foreign key(alumne_nif) references alumnes(nif),
-    foreign key(test_codi) references tests(codi)
+    foreign key(test_codi) references tests(codi) on delete cascade
 );
 
 create table alumne_preguntes_respostes(
@@ -101,7 +101,7 @@ create table alumne_preguntes_respostes(
 
     primary key(id),
     foreign key(alumne_test) references alumne_tests(id),
-    foreign key(pregunta_codi) references preguntes(codi)
+    foreign key(pregunta_codi) references preguntes(codi) on delete cascade
 );
 
 create table cotxes(

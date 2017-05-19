@@ -1,6 +1,8 @@
 <div id="shadow"></div>
 
-<a class="btn btn-success btn-float-add" id="obrir-modal-afegir-professor" role="button" data-toggle="modal" href="#modal-afegir-professor"> <i class="fa fa-user-plus" aria-hidden="true"></i></a>
+<a class="btn btn-success btn-float-add" id="obrir-modal-afegir-professor" role="button" data-toggle="modal" href="#modal-afegir-professor"> 
+    <i class="fa fa-user-plus" aria-hidden="true"></i>
+</a>
 
 <div class="container">
 	<div class="row">
@@ -15,22 +17,26 @@
 						<table class="table table-condensed table-hover">
 							<thead>
 								<tr>
-									<th>NIF</th>
-									<th>Nom</th>
-									<th>Correu</th>
-                                    <th>Acció</th>
+									<th class="text-center">NIF</th>
+									<th class="text-center">Nom</th>
+									<th class="text-center">Correu</th>
+                                    <th class="text-center">Acció</th>
 								</tr>
 							</thead>
 							<tbody>
 							<?php foreach($professors as $professor): ?>
                                 <tr valign="middle">
-                                    <td> <?php echo $professor['nif'] ?> </td>
+                                    <td class="text-center"> <?php echo $professor['nif'] ?> </td>
                                     <?php $nomComplet = $professor['cognoms'] . ', ' . $professor['nom'] ?>
-                                    <td> <?php echo $nomComplet ?> </td>
-                                    <td> <?php echo $professor['correu'] ?> </td>
-                                    <td>
-                                        <a class="btn btn-warning btn-sm obrir-modal-mod-professor"  role="button" data-toggle="modal" href="#modal-editar-professor" value="<?php echo $professor['nif'].':'.$professor['nom'].':'.$professor['cognoms'].':'.$professor['correu']; ?>"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
-                                        <a class="btn btn-danger btn-sm obrir-modal-del-professor" role="button" data-toggle="modal" href="#modal-eliminar-professor" value="<?php echo $professor['nif'].':'.$professor['nom']; ?>"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+                                    <td class="text-center"> <?php echo $nomComplet ?> </td>
+                                    <td class="text-center"> <?php echo $professor['correu'] ?> </td>
+                                    <td class="text-center">
+                                        <a class="btn btn-warning btn-sm obrir-modal-mod-professor"  role="button" data-toggle="modal" href="#modal-editar-professor" value="<?php echo $professor['nif'].':'.$professor['nom'].':'.$professor['cognoms'].':'.$professor['correu']; ?>">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" ></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm obrir-modal-del-professor" role="button" data-toggle="modal" href="#modal-eliminar-professor" value="<?php echo $professor['nif'].':'.$professor['nom']; ?>"> 
+                                            <i class="fa fa-times " aria-hidden="true" ></i>
+                                        </a>
                                     </td>
                                 </tr>
 							<?php endforeach; ?>
