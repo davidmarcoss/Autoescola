@@ -12,8 +12,8 @@
 					<h5 style="display: inline-block">Gestión de profesores</h5>
 				</div>
 				<div class="panel-body">
+                    <?php if(isset($professors)): ?>
 					<div class="table-responsive">
-						<?php if(isset($professors)): ?>
 						<table class="table table-condensed table-hover">
 							<thead>
 								<tr>
@@ -42,10 +42,11 @@
 							<?php endforeach; ?>
 							</tbody>
 						</table>
-						<?php else: ?>
-							<p class="text-muted">No hay alumnos en nuestro sistema</p>
-						<?php endif; ?>
 					</div>
+                    <div class="text-center"><?php echo $this->pagination->create_links() ?></div>
+                    <?php else: ?>
+                            <p class="text-muted">No hay profesores en nuestro sistema</p>
+                    <?php endif; ?>
 				</div>
 			</div>
 		</div>

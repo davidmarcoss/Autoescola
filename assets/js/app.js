@@ -12,7 +12,8 @@ $(document).ready(function(){
                 mostrarResultat(response);
             }),
             error: (function (error) {
-                alert("Fail: " + error);
+                var message = "<div class='alert alert-danger'> <strong>Error!</strong> en procesar las respuesta</div>"
+                $('.messages-container').append();
             })
         });
     });

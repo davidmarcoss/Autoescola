@@ -19,29 +19,23 @@ class HomeController extends MY_Controller
 
 	public function index()
 	{
-		$data['titol'] = 'Inici';
 		$data['content'] = 'alumne/home_view';
-
-		// PAGINACIÓ
-		$this->load->library('pagination');
-	
-		$opciones = array();
-		$desde = $this->uri->segment(3) ? $this->uri->segment(3) : 0;
-
-		$opciones['per_page'] = 15;
-		$opciones['base_url'] = base_url().'index.php/HomeController/index';
-		$opciones['total_rows'] = $this->Alumne->select_tests_alumne_count($this->session->userdata('nif'));
-		$opciones['uri_segment'] = 3;
-
-		$this->pagination->initialize($opciones);
-		// FI PAGINACIÓ
 		
-		$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'), $opciones['per_page'], $desde);
-		$data['tests'] = $this->get_respostes_per_test($data['tests_sense_preguntes']);
-		$data['tests_realitzats'] = count($data['tests']);
-		$data['tests_aprobats'] = $this->tests_aprobats_count($data['tests']);	
+		$count = $this->Alumne->select_tests_alumne_count($this->session->userdata('nif'));
 
-		$data['paginacion'] = $this->pagination->create_links();
+		$this->load->library('pagination');
+        
+		$config['base_url'] = base_url().'index.php/HomeController/index/';
+		$config['total_rows'] = $count;
+		$config['per_page'] = $this->per_page;
+        $config['num_links'] = $count;
+
+		$this->pagination->initialize($config);
+
+		$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'), $this->per_page, $this->uri->segment(3));
+		$data['tests'] = $this->get_respostes_per_test($data['tests_sense_preguntes']);
+		$data['tests_realitzats'] = $count;
+		$data['tests_aprobats'] = $this->tests_aprobats_count($data['tests']);	
 
 		$this->load->view($this->layout, $data);
 	}

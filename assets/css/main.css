@@ -184,4 +184,7 @@ nav {
     line-height: 45px;
     font-size: 20px !important; }
 
+li .active {
+  background-color: #4CAF50 !important; }
+
 /*# sourceMappingURL=main.css.map */

@@ -78,16 +78,14 @@ class Alumne extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
-    function select_tests_alumne($alumneNIF, $limit, $start)
+    function select_tests_alumne($alumneNIF, $limit, $segment)
     {
         $this->db->select('alumne_tests.*, tests.*');
-        $this->db->from($this->table_alumne_tests);
         $this->db->join($this->table_tests, 'tests.codi = alumne_tests.test_codi');
         $this->db->where('alumne_nif', $alumneNIF);
         $this->db->group_by('alumne_tests.test_codi');
-        $this->db->limit($limit,$start);
         
-        $query = $this->db->get();
+        $query = $this->db->get($this->table_alumne_tests, $limit, $segment);
 
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
@@ -102,6 +100,8 @@ class Alumne extends MY_Model
         
         $query = $this->db->get();
 
-        return count($query);
+        $data = $query->result_Array();
+
+        return count($data);
     }
 }

@@ -31,7 +31,7 @@ class GestioTestsController extends MY_Controller {
     /**
     *   upload()
     *
-    *   Aquesta funció puja un arxiu .zip al servidor, després
+    *   Funció que puja un arxiu .zip al servidor, després
     *   el descomprimeix, i finalment l'esborra per a llegir
     *   el .csv
     */
@@ -90,9 +90,11 @@ class GestioTestsController extends MY_Controller {
     /**
     *   read_csv($csv, $test)
     *
-    *   Aquesta funció llegeix el fitxer .csv estaba dins del
+    *   Funció llegeix el fitxer .csv estaba dins del
     *   .zip que ens han pujat, juntament amb les imatges.
-    *   Finalment crida a la funció insert($test, $preguntes)   
+    *   Finalment crida a la funció insert($test, $preguntes)  
+    *
+    *   @param string $csv, array $test 
     */
     private function read_csv($csv, $test)
     {
@@ -132,13 +134,13 @@ class GestioTestsController extends MY_Controller {
     }
 
     /**
-    *   Aquesta funció crida al mètode insert de Test
+    *   Funció crida al mètode insert de Test
     *   per a introduïr el test importat mes totes les
     *   seves preguntes.
     *
     *   @param array $test, array $preguntes
     */
-    public function insert($test, $preguntes)
+    private function insert($test, $preguntes)
     {
         $this->Test->insert_test($test, $preguntes);
 

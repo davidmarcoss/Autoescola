@@ -3,6 +3,7 @@
 class MY_Controller extends CI_controller
 {
     public $layout;
+    public $per_page = 3;
 
     public function __construct()
     {
@@ -16,7 +17,12 @@ class MY_Controller extends CI_controller
         {
             $this->layout = 'layout/alumne_layout';
         }
-
+        $config['use_page_numbers'] = TRUE;
+ 		$config['first_link'] = 'Primera';
+		$config['last_link'] = 'Última';
+        $config["uri_segment"] = 4;
+		$config['next_link'] = 'Siguiente';
+		$config['prev_link'] = 'Anterior';
         //$this->output->enable_profiler(true);
     }
 

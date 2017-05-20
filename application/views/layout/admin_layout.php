@@ -51,7 +51,7 @@
         </div>
     </nav>
 
-	<div class="container">
+	<div class="container messages-container">
         <div class="container">
             <?php if($this->session->flashdata('errors')): ?>
                 <div class="alert alert-danger">

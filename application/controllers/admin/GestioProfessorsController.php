@@ -15,14 +15,26 @@ class GestioProfessorsController extends MY_Controller
         }
 		
 		$this->load->model('Administrador');
+
+        $this->load->library('pagination');
     }
 
 	public function index()
 	{
-		$data['titol'] = 'Inici';
 		$data['content'] = 'admin/gestio_professors_view';
 
-        $data['professors'] = $this->Administrador->select_professors();
+        $count = $this->Administrador->count_professors();
+
+        $this->load->library('pagination');
+        
+		$config['base_url'] = base_url().'index.php/admin/GestioProfessorsController/index/';
+		$config['total_rows'] = $count;
+		$config['per_page'] = $this->per_page;
+        $config['num_links'] = $count;
+
+		$this->pagination->initialize($config);
+
+        $data['professors'] = $this->Administrador->select_professors_limit($config['per_page'], $this->uri->segment(4));	
 
 		$this->load->view($this->layout, $data);
 	}

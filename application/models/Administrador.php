@@ -11,9 +11,29 @@ class Administrador extends MY_Model
         parent::__construct();
     }
 
+    public function count_professors()
+    {
+        $this->db->select('count(*) as count');
+        $this->db->where(array('rol' => 'professor'));
+        $query = $this->db->get($this->table);
+
+        $data = $query->result_array();
+
+        return $data[0]['count'];
+    }
+
+    function select_professors_limit($limit, $segment)
+    {
+        $this->db->where(array('rol' => 'professor'));
+        $query = $this->db->get($this->table, $limit, $segment);
+
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
     function select_professors()
     {
-        $query = $this->db->get_where($this->table, array('rol' => 'professor'));
+        $this->db->where(array('rol' => 'professor'));
+        $query = $this->db->get($this->table);
 
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }

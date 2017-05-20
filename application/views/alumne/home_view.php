@@ -39,8 +39,8 @@
 					<h5>Tests realizados</h5>
 				</div>
 				<div class="panel-body">
+					<?php if($tests && isset($tests) && count($tests) > 0): ?>
 					<div class="table-responsive">
-						<?php if($tests && isset($tests) && count($tests) > 0): ?>
 						<table class="table table-sm table-hover">
 							<thead>
 								<tr>
@@ -106,11 +106,11 @@
 							<?php endforeach; ?>
 							</tbody>
 						</table>
-						<?php echo $paginacion ?>
-						<?php else: ?>
-							<p class="text-muted">No has realitzat cap test</p>
-						<?php endif; ?>
 					</div>
+					<div class="text-center"><?php echo $this->pagination->create_links() ?></div>
+					<?php else: ?>
+							<p class="text-muted">No hay profesores en nuestro sistema</p>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
