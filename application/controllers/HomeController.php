@@ -19,22 +19,26 @@ class HomeController extends MY_Controller
 
 	public function index()
 	{
+		$this->session->set_flashdata('filtre', null);
+
 		$data['content'] = 'alumne/home_view';
 		
-		$count = $this->Alumne->select_tests_alumne_count($this->session->userdata('nif'));
+		$pagination_count = $this->Alumne->select_tests_alumne_count($this->session->userdata('nif'));
+		$this->set_pagination($pagination_count);
 
-		$this->load->library('pagination');
-        
-		$config['base_url'] = base_url().'index.php/HomeController/index/';
-		$config['total_rows'] = $count;
-		$config['per_page'] = $this->per_page;
-        $config['num_links'] = $count;
+		$filtre = $this->input->post('filtre-alumne-tests');
+		if(isset($filtre) && !empty($filtre))
+		{
+			$this->session->set_flashdata('filtre', $filtre);
+			$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'), $this->per_page, $this->uri->segment(3), $filtre);
+		}
+		else
+		{
+			$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'), $this->per_page, $this->uri->segment(3));
+		}
 
-		$this->pagination->initialize($config);
-
-		$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'), $this->per_page, $this->uri->segment(3));
 		$data['tests'] = $this->get_respostes_per_test($data['tests_sense_preguntes']);
-		$data['tests_realitzats'] = $count;
+		$data['tests_realitzats'] = $pagination_count;
 		$data['tests_aprobats'] = $this->tests_aprobats_count($data['tests']);	
 
 		$this->load->view($this->layout, $data);
@@ -70,4 +74,35 @@ class HomeController extends MY_Controller
 
 		return $tests;
 	}
+
+	private function set_pagination($pagination_count)
+	{
+		$this->load->library('pagination');
+        
+		$config['base_url'] = base_url().'index.php/HomeController/index/';
+		$config['total_rows'] = $pagination_count;
+		$config['per_page'] = $this->per_page;
+        $config['num_links'] = $pagination_count;
+
+		$this->pagination->initialize($config);
+	}
+
+	public function filtres_ajax()
+	{
+		$filtre = $this->input->post('filtre-alumne-tests');
+		if(isset($filtre) && !empty($filtre))
+		{
+			$this->session->set_flashdata('filtre', $filtre);
+			$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'), $this->per_page, $this->uri->segment(3), $filtre);
+		}
+		else
+		{
+			$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'), $this->per_page, $this->uri->segment(3));
+		}
+
+		$data['tests'] = $this->get_respostes_per_test($data['tests_sense_preguntes']);
+
+		if(count($data['tests'] > 0)) echo json_encode($data['tests']);	
+	}
+
 }

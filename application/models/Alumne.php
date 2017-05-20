@@ -78,12 +78,24 @@ class Alumne extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
-    function select_tests_alumne($alumneNIF, $limit, $segment)
+    function select_tests_alumne($alumneNIF, $limit, $segment, $filtre = null)
     {
         $this->db->select('alumne_tests.*, tests.*');
         $this->db->join($this->table_tests, 'tests.codi = alumne_tests.test_codi');
         $this->db->where('alumne_nif', $alumneNIF);
-        $this->db->group_by('alumne_tests.test_codi');
+        if($filtre != null)
+        {
+            if($filtre == 'data_fi') $this->db->order_by($filtre, 'desc');
+            else
+            {
+                if($filtre == 'aprobado') $this->db->where('nota', 'excelente')->or_where('nota', 'aprobado');
+                else $this->db->where('nota', 'suspendido');
+            }
+        }
+        else
+        {
+            $this->db->group_by('alumne_tests.test_codi');
+        }
         
         $query = $this->db->get($this->table_alumne_tests, $limit, $segment);
 

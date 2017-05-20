@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo base_url("assets/css/main.css"); ?>" />
     <link rel="stylesheet" href="<?php echo base_url("assets/font-awesome/css/font-awesome.css"); ?>" />
     <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.1.1.min.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url("assets/js/app.js"); ?>"></script>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">

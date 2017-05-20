@@ -53,6 +53,9 @@ class Test extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    *   Inserció d'un test per part de l'administrador
+    */
     function insert_test($dataTest, $dataPreguntes)
     {
         $this->db->trans_begin();
@@ -76,6 +79,9 @@ class Test extends MY_Model
         }
     }
 
+    /**
+    *   Inserció d'un test realitzat per l'alumne
+    */
     function insert($dataTest, $dataRespostes)
     {
         $this->db->trans_begin();

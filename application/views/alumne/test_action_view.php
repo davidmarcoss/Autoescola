@@ -27,16 +27,14 @@
                             <h6> <?php echo $pregunta['pregunta']; ?></h6>
                         </div>
                         <div class="panel-body">
-                            <div class="card-box">
-                                <div class="col-md-9">
-                                    <?php foreach($opcions as $opcio): ?>
-                                    <label for="o<?php echo $cont; ?>" class="radio-inline">
-                                        <input type="radio" name="<?php echo $pregunta['codi']; ?>" id="o<?php echo $cont; ?>" value="<?php echo $opcio; ?>" required /> <?php echo $opcio; ?>
-                                    </label>
-                                    <br/><br/>
-                                    <?php $cont++ ?>
-                                    <?php endforeach; ?>
-                                </div>
+                            <div class="col-md-9">
+                                <?php foreach($opcions as $opcio): ?>
+                                <label for="o<?php echo $cont; ?>" class="radio-inline">
+                                    <input type="radio" name="<?php echo $pregunta['codi']; ?>" id="o<?php echo $cont; ?>" value="<?php echo $opcio; ?>" required /> <?php echo $opcio; ?>
+                                </label>
+                                <br/><br/>
+                                <?php $cont++ ?>
+                                <?php endforeach; ?>
                             </div>
                             <div class="col-md-3">
                                 <?php if($pregunta['imatge'] != 'N'): ?>
@@ -53,9 +51,9 @@
     </div>
 </div>
 
+<br/>
+
 <script>
     var site_url_check = "<?php echo site_url('TestsController/check'); ?>";
     var site_url_enrere= "<?php echo site_url('TestsController/index'); ?>";
 </script>
-
-<script type="text/javascript" src="<?php echo base_url("assets/js/app.js"); ?>"></script>

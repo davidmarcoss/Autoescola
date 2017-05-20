@@ -11,24 +11,24 @@
                     <form method="post" action="<?php echo site_url('admin/GestioTestsController/upload') ?>" enctype="multipart/form-data">
                         <div class="form-group col-xs-4 col-md-4">
                             <label for="codi">Codigo del test</label>
-                            <input type="text" name="codi" id="codi" class="form-control" placeholder="TEST0001">
+                            <input type="text" name="codi" id="codi" class="form-control" placeholder="TEST0001" required>
                         </div>
-                        <div class="form-group col-xs-8 col-md-8">
-                            <label for="nom">Nom</label>
-                            <input type="text" name="nom" id="nom" class="form-control" placeholder="TEST 0001">
+                        <div class="form-group col-xs-4 col-md-4">
+                            <label for="nom">Nombre</label>
+                            <input type="text" name="nom" id="nom" class="form-control" placeholder="TEST 0001" required>
                         </div>
                         <?php if(isset($carnets) && $carnets): ?>
-                        <div class="form-group col-xs-4 col-md-4">
+                        <div class="form-group col-xs-2 col-md-2">
                             <label for="carnet">Tipo de carnet</label>
-                            <select name="carnet" id="carnet" class="form-control">
+                            <select name="carnet" id="carnet" class="form-control" required>
                                 <?php foreach($carnets as $carnet): ?>
                                     <option value="<?php echo $carnet['codi'] ?>"> <?php echo $carnet['codi'] ?> </option>
                                 <?php endforeach ?>
                             </select>
                         </div>
-                        <div class="form-group col-xs-8 col-md-8">
+                        <div class="form-group col-xs-2 col-md-2">
                             <label for="tipus">Tipo de test</label>
-                            <select name="tipus" id="tipus" class="form-control">
+                            <select name="tipus" id="tipus" class="form-control" required>
                                     <option value="basico"> Basico </option>
                                     <option value="avanzado"> Avanzado </option>
                                     <option value="examen"> Examen </option>
@@ -37,13 +37,13 @@
                         <?php endif ?>
                         <div class="form-group col-xs-12 col-md-12">
                             <label for="rar-file">Importación del archivo con las preguntas</label>
-                            <input type="file" name="rar-file" id="rar-file">
+                            <input type="file" class="filestyle" name="rar-file" id="rar-file" required>
                             <small id="fileHelp" class="form-text text-muted">
-                                Archivo .zip que incluye un archivo .csv con las preguntas, e imagenes de las respectivas preguntas si són necesarias. <br/>
+                                Solamente está permitido un archivo .zip ! <br/>
                             </small>
                         </div>
                         <div class="col-xs-12 col-md-12">
-                            <button type="submit" class="btn btn-primary">Crear</button>
+                            <button type="submit" class="btn btn-success pull-right">Importar</button>
                         </div>
                     </form>
                 </div>
@@ -89,3 +89,5 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap-filestyle.js"); ?>"></script>

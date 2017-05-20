@@ -2,18 +2,23 @@
 
 body
     background-color: $bgColor !important
+    font-family: Roboto
+
+.breadcrumb
+    background-color: white !important
 
 .card-box 
     background-color: white
     padding: 10px
-    border-radius: 5px
-
+    border-radius: 0px
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+    
     .card-accent
         color: $accentColor
         font-size: 30px
 
     .card-body-title
-        font-size: 25px
+        font-size: 30px
 
     .card-body-text
         color: grey
@@ -33,9 +38,13 @@ body
         font-weight: bold
 
 .panel-default
+    border-radius: 0px !important
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+    border: 0px !important
     .panel-heading
         background-color: $primaryColor !important
         color: white !important
+        border-radius: 0px !important
         h5
             font-size: 18px !important
             font-weight: normal !important
@@ -65,7 +74,6 @@ nav
 
         li 
             a
-                font-weight: bold
                 color: white !important
 
                 &:hover

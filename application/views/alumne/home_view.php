@@ -12,7 +12,7 @@
 		<div class="col-lg-4 col-md-4">
 			<div class="card-box">
 				<div class="text-center">
-					<p class="card-body-title"> <span class="card-accent"><?php echo isset($tests_realitzats) ? $tests_realitzats : 0; ?></span> <strong>/ 30</strong> </p>
+					<p class="card-body-title"> <span class="card-accent"><?php echo isset($tests_realitzats) ? $tests_realitzats : 0; ?></span> / <strong> 30</strong> </p>
 					<p class="card-body-text">Tests realizados</p>
 				</div>
 			</div>
@@ -39,8 +39,22 @@
 					<h5>Tests realizados</h5>
 				</div>
 				<div class="panel-body">
-					<?php if($tests && isset($tests) && count($tests) > 0): ?>
-					<div class="table-responsive">
+					<form id="form-alumne-tests" class="form-inline" method="post" action="<?php echo site_url('HomeController/index') ?>">
+						<div class="form-group">
+							<label for="filtre-alumne-tests" class="sr-only">Filtro de búsqueda </label>
+							<select class="form-control" name="filtre-alumne-tests" id="filtre-alumne-tests">
+								<option value=""> Selecciona un filtro... </option>
+								<option value="data_fi"> Fecha de realización descendiente </option>
+								<option value="aprobado"> Tests aprobados </option>
+								<option value="suspendido"> Tests suspendidos </option>
+							</select>
+						</div>
+						<div class="form-group" id="div-limpiar-filtros">
+						</div>
+					</form>
+					<hr/>
+					<div class="table-responsive col-md-12">
+						<?php if($tests && isset($tests) && count($tests) > 0): ?>
 						<table class="table table-sm table-hover">
 							<thead>
 								<tr>
@@ -51,7 +65,7 @@
 									<th class="text-center">Resultado</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="taula-tests-body">
 							<?php foreach($tests as $test): ?>
 								<tr style="cursor:pointer" data-id="<?php echo $test['id']; ?>" class="accordeon" data-toggle="collapse" href="#desplegar_<?php echo $test['id']; ?>">
 									<td> <i class="fa fa-eye" aria-hidden="true"></i> </td>
@@ -76,7 +90,7 @@
 														<th> La meva resposta </th>
 														<th class="text-center"> Correcta? </th>
 													</tr>
-												<thead>
+												</thead>
 												<tbody>
 													<?php foreach($test['preguntes'] as $pregunta): ?>
 													<tr>
@@ -106,13 +120,18 @@
 							<?php endforeach; ?>
 							</tbody>
 						</table>
+						<div class="text-center"><?php echo $this->pagination->create_links() ?></div>
+						<?php else: ?>
+								<p class="text-muted">No se han encontrado tests</p>
+						<?php endif; ?>
 					</div>
-					<div class="text-center"><?php echo $this->pagination->create_links() ?></div>
-					<?php else: ?>
-							<p class="text-muted">No hay profesores en nuestro sistema</p>
-					<?php endif; ?>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+	var site_url = "<?php echo site_url('HomeController/index') ?>";
+	var site_url_filtre = "<?php echo site_url('HomeController/filtres_ajax') ?>";
+</script>

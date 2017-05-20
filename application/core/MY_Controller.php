@@ -3,7 +3,7 @@
 class MY_Controller extends CI_controller
 {
     public $layout;
-    public $per_page = 3;
+    public $per_page = 10;
 
     public function __construct()
     {

@@ -78,10 +78,11 @@ class GestioTestsController extends MY_Controller {
 
                     $this->read_csv('./uploads/'.$data['codi'].'/'.$data['codi'].'.csv', $test);
                 }
-                else {
-                    $data['error'] = 'Error en descomprimir el fitxer al servidor.';
+                else 
+                {
+                    $this->session->set_flashdata('errors', '<strong>Error!</strong> No se ha podido abrir el archivo importado');
 
-                    $this->index($data);
+                    redirect('admin/GestioTestsController/index');
                 }
             }
         }
@@ -108,7 +109,7 @@ class GestioTestsController extends MY_Controller {
                 $linia = implode(";", $data);
                 $linia = explode(";", $linia);
 
-                if(isset($linia[0]) && isset($linia[1]) && isset($linia[2]) && isset($linia[3]) && isset($linia[4]) && isset($linia[5]))
+                if(!empty($linia[0]) && !empty($linia[1]) && !empty($linia[2]) && !empty($linia[3]) && !empty($linia[4]) && !empty($linia[5]))
                 {
                     if(strlen($linia[0]) < 7 || strlen($linia[0]) > 7) return false;
                     if($linia[4] == 'N') $linia[4] = null;
@@ -124,7 +125,14 @@ class GestioTestsController extends MY_Controller {
                         'test_codi' => $test['codi']
                     );
                 }
+                else
+                {
+                    $this->session->set_flashdata('errors', '<strong>Error!</strong> No se ha podido leer algún registro del fichero .csv, comprueba que los datos sean correctos.');
+
+                    redirect('admin/GestioTestsController/index');
+                }
             }
+
             fclose($handler);
             
             unlink($csv);
@@ -142,9 +150,16 @@ class GestioTestsController extends MY_Controller {
     */
     private function insert($test, $preguntes)
     {
+        if($this->Test->select_by_codi($test['codi']))
+        {
+            $this->session->set_flashdata('errors', '<strong>Error!</strong> Ya existe este test en nuestra base de datos');
+
+            redirect('admin/GestioTestsController/index');
+        }
+
         $this->Test->insert_test($test, $preguntes);
 
-        $this->session->set_flashdata('exits', '<strong>Èxito!</strong> Se ha realizado la importación correctamente');
+        $this->session->set_flashdata('exits', '<strong>Éxito!</strong> Se ha realizado la importación correctamente');
 
         redirect('admin/GestioTestsController/index');
     }
