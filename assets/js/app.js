@@ -58,4 +58,9 @@ $(document).ready(function(){
         var enrere = '<a href='+site_url_enrere+' class="btn btn-danger btn-lg btn-block">Sortir</a>';
         $('#btn-check-test').first().after(enrere);
     }
+
+        $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+        $("#success-alert").slideUp(500);
+    });
+
 });

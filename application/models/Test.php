@@ -24,6 +24,16 @@ class Test extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    function select()
+    {
+        $this->db->from($this->table_tests);
+        $this->db->group_by('tests.codi');
+
+        $query = $this->db->get();
+
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
     function select_by_codi($codi)
     {
         $this->db->from($this->table_tests);

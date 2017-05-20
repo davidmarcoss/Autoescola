@@ -23,10 +23,18 @@ class GestioTestsController extends MY_Controller {
 		$data['content'] = 'admin/gestio_tests_view';
 
         $data['carnets'] = $this->Carnet->select();
+        $data['tests'] = $this->Test->select();
 
 		$this->load->view($this->layout, $data);
 	}
 
+    /**
+    *   upload()
+    *
+    *   Aquesta funció puja un arxiu .zip al servidor, després
+    *   el descomprimeix, i finalment l'esborra per a llegir
+    *   el .csv
+    */
     public function upload()
     {
         $data = $this->input->post();
@@ -34,14 +42,15 @@ class GestioTestsController extends MY_Controller {
         $test = array(
             'codi' => $data['codi'],
             'nom' => $data['nom'],
+            'tipus' => $data['tipus'],
             'carnet_codi' => $data['carnet'],
         );
-        
+
         if( ! mkdir('./uploads/' . $data['codi'], 0777, true))
         {
-            $error['error'] = 'Ya has subido anteriormente esta importación';
+            $this->session->set_flashdata('errors', '<strong>Error!</strong> No se ha podido subir la importación. Comprueba que no hayas hecho esta importación antes');
 
-            redirect('admin/GestioTestsController/index'); exit;
+            redirect('admin/GestioTestsController/index');
         }
 
         $config['upload_path'] = './uploads/' . $data['codi'];
@@ -70,12 +79,21 @@ class GestioTestsController extends MY_Controller {
                     $this->read_csv('./uploads/'.$data['codi'].'/'.$data['codi'].'.csv', $test);
                 }
                 else {
-                    $error['error'] = 'Error en descomprimir el fitxer al servidor.';
+                    $data['error'] = 'Error en descomprimir el fitxer al servidor.';
+
+                    $this->index($data);
                 }
             }
         }
     }
 
+    /**
+    *   read_csv($csv, $test)
+    *
+    *   Aquesta funció llegeix el fitxer .csv estaba dins del
+    *   .zip que ens han pujat, juntament amb les imatges.
+    *   Finalment crida a la funció insert($test, $preguntes)   
+    */
     private function read_csv($csv, $test)
     {
         $preguntes = array();
@@ -92,7 +110,7 @@ class GestioTestsController extends MY_Controller {
                 {
                     if(strlen($linia[0]) < 7 || strlen($linia[0]) > 7) return false;
                     if($linia[4] == 'N') $linia[4] = null;
-                    if($linia[5] == 'S') $linia[5] = $linia[0].'.png';
+                    if($linia[5] == 'S') $linia[5] = $linia[0].'.jpg';
 
                     $preguntes[] = array (
                         'codi' => $linia[0],
@@ -113,8 +131,19 @@ class GestioTestsController extends MY_Controller {
         }
     }
 
+    /**
+    *   Aquesta funció crida al mètode insert de Test
+    *   per a introduïr el test importat mes totes les
+    *   seves preguntes.
+    *
+    *   @param array $test, array $preguntes
+    */
     public function insert($test, $preguntes)
     {
         $this->Test->insert_test($test, $preguntes);
+
+        $this->session->set_flashdata('exits', '<strong>Èxito!</strong> Se ha realizado la importación correctamente');
+
+        redirect('admin/GestioTestsController/index');
     }
 }

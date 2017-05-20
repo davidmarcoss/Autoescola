@@ -39,6 +39,9 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
+                                <?php if($pregunta['imatge'] != 'N'): ?>
+                                    <img src="<?php echo base_url() . 'uploads/'.$this->session->codi_test.'/'.$pregunta['imatge'] ?>">
+                                <?php endif ?>
                             </div>
                         </div>
                     </div>

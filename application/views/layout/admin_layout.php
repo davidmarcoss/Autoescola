@@ -52,8 +52,25 @@
     </nav>
 
 	<div class="container">
+        <div class="container">
+            <?php if($this->session->flashdata('errors')): ?>
+                <div class="alert alert-danger">
+                    <?php echo $this->session->flashdata('errors') ?>
+                </div>
+            <?php endif ?>
+        </div>
+
+        <div class="container">
+            <?php if($this->session->flashdata('exits')): ?>
+                <div class="alert alert-success">
+                    <?php echo $this->session->flashdata('exits') ?>
+                </div>
+            <?php endif ?>
+        </div>
+
         <?php $this->load->view($content); ?>
 	</div>
+
 
 	<!-- Bootstrap Query -->
 	<script type="text/javascript" src="<?php echo base_url("assets/bootstrap/js/bootstrap.min.js"); ?>"></script>
