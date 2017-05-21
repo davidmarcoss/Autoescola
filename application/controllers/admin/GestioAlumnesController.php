@@ -22,9 +22,12 @@ class GestioAlumnesController extends MY_Controller
 	{
 		$data['titol'] = 'Inici';
 		$data['content'] = 'admin/gestio_alumnes_view';
-
-		$data['alumnes'] = $this->Alumne->select();
+		
+		$data['alumnes'] = $this->Alumne->select_limit($this->per_page, $this->uri->segment(3));
 		$data['professors'] = $this->Administrador->select_professors();
+		
+		$this->set_pagination(count($data['alumnes']), base_url().'index.php/HomeController/index/');
+
 
 		$this->load->view($this->layout, $data);
 	}
@@ -54,6 +57,16 @@ class GestioAlumnesController extends MY_Controller
 		$this->Alumne->delete($nif);
 
 		redirect('admin/GestioAlumnesController/index');
+	}
+
+	public function select_where_like()
+	{
+		$nif = $this->input->post('nif');
+		$nom = $this->input->post('nom');
+
+		$data['alumnes'] = $this->Alumne->select_where_like($nif, $nom, $this->per_page, $this->uri->segment(3));
+
+		echo json_encode($data['alumnes']);
 	}
 
 }

@@ -17,12 +17,7 @@ class MY_Controller extends CI_controller
         {
             $this->layout = 'layout/alumne_layout';
         }
-        $config['use_page_numbers'] = TRUE;
- 		$config['first_link'] = 'Primera';
-		$config['last_link'] = 'Última';
-        $config["uri_segment"] = 4;
-		$config['next_link'] = 'Siguiente';
-		$config['prev_link'] = 'Anterior';
+        
         //$this->output->enable_profiler(true);
     }
 
@@ -39,4 +34,20 @@ class MY_Controller extends CI_controller
         
         redirect('LoginController/index');
     }
+
+	public function set_pagination($pagination_count, $url)
+	{
+		$this->load->library('pagination');
+        
+ 		$config['first_link'] = 'Primera';
+		$config['last_link'] = 'Última';
+		$config['next_link'] = 'Siguiente';
+		$config['prev_link'] = 'Anterior';
+		$config['base_url'] = $url;
+		$config['total_rows'] = $pagination_count;
+		$config['per_page'] = $this->per_page;
+        $config['num_links'] = $pagination_count;
+
+		$this->pagination->initialize($config);
+	}
 }

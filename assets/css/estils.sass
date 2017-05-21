@@ -3,9 +3,13 @@
 body
     background-color: $bgColor !important
     font-family: Roboto
+    color: $fontColor !important
 
 .breadcrumb
     background-color: white !important
+
+label
+    color: $fontColor !important
 
 .card-box 
     background-color: white
@@ -20,8 +24,8 @@ body
     .card-body-title
         font-size: 30px
 
+
     .card-body-text
-        color: grey
         font-weight: bold
 
 .card-box-test
@@ -53,37 +57,29 @@ body
     color: $accentColor
 
 .fa
-    font-size: 18px !important
+    font-size: 16px !important
     vertical-align: middle !important
   
 
 nav 
-    background-color: $primaryColorDark !important
-    color: white !important
-    
+    background-color: white !important
     .navbar-brand
-        color: white !important
-
+        color: $primaryColorDark !important
         &:hover 
             color: $accentColor !important
-
     .navbar-nav
         .active
             background-color: rgba(0,0,0,0) !important
             color: $accentColor !important
-
         li 
             a
-                color: white !important
-
+                color: $primaryColorDark !important
                 &:hover
-                    color: $accentColor !important
-                    
-    
+                    color: $accentColor !important     
     .dropdown
         li
             a
-                color: black !important
+                color: $primaryColorDark !important
 
     .open > a, 
     .open > a:hover, 
@@ -111,6 +107,7 @@ nav
     vertical-align: middle
 
 
+
 .taula-respostes-test
     width: 85% !important
     margin: 0 auto !important
@@ -118,22 +115,19 @@ nav
 .taula-respostes-test tr, 
 .taula-respostes-test td, 
 .taula-respostes-test th
-    color: grey !important
+    color: #757575 !important
     padding: 5px !important
 
 .tr-no-hover:hover 
     background-color: white !important
 
+.label
+    background-color: $accentColor !important
+    font-size: 14px !important
+
 .label-resultat
     width: 40px !important
-    .fa
-        font-size: 18px !important
-
-.modal-danger
-    .modal-header
-        background-color: $errorColor !important
-        color: white !important
-
+    background-color: $accentColor !important
 
 .btn-float-add
     border-radius: 50% !important

@@ -24,19 +24,9 @@ class HomeController extends MY_Controller
 		$data['content'] = 'alumne/home_view';
 		
 		$pagination_count = $this->Alumne->select_tests_alumne_count($this->session->userdata('nif'));
-		$this->set_pagination($pagination_count);
+		$this->set_pagination($pagination_count, base_url().'index.php/HomeController/index/');
 
-		$filtre = $this->input->post('filtre-alumne-tests');
-		if(isset($filtre) && !empty($filtre))
-		{
-			$this->session->set_flashdata('filtre', $filtre);
-			$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'), $this->per_page, $this->uri->segment(3), $filtre);
-		}
-		else
-		{
-			$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'), $this->per_page, $this->uri->segment(3));
-		}
-
+		$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'), $this->per_page, $this->uri->segment(3));
 		$data['tests'] = $this->get_respostes_per_test($data['tests_sense_preguntes']);
 		$data['tests_realitzats'] = $pagination_count;
 		$data['tests_aprobats'] = $this->tests_aprobats_count($data['tests']);	
@@ -73,18 +63,6 @@ class HomeController extends MY_Controller
 		}
 
 		return $tests;
-	}
-
-	private function set_pagination($pagination_count)
-	{
-		$this->load->library('pagination');
-        
-		$config['base_url'] = base_url().'index.php/HomeController/index/';
-		$config['total_rows'] = $pagination_count;
-		$config['per_page'] = $this->per_page;
-        $config['num_links'] = $pagination_count;
-
-		$this->pagination->initialize($config);
 	}
 
 	public function filtres_ajax()

@@ -23,10 +23,26 @@ class GestioTestsController extends MY_Controller {
 		$data['content'] = 'admin/gestio_tests_view';
 
         $data['carnets'] = $this->Carnet->select();
-        $data['tests'] = $this->Test->select();
+        $data['tests_sense_preguntes'] = $this->Test->select();
+        $data['tests'] = $this->select_respostes($data['tests_sense_preguntes']);
+
+        $this->set_pagination(count($data['tests']), base_url().'index.php/admin/GestioTestsController/index/');
 
 		$this->load->view($this->layout, $data);
 	}
+
+    private function select_respostes($tests)
+    {
+        if($tests && count($tests) > 0)
+        {
+            foreach($tests as &$test)
+            {
+                $test['preguntes'] = $this->Test->select_preguntes($test['codi']);
+            }
+        }
+
+        return $tests;
+    }
 
     /**
     *   upload()

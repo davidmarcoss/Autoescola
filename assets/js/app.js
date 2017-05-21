@@ -71,7 +71,8 @@ $(document).ready(function(){
     });
 
     /**
-     * AJAX - Filtre de tests realitzats per l'alumne
+     *   Funció AJAX per als filtres de la taula de tests realitzats
+     *   de l'alumne
      */
     $('#filtre-alumne-tests').on('change', function(){
         $.ajax({
@@ -82,7 +83,7 @@ $(document).ready(function(){
             success: (function (response) {
                 if(response)
                 {
-                    mostrarTula(response);
+                    renderTaulaTests(response);
                 }
                 else
                 {
@@ -99,7 +100,11 @@ $(document).ready(function(){
         });
     });
 
-    function mostrarTula(data)
+    /**
+     * mostrarTaula() torna a dibuixar la taula de tests realitzats
+     * però aquesta vegada venen les dades amb els filtres demanats.
+     */
+    function renderTaulaTests(data)
     {
         $('.table-responsive').empty();
 
@@ -161,4 +166,46 @@ $(document).ready(function(){
     $('#btn-limpiar-filtros').on('click', function() {
         window.location = $('#thickboxId').attr('href');
     });
+
+    /**
+     *   Funció AJAX per als filtres de la taula de tests realitzats
+     *   de l'alumne
+     */
+    $('#btn-aplicar-filtres').on('click', function(){
+        var nif = $('#nif').val();
+        var nom = $('#nom').val();
+
+        $.ajax({
+            url: site_url_filtre,
+            type: 'POST',
+            dataType: 'json',
+            data: { 
+                'nif' : nif,
+                'nom' : nom,
+            },
+            success: (function (response) {
+                console.info(response);
+                if(response)
+                {
+                    renderTaulaAlumnes(response);
+                }
+                else
+                {
+                    $('.table-responsive').empty();
+                    $('.table-responsive').append('<p class="text-muted">No se han encontrado alumnos</p>');
+                }
+                $('#btn-limpiar-filtros').remove();
+                $('#div-limpiar-filtros').append(' <a role="button" id="btn-limpiar-filtros" class="btn btn-info pull-right" href='+site_url+'>Limpiar filtros<a>');
+            }),
+            error: (function (error) {
+                var message = "<div class='alert alert-danger'> <strong>Error!</strong> en procesar las respuesta</div>"
+                $('.messages-container').append();
+            })
+        });
+    });
+
+    function renderTaulaAlumnes(data)
+    {
+
+    }
 });

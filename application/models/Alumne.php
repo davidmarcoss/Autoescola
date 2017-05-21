@@ -21,17 +21,31 @@ class Alumne extends MY_Model
         $this->db->from('alumnes');
         $this->db->join('administradors', 'administradors.nif = alumnes.professor_nif');
         $this->db->where('administradors.rol', 'professor');
+        $this->db->where('desactivat', 0);
+
         $query = $this->db->get();
 
-        return $query->result_array();
+        return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
-    function select_where_correu($correu)
+    function select_limit($limit, $segment)
     {
-        $this->db->select('nif, nom, cognoms, telefon, data_naix, correu');
-        $this->db->where('correu', $correu);
+        $this->db->select('alumnes.*, administradors.nif as admin_nif, administradors.rol as admin_rol, administradors.nom as admin_nom, administradors.cognoms as admin_cognoms');
+        $this->db->join('administradors', 'administradors.nif = alumnes.professor_nif');
+        $this->db->where('administradors.rol', 'professor');
+        $this->db->where('desactivat', 0);
 
-        $query = $this->db->get('usuari');
+        $query = $this->db->get('alumnes', $limit, $segment);
+
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
+    function select_where_like($nif, $nom, $limit, $segment)
+    {
+        $this->db->like('nif', $nif);
+        $this->db->like('nom', $nom);
+
+        $query = $this->db->get('alumnes', $limit, $segment);
 
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
@@ -58,7 +72,7 @@ class Alumne extends MY_Model
     {
         $this->db->where('nif', $nif);
 
-        $this->db->delete('alumnes');
+        $this->db->update('alumnes', array('desactivat' => 1));
 
         return ($this->db->affected_rows() != 1) ? false : true;
     }

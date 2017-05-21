@@ -1,6 +1,12 @@
 <div class="container">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Inicio</li>
+    </ol>
+</div>
+
+<div class="container">
 	<div class="row">
-		<div class="col-lg-4 col-md-4">
+		<div class="col-lg-4 col-md-4 col-xs-12">
 			<div class="card-box">
 				<div class="text-center">
 					<p class="card-body-title"> <span class="card-accent"><?php echo $this->session->carnet; ?></span> </p>
@@ -9,7 +15,7 @@
 			</div>
 		</div>
 
-		<div class="col-lg-4 col-md-4">
+		<div class="col-lg-4 col-md-4 col-xs-12">
 			<div class="card-box">
 				<div class="text-center">
 					<p class="card-body-title"> <span class="card-accent"><?php echo isset($tests_realitzats) ? $tests_realitzats : 0; ?></span> / <strong> 30</strong> </p>
@@ -18,7 +24,7 @@
 			</div>
 		</div>
 
-		<div class="col-lg-4 col-md-4">
+		<div class="col-lg-4 col-md-4 col-xs-12">
 			<div class="card-box">
 				<div class="text-center">
 					<p class="card-body-title"> <span class="card-accent"><?php echo isset($tests_aprobats) ? $tests_aprobats : 0; ?></span> / <strong><?php echo isset($tests_realitzats) ? $tests_realitzats : 0; ?></strong> </p>
@@ -83,7 +89,7 @@
 								<tr class="tr-no-hover">
 									<td colspan="5" class="quitar-borde-superior">
 										<div id="desplegar_<?php echo $test['id']; ?>" class="collapse">
-											<table class="table table-condensed table-striped taula-respostes-test">
+											<table class="table table-condensed taula-respostes-test">
 												<thead>
 													<tr>
 														<th> Pregunta </th>

@@ -12,9 +12,23 @@
 					<h5 style="display: inline-block">Gestión de profesores</h5>
 				</div>
 				<div class="panel-body">
+					<form id="form-alumne-tests" class="form-inline" method="post" action="<?php echo site_url('HomeController/index') ?>">
+						<div class="form-group">
+							<label for="nif" class="sr-only">NIF</label>
+                            <input type="text" name="nif" id="nif" placeholder="NIF" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="nom" class="sr-only">Nombre </label>
+                            <input type="text" name="nom" id="nom" placeholder="Nombre" class="form-control">
+						</div>
+                        <button type="button" class="btn btn-success" id="btn-aplicar-filtres">Aplicar</button>
+						<div class="form-group" id="div-limpiar-filtros">
+						</div>
+					</form>
+                    <hr/>
                     <?php if(isset($professors)): ?>
 					<div class="table-responsive">
-						<table class="table table-condensed table-hover">
+						<table class="table table-condensed table-hover table-striped">
 							<thead>
 								<tr>
 									<th class="text-center">NIF</th>
@@ -149,5 +163,10 @@
         </div>
     </div>
 </div>
+
+<script>
+	var site_url = "<?php echo site_url('admin/GestioAlumnesController/index') ?>";
+	var site_url_filtre = "<?php echo site_url('admin/GestioAlumnesController/select_where_like') ?>";
+</script>
 
 <script type="text/javascript" src="<?php echo base_url("assets/js/modals.js"); ?>"></script>

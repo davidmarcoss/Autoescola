@@ -25,16 +25,9 @@ class GestioProfessorsController extends MY_Controller
 
         $count = $this->Administrador->count_professors();
 
-        $this->load->library('pagination');
-        
-		$config['base_url'] = base_url().'index.php/admin/GestioProfessorsController/index/';
-		$config['total_rows'] = $count;
-		$config['per_page'] = $this->per_page;
-        $config['num_links'] = $count;
+        $data['professors'] = $this->Administrador->select_professors_limit($this->per_page, $this->uri->segment(4));	
 
-		$this->pagination->initialize($config);
-
-        $data['professors'] = $this->Administrador->select_professors_limit($config['per_page'], $this->uri->segment(4));	
+		$this->set_pagination(count($data['professors']), base_url().'index.php/admin/GestioProfessorsController/index/');
 
 		$this->load->view($this->layout, $data);
 	}
@@ -65,5 +58,15 @@ class GestioProfessorsController extends MY_Controller
 
         redirect('admin/GestioProfessorsController/index');
     }
+
+	public function select_where_like()
+	{
+		$nif = $this->input->post('nif');
+		$nom = $this->input->post('nom');
+
+		$data['professors'] = $this->Administrador->select_where_like($nif, $nom, $this->per_page, $this->uri->segment(3), 'professor');
+
+		echo json_encode($data['professors']);
+	}
 
 }

@@ -27,6 +27,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo site_url('admin/GestioHomeController/index'); ?>">Inicio</a></li>
+                    <?php if($this->session->rol == 'admin'): ?>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Gestión de usuarios<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -35,6 +36,7 @@
                         </ul>
                     </li>
                     <li><a href="<?php echo site_url('admin/GestioTestsController/index'); ?>">Gestión de tests</a></li>
+                    <?php endif ?>
                     <li><a href="<?php echo site_url('admin/GestioPractiquesController/index'); ?>">Gestión de prácticas</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -52,7 +54,7 @@
         </div>
     </nav>
 
-	<div class="container messages-container">
+	<div class="messages-container">
         <div class="container">
             <?php if($this->session->flashdata('errors')): ?>
                 <div class="alert alert-danger">

@@ -1,7 +1,5 @@
 <a class="btn btn-success btn-float-add" id="obrir-modal-afegir-alumne" role="button" data-toggle="modal" href="#modal-afegir-alumne"> <i class="fa fa-user-plus" aria-hidden="true"></i></a>
 
-<div id="shadow"></div>
-
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12 col-md-12">
@@ -10,8 +8,22 @@
 					<h5 style="display: inline-block">Gestión de alumnos</h5>
 				</div>
 				<div class="panel-body">
+					<form id="form-alumne-tests" class="form-inline" method="post" action="<?php echo site_url('HomeController/index') ?>">
+						<div class="form-group">
+							<label for="nif" class="sr-only">NIF</label>
+                            <input type="text" name="nif" id="nif" placeholder="NIF" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="nom" class="sr-only">Nombre </label>
+                            <input type="text" name="nom" id="nom" placeholder="Nombre" class="form-control">
+						</div>
+                        <button type="button" class="btn btn-success" id="btn-aplicar-filtres">Aplicar</button>
+						<div class="form-group" id="div-limpiar-filtros">
+						</div>
+					</form>
+                    <hr/>
 					<div class="table-responsive">
-						<?php if(isset($alumnes)): ?>
+						<?php if($alumnes): ?>
 						<table class="table table-condensed table-hover">
 							<thead>
 								<tr>
@@ -35,10 +47,10 @@
                                     <td class="text-center"> <?php echo $nomComplet ?> </td>
                                     <td class="text-center">
                                         <a class="btn btn-warning btn-sm obrir-modal-mod-alumne" role="button" data-toggle="modal" href="#modal-editar-alumne" value="<?php echo $alumne['nif'].':'.$alumne['nom'].':'.$alumne['cognoms'].':'.$alumne['correu'].':'.$alumne['telefon'].':'.$alumne['poblacio'].':'.$alumne['adreca'].':'.$alumne['professor_nif'] ?>"> 
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true" ></i>
+                                            <i class="fa fa-pencil" aria-hidden="true" ></i> Editar
                                         </a>
                                         <a class="btn btn-danger btn-sm obrir-modal-del-alumne" role="button" data-toggle="modal" href="#modal-eliminar-alumne" value="<?php echo $alumne['nif'].':'.$alumne['nom'] ?>"> 
-                                            <i class="fa fa-times " aria-hidden="true" ></i>
+                                            <i class="fa fa-times " aria-hidden="true" ></i> Dar de baja
                                         </a>
                                     </td>
                                 </tr>
@@ -55,7 +67,10 @@
 	</div>
 </div>
 
-<!-- MODALS -->
+<!--****************************************************
+    MODALS de gestió d'usuari.
+*****************************************************-->
+
 <div id="modal-afegir-alumne" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -115,7 +130,7 @@
     </div>
 </div>
 
-<div id="modal-editar-alumne" class="modal fade">
+<div id="modal-editar-alumne" class="modal fade modal-warning">
     <div class="modal-dialog">
         <div class="modal-content">
             <form method="post" action="<?php echo site_url('admin/GestioAlumnesController/update'); ?>">
@@ -177,19 +192,24 @@
             <form method="post" action="<?php echo site_url('admin/GestioAlumnesController/delete') ?>">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Eliminación del alumno <strong><span id="nom-alumne-title-2"> </span></strong></h4>
+                    <h4 class="modal-title">Desactivación del alumno <strong><span id="nom-alumne-title-2"> </span></strong></h4>
                 </div>
                 <div class="modal-body">
-                    Estas seguro que quieres eliminar este alumno?
+                    Estas seguro que quieres dar de baja a este alumno? Podrás recuperarlo después
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <button type="submit" class="btn btn-danger">Dar de baja</button>
                 </div>
                 <input type="text" name="nif" id="nif-populate-2" hidden>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+	var site_url = "<?php echo site_url('admin/GestioAlumnesController/index') ?>";
+	var site_url_filtre = "<?php echo site_url('admin/GestioAlumnesController/select_where_like') ?>";
+</script>
 
 <script type="text/javascript" src="<?php echo base_url("assets/js/modals.js"); ?>"></script>
