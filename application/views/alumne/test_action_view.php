@@ -22,9 +22,9 @@
 
                         shuffle($opcions);
                     ?>
-                    <div class="panel panel-default"    >
+                    <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h6> <?php echo $pregunta['pregunta']; ?></h6>
+                            <h5> <?php echo $pregunta['pregunta']; ?></h5>
                         </div>
                         <div class="panel-body">
                             <div class="col-md-9">

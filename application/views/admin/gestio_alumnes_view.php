@@ -17,7 +17,7 @@
 							<label for="nom" class="sr-only">Nombre </label>
                             <input type="text" name="nom" id="nom" placeholder="Nombre" class="form-control">
 						</div>
-                        <button type="button" class="btn btn-success" id="btn-aplicar-filtres">Aplicar</button>
+                        <button type="button" class="btn btn-success btn-autoescola" id="btn-aplicar-filtres-alumnes">Aplicar</button>
 						<div class="form-group" id="div-limpiar-filtros">
 						</div>
 					</form>
@@ -31,6 +31,7 @@
 									<th class="text-center">Nombre</th>
 									<th class="text-center">Correo electrónico</th>
 									<th class="text-center">Teléfono de contacto</th>
+                                    <th class="text-center">Carnet actual</th>
                                     <th class="text-center">Profesor asignado</th>
                                     <th class="text-center">Acción</th>
 								</tr>
@@ -40,13 +41,14 @@
                                 <tr valign="middle">
                                     <td class="text-center"> <?php echo $alumne['nif'] ?> </td>
                                     <?php $nomComplet = $alumne['cognoms'] . ', ' . $alumne['nom'] ?>
-                                    <td class="text-center"> <?php echo $nomComplet ?> </td>
-                                    <td class="text-center"> <?php echo $alumne['correu'] ?> </td>
-                                    <td class="text-center"> <?php echo $alumne['telefon'] ?> </td>
+                                    <td class="text-center"><?php echo $nomComplet ?></td>
+                                    <td class="text-center"><?php echo $alumne['correu'] ?></td>
+                                    <td class="text-center"><?php echo $alumne['telefon'] ?></td>
+                                    <td class="text-center"><?php echo $alumne['carnet_codi'] ?></td>
                                     <?php $nomComplet = $alumne['admin_cognoms'] . ', ' . $alumne['admin_nom'] ?>
                                     <td class="text-center"> <?php echo $nomComplet ?> </td>
                                     <td class="text-center">
-                                        <a class="btn btn-warning btn-sm obrir-modal-mod-alumne" role="button" data-toggle="modal" href="#modal-editar-alumne" value="<?php echo $alumne['nif'].':'.$alumne['nom'].':'.$alumne['cognoms'].':'.$alumne['correu'].':'.$alumne['telefon'].':'.$alumne['poblacio'].':'.$alumne['adreca'].':'.$alumne['professor_nif'] ?>"> 
+                                        <a class="btn btn-warning btn-sm obrir-modal-mod-alumne" role="button" data-toggle="modal" href="#modal-editar-alumne" value="<?php echo $alumne['nif'].':'.$alumne['nom'].':'.$alumne['cognoms'].':'.$alumne['correu'].':'.$alumne['telefon'].':'.$alumne['poblacio'].':'.$alumne['adreca'].':'.$alumne['carnet_codi'].':'.$alumne['professor_nif'].':'.$alumne['password'] ?>"> 
                                             <i class="fa fa-pencil" aria-hidden="true" ></i> Editar
                                         </a>
                                         <a class="btn btn-danger btn-sm obrir-modal-del-alumne" role="button" data-toggle="modal" href="#modal-eliminar-alumne" value="<?php echo $alumne['nif'].':'.$alumne['nom'] ?>"> 
@@ -97,9 +99,14 @@
                             <label for="correu" class="control-label">Correu</label>
                             <input type="email" class="form-control" name="correu" placeholder="johndoe@email.com" id="correu" required>
                         </div>
+
                         <div class="form-group col-xs-4 col-md-4">
                             <label for="telefon" class="control-label">Telefon</label>
                             <input type="text" class="form-control" name="telefon" placeholder="999999999" id="telefon">
+                        </div>
+                        <div class="form-group col-xs-12 col-md-12">
+                            <label for="password" class="control-label">Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="*******" id="password" required>
                         </div>
                         <div class="form-group col-xs-6 col-md-6">
                             <label for="poblacio" class="control-label">Poblacio</label>
@@ -109,8 +116,18 @@
                             <label for="adreca" class="control-label">Adreça</label>
                             <input type="text" class="form-control" name="adreca" placeholder="Emili Vallès 4" id="carrer" required>
                         </div>
-                        <?php if($professors && count($professors) > 0): ?>
-                        <div class="form-group col-xs-12 col-md-12">
+                        <?php if($carnets): ?>
+                        <div class="form-group col-xs-6 col-md-6">
+                            <label for="carnet" class="control-label">Carnet</label>
+                            <select class="form-control" name="carnet_codi" id="carnet" required>
+                            <?php foreach($carnets as $carnet): ?>
+                                <option value="<?php echo $carnet['codi'] ?>"> <?php echo $carnet['codi'] ?> </option>
+                            <?php endforeach ?>
+                            </select>
+                        </div>
+                        <?php endif ?>
+                        <?php if($professors): ?>
+                        <div class="form-group col-xs-6 col-md-6">
                             <label for="professor" class="control-label">Professor</label>
                             <select class="form-control" name="professor_nif" id="professor" required>
                             <?php foreach($professors as $professor): ?>
@@ -149,24 +166,38 @@
                             <label for="cognoms-populate" class="control-label">Cognoms</label>
                             <input type="text" class="form-control" id="cognoms-populate" name="cognoms" required>
                         </div>
-                        <div class="form-group col-xs-8 col-md-8">
+                        <div class="form-group col-xs-6 col-md-6">
                             <label for="correu-populate" class="control-label">Correu</label>
                             <input type="email" class="form-control" id="correu-populate" name="correu" required>
                         </div>
-                        <div class="form-group col-xs-4 col-md-4">
+                        <div class="form-group col-xs-6 col-md-6">
+                            <label for="password" class="control-label">Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="*******" id="password-populate" required>
+                        </div>
+                        <div class="form-group col-xs-3 col-md-3">
                             <label for="telefon-populate" class="control-label">Telefon</label>
                             <input type="text" class="form-control" id="telefon-populate" name="telefon">
                         </div>
-                        <div class="form-group col-xs-6 col-md-6">
+                        <div class="form-group col-xs-4 col-md-4">
                             <label for="poblacio-populate" class="control-label">Poblacio</label>
                             <input type="text" class="form-control" id="poblacio-populate" name="poblacio" required>
                         </div>
-                        <div class="form-group col-xs-6 col-md-6">
+                        <div class="form-group col-xs-5 col-md-5">
                             <label for="adreca-populate" class="control-label">Adreça</label>
                             <input type="text" class="form-control" id="adreca-populate" name="adreca" required>
                         </div>
-                        <?php if($professors && count($professors) > 0): ?>
-                        <div class="form-group col-xs-12 col-md-12">
+                        <?php if($carnets): ?>
+                        <div class="form-group col-xs-6 col-md-6">
+                            <label for="carnet-populate" class="control-label">Carnet</label>
+                            <select class="form-control" name="carnet_codi" id="carnet-populate" required>
+                            <?php foreach($carnets as $carnet): ?>
+                                <option value="<?php echo $carnet['codi'] ?>"> <?php echo $carnet['codi'] ?> </option>
+                            <?php endforeach ?>
+                            </select>
+                        </div>
+                        <?php endif ?>
+                        <?php if($professors): ?>
+                        <div class="form-group col-xs-6 col-md-6">
                             <label for="professor-populate" class="control-label">Professor</label>
                             <select class="form-control" name="professor_nif" id="professor-populate" required>
                             <?php foreach($professors as $professor): ?>

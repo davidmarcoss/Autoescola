@@ -4,12 +4,33 @@ body
     background-color: $bgColor !important
     font-family: Roboto
     color: $fontColor !important
+    font-size: 15px !important
 
 .breadcrumb
     background-color: white !important
 
 label
     color: $fontColor !important
+
+.btn
+    border: 0 !important
+    font-size: 15px !important
+    font-weight: bold
+    transition: all 0.2s ease 0s
+    &:hover
+        transition: all 0.2s ease 0s
+
+.btn-default
+    color: white !important
+    background-color: #9E9E9E !important
+    &:hover
+        background-color: #757575 !important
+        color: white
+
+.btn-autoescola
+    background-color: $accentColor !important
+    &:hover
+        background-color: $accentColorHover !important
 
 .card-box 
     background-color: white
@@ -49,8 +70,8 @@ label
         background-color: $primaryColor !important
         color: white !important
         border-radius: 0px !important
+
         h5
-            font-size: 18px !important
             font-weight: normal !important
 
 .active
@@ -62,9 +83,11 @@ label
   
 
 nav 
-    background-color: white !important
+    background-color: $primaryColorDark !important
     .navbar-brand
-        color: $primaryColorDark !important
+        color: white !important
+        font-weight: bold
+        
         &:hover 
             color: $accentColor !important
     .navbar-nav
@@ -73,7 +96,7 @@ nav
             color: $accentColor !important
         li 
             a
-                color: $primaryColorDark !important
+                color: white !important
                 &:hover
                     color: $accentColor !important     
     .dropdown
@@ -121,13 +144,13 @@ nav
 .tr-no-hover:hover 
     background-color: white !important
 
-.label
-    background-color: $accentColor !important
+.label-success
+    background-color: $successColor !important
     font-size: 14px !important
 
-.label-resultat
-    width: 40px !important
-    background-color: $accentColor !important
+.label-danger
+    background-color: $errorColor !important
+    font-size: 14px !important
 
 .btn-float-add
     border-radius: 50% !important

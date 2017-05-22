@@ -58,7 +58,7 @@ class HomeController extends MY_Controller
 		{
 			foreach($tests as &$test)
 			{
-				$test['preguntes'] = $this->Alumne->select_respostes_test($test['test_codi']);
+				$test['preguntes'] = $this->Alumne->select_respostes_test($test['id']);
 			}
 		}
 
@@ -68,6 +68,7 @@ class HomeController extends MY_Controller
 	public function filtres_ajax()
 	{
 		$filtre = $this->input->post('filtre-alumne-tests');
+		
 		if(isset($filtre) && !empty($filtre))
 		{
 			$this->session->set_flashdata('filtre', $filtre);
@@ -80,7 +81,8 @@ class HomeController extends MY_Controller
 
 		$data['tests'] = $this->get_respostes_per_test($data['tests_sense_preguntes']);
 
-		if(count($data['tests'] > 0)) echo json_encode($data['tests']);	
+		if(count($data['tests'] > 0)) echo json_encode($data['tests']);
+		else return false;	
 	}
 
 }

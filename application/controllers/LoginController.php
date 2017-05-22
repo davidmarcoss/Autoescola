@@ -43,8 +43,6 @@ class LoginController extends MY_Controller
 				$data['error'] = array(
 					'login' => 'Error al iniciar sesión, datos incorrectos.'
 				);
-
-				$this->load->view('login_view', $data);
 			}
 		}
 

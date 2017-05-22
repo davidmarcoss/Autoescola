@@ -49,6 +49,17 @@ class Administrador extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    function select_where_like($nif, $nom, $limit, $segment, $rol)
+    {
+        $this->db->where('rol', $rol);        
+        $this->db->like('nif', $nif);
+        $this->db->like('nom', $nom);
+
+        $query = $this->db->get('administradors', $limit, $segment);
+
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
     function select_where_correu($correu)
     {
         $this->db->select('nif, nom, cognoms, telefon, data_naix, correu');

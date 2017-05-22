@@ -50,7 +50,7 @@
 							<label for="filtre-alumne-tests" class="sr-only">Filtro de búsqueda </label>
 							<select class="form-control" name="filtre-alumne-tests" id="filtre-alumne-tests">
 								<option value=""> Selecciona un filtro... </option>
-								<option value="data_fi"> Fecha de realización descendiente </option>
+								<option value="data_fi"> Fecha de realización &darr; </option>
 								<option value="aprobado"> Tests aprobados </option>
 								<option value="suspendido"> Tests suspendidos </option>
 							</select>
@@ -65,7 +65,7 @@
 							<thead>
 								<tr>
 									<th> </th>
-									<th class="text-left">Test</th>
+									<th class="text-center">Test</th>
 									<th class="text-center">Tipo de test</th>
 									<th class="text-center">Fecha de realización</th>
 									<th class="text-center">Resultado</th>
@@ -74,8 +74,8 @@
 							<tbody id="taula-tests-body">
 							<?php foreach($tests as $test): ?>
 								<tr style="cursor:pointer" data-id="<?php echo $test['id']; ?>" class="accordeon" data-toggle="collapse" href="#desplegar_<?php echo $test['id']; ?>">
-									<td> <i class="fa fa-eye" aria-hidden="true"></i> </td>
-									<td class="text-left"> <?php echo $test['nom']; ?> </td>
+									<td class="text-center"> <i class="fa fa-eye" aria-hidden="true"></i> </td>
+									<td class="text-center"> <?php echo $test['nom']; ?> </td>
 									<td class="text-center"> <?php echo $test['tipus']; ?> </td>
 									<td class="text-center"> <?php echo $test['data_fi']; ?> </td>
 									<?php

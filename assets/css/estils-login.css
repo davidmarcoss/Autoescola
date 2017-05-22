@@ -2,10 +2,14 @@
   font-family: "Pacifico";
   src: url("../fonts/Pacifico-Regular.ttf"); }
 @font-face {
-  font-family: "Ubuntu";
-  src: url("../fonts/Ubuntu-Light.ttf") format("truetype"); }
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Light.ttf") format("truetype"); }
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Bold.ttf") format("truetype");
+  font-weight: bold; }
 .bodyLogin {
-  background: url("../../images/header-blur.jpg") no-repeat center center fixed;
+  background: url("../../images/header.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -24,7 +28,7 @@
   .container-titol h1 {
     font-size: 60px;
     font-family: Pacifico !important;
-    color: #34495e !important; }
+    color: #546E7A !important; }
 
 #output {
   position: absolute;

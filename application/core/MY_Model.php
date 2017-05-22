@@ -16,7 +16,7 @@ class MY_Model extends CI_Model
         $data = $query->result_array();
         $last_id = $data[0]['last_id'];
 
-        return ($last_id + 1);
+        return $last_id;
         //return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 

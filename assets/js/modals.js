@@ -12,8 +12,11 @@ $(document).ready(function(){
         $('#telefon-populate').val(dades[4]);
         $('#poblacio-populate').val(dades[5]);
         $('#adreca-populate').val(dades[6]);
-        var professor = dades[7];
-        $('select option[value='+professor+']').attr("selected",true);
+        var carnet = dades[7];
+        $('#carnet-populate option[value='+carnet+']').attr("selected",true);
+        var professor = dades[8];
+        $('#professor-populate option[value='+professor+']').attr("selected",true);
+        $('#password-populate').val(dades[9]);
     });
 
     $('.obrir-modal-del-alumne').on('click', function() {
@@ -38,5 +41,5 @@ $(document).ready(function(){
         dades = $(this).attr('value').split(':');
         $('#nif-populate-2-professor').val(dades[0]);
         $('#nom-professor-title-2').html(dades[1]);
-    }); 
+    });
 });

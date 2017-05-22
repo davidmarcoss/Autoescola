@@ -21,7 +21,7 @@
 							<label for="nom" class="sr-only">Nombre </label>
                             <input type="text" name="nom" id="nom" placeholder="Nombre" class="form-control">
 						</div>
-                        <button type="button" class="btn btn-success" id="btn-aplicar-filtres">Aplicar</button>
+                        <button type="button" class="btn btn-success btn-autoescola" id="btn-aplicar-filtres-professors">Aplicar</button>
 						<div class="form-group" id="div-limpiar-filtros">
 						</div>
 					</form>
@@ -32,9 +32,9 @@
 							<thead>
 								<tr>
 									<th class="text-center">NIF</th>
-									<th class="text-center">Nom</th>
-									<th class="text-center">Correu</th>
-                                    <th class="text-center">Acció</th>
+									<th class="text-center">Nombre</th>
+									<th class="text-center">Correo electrónico</th>
+                                    <th class="text-center">Acción</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -46,10 +46,10 @@
                                     <td class="text-center"> <?php echo $professor['correu'] ?> </td>
                                     <td class="text-center">
                                         <a class="btn btn-warning btn-sm obrir-modal-mod-professor"  role="button" data-toggle="modal" href="#modal-editar-professor" value="<?php echo $professor['nif'].':'.$professor['nom'].':'.$professor['cognoms'].':'.$professor['correu']; ?>">
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true" ></i>
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" ></i> Editar
                                         </a>
                                         <a class="btn btn-danger btn-sm obrir-modal-del-professor" role="button" data-toggle="modal" href="#modal-eliminar-professor" value="<?php echo $professor['nif'].':'.$professor['nom']; ?>"> 
-                                            <i class="fa fa-times " aria-hidden="true" ></i>
+                                            <i class="fa fa-times " aria-hidden="true" ></i> Eliminar
                                         </a>
                                     </td>
                                 </tr>
@@ -165,8 +165,8 @@
 </div>
 
 <script>
-	var site_url = "<?php echo site_url('admin/GestioAlumnesController/index') ?>";
-	var site_url_filtre = "<?php echo site_url('admin/GestioAlumnesController/select_where_like') ?>";
+	var site_url = "<?php echo site_url('admin/GestioProfessorsController/index') ?>";
+	var site_url_filtre = "<?php echo site_url('admin/GestioProfessorsController/select_where_like') ?>";
 </script>
 
 <script type="text/javascript" src="<?php echo base_url("assets/js/modals.js"); ?>"></script>
