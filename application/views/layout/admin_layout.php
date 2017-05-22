@@ -36,6 +36,7 @@
                         </ul>
                     </li>
                     <li><a href="<?php echo site_url('admin/GestioTestsController/index'); ?>">Gestión de tests</a></li>
+                    <li><a href="<?php echo site_url('admin/GestioCarnetsController/index'); ?>">Gestión de carnets</a></li>
                     <?php endif ?>
                     <li><a href="<?php echo site_url('admin/GestioPractiquesController/index'); ?>">Gestión de prácticas</a></li>
                 </ul>

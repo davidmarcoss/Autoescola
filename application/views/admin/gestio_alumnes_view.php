@@ -17,13 +17,13 @@
 							<label for="nom" class="sr-only">Nombre </label>
                             <input type="text" name="nom" id="nom" placeholder="Nombre" class="form-control">
 						</div>
-                        <button type="button" class="btn btn-success btn-autoescola" id="btn-aplicar-filtres-alumnes">Aplicar</button>
+                        <button type="button" class="btn btn-autoescola" id="btn-aplicar-filtres-alumnes">Aplicar</button>
 						<div class="form-group" id="div-limpiar-filtros">
 						</div>
 					</form>
                     <hr/>
 					<div class="table-responsive">
-						<?php if($alumnes): ?>
+						<?php if(isset($alumnes) && $alumnes): ?>
 						<table class="table table-condensed table-hover">
 							<thead>
 								<tr>

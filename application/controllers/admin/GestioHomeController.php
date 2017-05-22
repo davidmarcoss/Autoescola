@@ -14,15 +14,47 @@ class GestioHomeController extends MY_Controller {
         }
 
         $this->load->model('Alumne');
+        $this->load->model('Carnet');
     }
 
 	public function index()
 	{
-		$data['titol'] = 'Inici';
 		$data['content'] = 'admin/gestio_home_view';
 
         $data['quantitat_alumnes'] = $this->Alumne->count();
+        $data['carnets'] = $this->Carnet->select();
+        $data['estadistiques_respostes'] = $this->calcular_mitja_acerts($this->Alumne->count_respostes());
 
 		$this->load->view($this->layout, $data);
 	}
+
+    private function calcular_mitja_acerts($data)
+    {
+        $count = count($data);
+        $correctes = 0;
+        $incorrectes = 0;
+
+        if($data && $count > 0)
+        {
+            foreach($data as $d)
+            {
+                if($d['isCorrecta'] == 'S')
+                {
+                    $correctes++;
+                }
+                else if($d['isCorrecta'] == 'N')
+                {
+                    $incorrectes++;
+                }
+            }
+        }
+
+        $res = array(
+            'count' => $count,
+            'correctes' => $correctes,
+            'incorrectes' => $incorrectes
+        );
+
+        return $res;
+    }
 }

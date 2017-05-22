@@ -77,29 +77,38 @@ class GestioTestsController extends MY_Controller {
 
         if($this->upload->do_upload('rar-file'))
         {
-            $this->load->library('zip');
-            
-            $filename = './uploads/' . $data['codi'] . '/' . $data['codi'] . '.zip';
-
-            $zip = new ZipArchive;
-            if($zip->open($filename))
+            if($this->upload->data('raw_name') == $data['codi'])
             {
-                $unzip = $zip->extractTo('./uploads/'.$data['codi']);
+                $this->load->library('zip');
+                
+                $filename = './uploads/' . $data['codi'] . '/' . $data['codi'] . '.zip';
 
-                if($unzip)
+                $zip = new ZipArchive;
+                if($zip->open($filename))
                 {
-                    $zip->close();
+                    $unzip = $zip->extractTo('./uploads/'.$data['codi']);
 
-                    unlink($filename);
+                    if($unzip)
+                    {
+                        $zip->close();
 
-                    $this->read_csv('./uploads/'.$data['codi'].'/'.$data['codi'].'.csv', $test);
+                        unlink($filename);
+
+                        $this->read_csv('./uploads/'.$data['codi'].'/'.$data['codi'].'.csv', $test);
+                    }
+                    else 
+                    {
+                        $this->session->set_flashdata('errors', '<strong>Error!</strong> No se ha podido abrir el archivo importado');
+
+                        redirect('admin/GestioTestsController/index');
+                    }
                 }
-                else 
-                {
-                    $this->session->set_flashdata('errors', '<strong>Error!</strong> No se ha podido abrir el archivo importado');
+            }
+            else 
+            {
+                $this->session->set_flashdata('errors', '<strong>Error!</strong> No se ha podido abrir el archivo importado');
 
-                    redirect('admin/GestioTestsController/index');
-                }
+                redirect('admin/GestioTestsController/index');
             }
         }
     }

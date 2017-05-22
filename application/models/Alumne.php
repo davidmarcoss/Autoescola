@@ -152,4 +152,11 @@ class Alumne extends MY_Model
 
         return count($data);
     }
+
+    function count_respostes()
+    {
+        $query = $this->db->get('alumne_preguntes_respostes');
+
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
 }

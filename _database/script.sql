@@ -43,6 +43,7 @@ create table alumnes(
 
 create table carnets(
     codi varchar(4),
+    desactivat int(1) not null check(desactivat in(0, 1)),
 
     primary key(codi)
 );
@@ -135,9 +136,9 @@ insert into administradors values('11111111B', 'Professor', 'Gotera', 'professor
 
 insert into alumnes values('11111111C', 'Alumne', 'Los Palotes', 'alumne@gmail.com', 'c98a0d7fe575cc92f0cc931db5e31552', 'Masquefa', 'Major 28', '937725050', '11111111B', 0);
 
-insert into carnets values('A');
-insert into carnets values('A2');
-insert into carnets values('B');
+insert into carnets values('A', 0);
+insert into carnets values('A2', 0);
+insert into carnets values('B', 0);
 
 insert into alumne_carnets values('11111111C', 'A2', '2016-05-15');
 insert into alumne_carnets values('11111111C', 'B', '2017-05-15');
@@ -175,9 +176,7 @@ insert into preguntes values('P000028', 'Pregunta 28', 'Respuesta 1 Pregunta 28'
 insert into preguntes values('P000029', 'Pregunta 29', 'Respuesta 1 Pregunta 29', 'Respuesta 2 Pregunta 29', 'Respuesta 3 Pregunta 29', NULL, 'TEST0001');
 insert into preguntes values('P000030', 'Pregunta 30', 'Respuesta 1 Pregunta 30', 'Respuesta 2 Pregunta 30', 'Respuesta 3 Pregunta 30', NULL, 'TEST0001');
 
---insert into alumne_tests values(1, '2017-05-15 15:00:00', '11111111C', 'TEST0001', 'excelente');
 
---insert into alumne_preguntes_respostes values(1, 'P000001', 'Respuesta 1 Pregunta 1', 'S', 1);
 
 insert into cotxes values('1010-ABC', 'Honda', 'Civic', 'gasoil');
 insert into cotxes values('2020-ABC', 'Renault', 'Clio', 'benzina');

@@ -9,6 +9,7 @@ $(document).ready(function(){
      */
     setPopulateAlumne();
     setPopulateProfessor();
+    setPopulateCarnet();
 
 
     /**
@@ -377,6 +378,15 @@ $(document).ready(function(){
             dades = $(this).attr('value').split(':');
             $('#nif-populate-2-professor').val(dades[0]);
             $('#nom-professor-title-2').html(dades[1]);
+        });
+    }
+
+    function setPopulateCarnet()
+    {
+        $('.obrir-modal-del-carnet').on('click', function() {
+            codi = $(this).attr('value');
+            $('#nom-carnet-title').html(codi);
+            $('#codi-carnet-populate').val(codi);
         });
     }
 

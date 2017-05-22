@@ -107,9 +107,11 @@ label {
     color: white; }
 
 .btn-autoescola {
-  background-color: #1abc9c !important; }
+  background-color: #1abc9c !important;
+  color: white !important; }
   .btn-autoescola:hover {
-    background-color: #16a085 !important; }
+    background-color: #16a085 !important;
+    color: white !important; }
 
 .card-box {
   background-color: white;
