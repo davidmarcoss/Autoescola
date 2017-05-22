@@ -12,12 +12,16 @@ class GestioHomeController extends MY_Controller {
         {
             redirect('LoginController/index');
         }
+
+        $this->load->model('Alumne');
     }
 
 	public function index()
 	{
 		$data['titol'] = 'Inici';
 		$data['content'] = 'admin/gestio_home_view';
+
+        $data['quantitat_alumnes'] = $this->Alumne->count();
 
 		$this->load->view($this->layout, $data);
 	}

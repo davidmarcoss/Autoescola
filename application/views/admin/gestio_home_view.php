@@ -3,8 +3,8 @@
 		<div class="col-lg-4 col-md-4">
 			<div class="card-box">
 				<div class="text-center">
-					<p class="card-body-title"> <span class="card-accent"></span> </p>
-					<p class="card-body-text"> </p>
+					<p class="card-body-title"> <span class="card-accent"><?php echo isset($quantitat_alumnes) ? $quantitat_alumnes : 0; ?></span> </p>
+					<p class="card-body-text"> Alumnes actius </p>
 				</div>
 			</div>
 		</div>
@@ -13,7 +13,7 @@
 			<div class="card-box">
 				<div class="text-center">
 					<p class="card-body-title"> <span class="card-accent"></span>  </p>
-					<p class="card-body-text"> </p>
+					<p class="card-body-text">  </p>
 				</div>
 			</div>
 		</div>

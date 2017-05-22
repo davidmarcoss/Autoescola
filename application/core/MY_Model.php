@@ -17,7 +17,6 @@ class MY_Model extends CI_Model
         $last_id = $data[0]['last_id'];
 
         return $last_id;
-        //return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
     public function update_last_id($table_name, $id)

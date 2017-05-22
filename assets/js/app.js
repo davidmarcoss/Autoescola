@@ -3,11 +3,20 @@ $(document).ready(function(){
     $('.alert').fadeOut(5000);
 
     /**
-     *  AJAX - Validació del test realitzat per l'usuari
+     *  Si existeixen les variables site_url i site_url_filtre
+     *  definides a la gestió de professors i alumnes, cridem
+     *  a les funcions per fer populate dels modals.
+     */
+    setPopulateAlumne();
+    setPopulateProfessor();
+
+
+    /**
+     *  Validació del test realitzat per l'alumne (AJAX)
      */
     $('#test-form').submit(function(e){
         e.preventDefault();
-
+        console.info("h");
         var data = $(this).serializeArray();
         $.ajax({
             url: site_url_check,
@@ -64,15 +73,16 @@ $(document).ready(function(){
 
         var enrere = '<a href='+site_url_enrere+' class="btn btn-danger btn-lg btn-block">Sortir</a>';
         $('#btn-check-test').first().after(enrere);
+
+        window.scrollTo(0, 0);
     }
 
-        $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+    $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
         $("#success-alert").slideUp(500);
     });
 
     /**
-     *   Funció AJAX per als filtres de la taula de tests realitzats
-     *   de l'alumne
+     *   Filtres de la taula de tests realitzats (AJAX)
      */
     $('#filtre-alumne-tests').on('change', function(){
         $.ajax({
@@ -103,8 +113,8 @@ $(document).ready(function(){
     });
 
     /**
-     * mostrarTaula() torna a dibuixar la taula de tests realitzats
-     * però aquesta vegada venen les dades amb els filtres demanats.
+     *  mostrarTaula() torna a dibuixar la taula de tests realitzats
+     *  però aquesta vegada venen les dades amb els filtres demanats.
      */
     function renderTaulaTests(data)
     {
@@ -115,7 +125,7 @@ $(document).ready(function(){
 
         $.each(data, function(i, test) {
             tbody += '<tr style=cursor:pointer data-id='+test['id']+' class=accordeon data-toggle=collapse href=#desplegar_'+test['id']+'>';
-            tbody += getColumnTable(['<i class="fa fa-eye" aria-hidden="true"></i>', test['nom'], test['tipus'], test['data_fi']]);
+            tbody += getRowTable(['<i class="fa fa-eye" aria-hidden="true"></i>', test['nom'], test['tipus'], test['data_fi']]);
             if(test['nota'] == 'excelente') var respostaFormat = 'label-success';
             else if(test['nota'] == 'aprobado') var respostaFormat = 'label-warning';
             else if(test['nota'] == 'suspendido') var respostaFormat = 'label-danger';
@@ -166,8 +176,7 @@ $(document).ready(function(){
     });
 
     /**
-     *   Funció AJAX per als filtres de la taula de tests realitzats
-     *   de l'alumne
+     *  Filtres de la taula de gestió d'alumnes (AJAX)
      */
     $('#btn-aplicar-filtres-alumnes').on('click', function(){
         var nif = $('#nif').val();
@@ -216,7 +225,7 @@ $(document).ready(function(){
         $.each(data, function(i, alumne) {
             tbody += '<tr>';
             var nomComplet = alumne['cognoms'] + ', ' + alumne['nom'];
-            tbody += getColumnTable(['<i class="fa fa-eye" aria-hidden="true"></i>', alumne['nif'], nomComplet, alumne['correu'], alumne['telefon'], alumne['admin_nom']]);
+            tbody += getRowTable(['<i class="fa fa-eye" aria-hidden="true"></i>', alumne['nif'], nomComplet, alumne['correu'], alumne['telefon'], alumne['admin_nom']]);
             tbody += '<td class="text-center">'
             tbody += '<a class="btn btn-warning btn-sm obrir-modal-mod-alumne" role="button" data-toggle="modal" href="#modal-editar-alumne" value="'+alumne['nif']+':'+alumne['nom']+':'+alumne['cognoms']+':'+alumne['correu']+':'+alumne['telefon']+':'+alumne['poblacio']+':'+alumne['adreca']+':'+alumne['professor_nif']+'"><i class="fa fa-pencil" aria-hidden="true" ></i> Editar</a> ';
             tbody += '<a class="btn btn-danger btn-sm obrir-modal-del-alumne" role="button" data-toggle="modal" href="#modal-eliminar-alumne" value='+alumne['nif']+':'+alumne['nom']+'><i class="fa fa-times " aria-hidden="true" ></i> Dar de baja</a>';
@@ -231,8 +240,7 @@ $(document).ready(function(){
     }
 
     /**
-     * Funció AJAX per als filtres de la taula de gestió
-     * dels professors
+     * Filtres de la taula de gestió de professors (AJAX)
      */
     $('#btn-aplicar-filtres-professors').on('click', function(){
         var nif = $('#nif').val();
@@ -275,13 +283,13 @@ $(document).ready(function(){
 
         var tbody = '<table class="table table-sm table-hover table-condensed">';
 
-        tbody += getHeaderTable([' ','NIF', 'Nombre', 'Correo electrónico', 'Acción']);
+        tbody += getHeaderTable(['NIF', 'Nombre', 'Correo electrónico', 'Acción']);
 
         tbody += "<tbody>";
         $.each(data, function(i, professor) {
             tbody += '<tr>';
             var nomComplet = professor['cognoms'] + ', ' + professor['nom'];
-            tbody += getColumnTable(['<i class="fa fa-eye" aria-hidden="true"></i>', professor['nif'], nomComplet, professor['correu']]);
+            tbody += getRowTable([professor['nif'], nomComplet, professor['correu']]);
             tbody += '<td class="text-center">'
             tbody += '<a class="btn btn-warning btn-sm obrir-modal-mod-professor" role="button" data-toggle="modal" href="#modal-editar-professor" value='+professor['nif']+':'+professor['nom']+':'+professor['cognoms']+':'+professor['correu']+'><i class="fa fa-pencil" aria-hidden="true" ></i> Editar</a> ';
             tbody += '<a class="btn btn-danger btn-sm obrir-modal-del-professor" role="button" data-toggle="modal" href="#modal-eliminar-professor" value='+professor['nif']+':'+professor['nom']+'><i class="fa fa-times " aria-hidden="true" ></i> Eliminar</a>';
@@ -295,6 +303,12 @@ $(document).ready(function(){
         $('.table-responsive').append(tbody);
     }
 
+    /**
+     * Funció per a generar un header d'una taula apartir
+     * de l'array de paràmetres que conté els valors
+     * de la capçalera.
+     * @param {*} data
+     */
     function getHeaderTable(data)
     {
         header = '<thead>';
@@ -308,7 +322,14 @@ $(document).ready(function(){
         return header;
     }
 
-    function getColumnTable(data)
+    /**
+     * Funció per a generar una fila d'una taula
+     * a partir de l'array de paràmetres que conté
+     * els valors de cada columna.
+     * 
+     * @param {*} data 
+     */
+    function getRowTable(data)
     {
         var column = '';
 

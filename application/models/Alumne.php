@@ -15,19 +15,6 @@ class Alumne extends MY_Model
         parent::__construct();
     }
 
-    function select()
-    {
-        $this->db->select('alumnes.*, administradors.nif as admin_nif, administradors.rol as admin_rol, administradors.nom as admin_nom, administradors.cognoms as admin_cognoms');
-        $this->db->from('alumnes');
-        $this->db->join('administradors', 'administradors.nif = alumnes.professor_nif');
-        $this->db->where('administradors.rol', 'professor');
-        $this->db->where('desactivat', 0);
-
-        $query = $this->db->get();
-
-        return $query->num_rows() > 0 ? $query->result_array() : false;
-    }
-
     function select_limit($limit, $segment)
     {
         $this->db->select('alumnes.*, administradors.nif as admin_nif, administradors.rol as admin_rol, administradors.nom as admin_nom, administradors.cognoms as admin_cognoms, alumne_carnets.*');
@@ -103,6 +90,15 @@ class Alumne extends MY_Model
         $this->db->update('alumnes', array('desactivat' => 1));
 
         return ($this->db->affected_rows() != 1) ? false : true;
+    }
+
+    function count()
+    {
+        $this->db->select('count(*)');
+        
+        $query = $this->db->get('alumnes');
+
+        return $query->num_rows() > 0 ? $query->num_rows() : false;
     }
 
     // ------------------------------------------------------------------------------------------------------//

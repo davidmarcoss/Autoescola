@@ -242,5 +242,3 @@
 	var site_url = "<?php echo site_url('admin/GestioAlumnesController/index') ?>";
 	var site_url_filtre = "<?php echo site_url('admin/GestioAlumnesController/select_where_like') ?>";
 </script>
-
-<script type="text/javascript" src="<?php echo base_url("assets/js/modals.js"); ?>"></script>
