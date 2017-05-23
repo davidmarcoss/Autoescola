@@ -121,7 +121,7 @@
                             <label for="carnet" class="control-label">Carnet</label>
                             <select class="form-control" name="carnet_codi" id="carnet" required>
                             <?php foreach($carnets as $carnet): ?>
-                                <option value="<?php echo $carnet['codi'] ?>"> <?php echo $carnet['codi'] ?> </option>
+                                <option value="<?php echo $carnet['carnet_codi'] ?>"> <?php echo $carnet['carnet_codi'] ?> </option>
                             <?php endforeach ?>
                             </select>
                         </div>
@@ -131,7 +131,7 @@
                             <label for="professor" class="control-label">Professor</label>
                             <select class="form-control" name="professor_nif" id="professor" required>
                             <?php foreach($professors as $professor): ?>
-                                <option value="<?php echo $professor['nif'] ?>"> <?php echo $professor['cognoms'] . ', ' . $professor['nom'] ?> </option>
+                                <option value="<?php echo $professor['admin_nif'] ?>"> <?php echo $professor['admin_cognoms'] . ', ' . $professor['admin_nom'] ?> </option>
                             <?php endforeach ?>
                             </select>
                         </div>
