@@ -42,7 +42,7 @@ class HomeController extends MY_Controller
 		{
 			foreach($tests as $test)
 			{
-				if($test['nota'] == 'excelente' || $test['nota'] == 'aprobado') 
+				if($test['alu_test_nota'] == 'excelente' || $test['alu_test_nota'] == 'aprobado') 
 				{
 					$testsAprobats++;
 				}
@@ -58,10 +58,10 @@ class HomeController extends MY_Controller
 		{
 			foreach($tests as &$test)
 			{
-				$test['preguntes'] = $this->Alumne->select_respostes_test($test['id']);
+				$test['preguntes'] = $this->Alumne->select_respostes_test($test['alu_test_id']);
 			}
 		}
-
+		
 		return $tests;
 	}
 

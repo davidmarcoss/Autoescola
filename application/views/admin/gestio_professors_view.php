@@ -40,15 +40,15 @@
 							<tbody>
 							<?php foreach($professors as $professor): ?>
                                 <tr valign="middle">
-                                    <td class="text-center"> <?php echo $professor['nif'] ?> </td>
-                                    <?php $nomComplet = $professor['cognoms'] . ', ' . $professor['nom'] ?>
+                                    <td class="text-center"> <?php echo $professor['admin_nif'] ?> </td>
+                                    <?php $nomComplet = $professor['admin_cognoms'] . ', ' . $professor['admin_nom'] ?>
                                     <td class="text-center"> <?php echo $nomComplet ?> </td>
-                                    <td class="text-center"> <?php echo $professor['correu'] ?> </td>
+                                    <td class="text-center"> <?php echo $professor['admin_correu'] ?> </td>
                                     <td class="text-center">
-                                        <a class="btn btn-warning btn-sm obrir-modal-mod-professor"  role="button" data-toggle="modal" href="#modal-editar-professor" value="<?php echo $professor['nif'].':'.$professor['nom'].':'.$professor['cognoms'].':'.$professor['correu']; ?>">
+                                        <a class="btn btn-warning btn-sm obrir-modal-mod-professor"  role="button" data-toggle="modal" href="#modal-editar-professor" value="<?php echo $professor['admin_nif'].':'.$professor['admin_nom'].':'.$professor['admin_cognoms'].':'.$professor['admin_correu']; ?>">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true" ></i> Editar
                                         </a>
-                                        <a class="btn btn-danger btn-sm obrir-modal-del-professor" role="button" data-toggle="modal" href="#modal-eliminar-professor" value="<?php echo $professor['nif'].':'.$professor['nom']; ?>"> 
+                                        <a class="btn btn-danger btn-sm obrir-modal-del-professor" role="button" data-toggle="modal" href="#modal-eliminar-professor" value="<?php echo $professor['admin_nif'].':'.$professor['admin_nom']; ?>"> 
                                             <i class="fa fa-times " aria-hidden="true" ></i> Eliminar
                                         </a>
                                     </td>

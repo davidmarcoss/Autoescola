@@ -27,7 +27,7 @@ class GestioAlumnesController extends MY_Controller
 		$data['alumnes'] = $this->Alumne->select_limit($this->per_page, $this->uri->segment(3));
 		$data['professors'] = $this->Administrador->select_professors();
 		$data['carnets'] = $this->Carnet->select();
-		
+
 		$this->set_pagination(count($data['alumnes']), base_url().'index.php/HomeController/index/');
 
 
@@ -39,22 +39,22 @@ class GestioAlumnesController extends MY_Controller
 		$data = $this->input->post();
 
 		$alumne = array(
-			'nif' => $data['nif'],
-			'nom' => $data['nom'],
-			'cognoms' => $data['cognoms'],
-			'correu' => $data['correu'],
-			'password' => md5($data['password']),
-			'poblacio' => $data['poblacio'],
-			'adreca' => $data['adreca'],
-			'telefon' => $data['telefon'],
-			'professor_nif' => $data['professor_nif'],
-			'desactivat' => 0
+			'alu_nif' => $data['nif'],
+			'alu_nom' => $data['nom'],
+			'alu_cognoms' => $data['cognoms'],
+			'alu_correu' => $data['correu'],
+			'alu_password' => md5($data['password']),
+			'alu_poblacio' => $data['poblacio'],
+			'alu_adreca' => $data['adreca'],
+			'alu_telefon' => $data['telefon'],
+			'alu_professor_nif' => $data['professor_nif'],
+			'alu_desactivat' => 0
 		);
 
 		$alumne_carnet = array(
-			'alumne_nif' => $data['nif'],
-			'carnet_codi' => $data['carnet_codi'],
-			'data_alta' => date('Y-m-d H:i:s'),
+			'alu_carn_alumne_nif' => $data['nif'],
+			'alu_carn_carnet_codi' => $data['carnet_codi'],
+			'alu_carn_data_alta' => date('Y-m-d H:i:s'),
 		);
 
 		$this->Alumne->insert($alumne, $alumne_carnet);
@@ -70,28 +70,30 @@ class GestioAlumnesController extends MY_Controller
 		else $password = $data['password'];
 
 		$alumne = array(
-			'nif' => $data['nif'],
-			'nom' => $data['nom'],
-			'cognoms' => $data['cognoms'],
-			'correu' => $data['correu'],
-			'password' => $password,
-			'poblacio' => $data['poblacio'],
-			'adreca' => $data['adreca'],
-			'telefon' => $data['telefon'],
-			'professor_nif' => $data['professor_nif'],
+			'alu_nif' => $data['nif'],
+			'alu_nom' => $data['nom'],
+			'alu_cognoms' => $data['cognoms'],
+			'alu_correu' => $data['correu'],
+			'alu_password' => $password,
+			'alu_poblacio' => $data['poblacio'],
+			'alu_adreca' => $data['adreca'],
+			'alu_telefon' => $data['telefon'],
+			'alu_professor_nif' => $data['professor_nif'],
 		);
 
 		if( ! $this->Alumne->select_carnet($data['nif'], $data['carnet_codi']))
 		{
 			$alumne_carnet = array(
-				'alumne_nif' => $data['nif'],
-				'carnet_codi' => $data['carnet_codi'],
-				'data_alta' => date('Y-m-d h:i:s'),
+				'alu_carn_alumne_nif' => $data['nif'],
+				'alu_carn_carnet_codi' => $data['carnet_codi'],
+				'alu_carn_data_alta' => date('Y-m-d h:i:s'),
 			);
 			$this->Alumne->update($alumne, $alumne_carnet);
+			$this->session->set_flashdata('exits', '<strong>Éxito!</strong> Alumno modificado correctamente!');
 		}
 		else
 		{
+			$this->session->set_flashdata('exits', '<strong>Éxito!</strong> Alumno modificado correctamente, pero no se ha podido modificar el carnet ya que lo habia obtenido antes!');
 			$this->Alumne->update($alumne);
 		}
 

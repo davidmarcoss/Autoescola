@@ -34,7 +34,7 @@ class TestsController extends MY_Controller
 
 		$data['test'] = $this->Test->select_by_codi($codi);
 
-		$this->session->set_userdata(array('codi_test' => $codi, 'nom_test' => $data['test'][0]['nom']));
+		$this->session->set_userdata(array('codi_test' => $codi, 'nom_test' => $data['test'][0]['test_nom']));
 
 		$this->load->view($this->layout, $data);
     }
@@ -51,7 +51,7 @@ class TestsController extends MY_Controller
 		{
 			$pregunta = $this->Test->select_pregunta($key);
 
-			if($value == $pregunta[0]['opcio_correcta'])
+			if($value == $pregunta[0]['preg_opcio_correcta'])
 			{
 				$isCorrecta = 'S';
 				$correcta = null;
@@ -59,14 +59,14 @@ class TestsController extends MY_Controller
 			else
 			{
 				$isCorrecta = 'N';
-				$correcta = $pregunta[0]['opcio_correcta'];
+				$correcta = $pregunta[0]['preg_opcio_correcta'];
 				$errades++;
 			}
 
 			$dataRespostes[] = array(
-				'pregunta_codi' => $key,
-				'resposta_alumne' => $value,
-				'isCorrecta' => $isCorrecta,
+				'alu_resp_pregunta_codi' => $key,
+				'alu_resp_resposta_alumne' => $value,
+				'alu_resp_isCorrecta' => $isCorrecta,
 				'correcta' => $correcta
 			);
 		}
@@ -76,17 +76,17 @@ class TestsController extends MY_Controller
 		else $nota = 'suspendido';
 
 		$this->insert($dataRespostes, $nota);
-
+		
 		echo json_encode($dataRespostes);
 	}
 
 	private function insert($dataRespostes, $nota)
 	{
 		$dataTest = array(
-			'data_fi' => date('Y-m-d h:i:s'),
-			'alumne_nif' => $this->session->userdata('nif'),
-			'test_codi' => $this->session->userdata('codi_test'),
-			'nota' => $nota
+			'alu_test_data_fi' => date('Y-m-d h:i:s'),
+			'alu_test_alumne_nif' => $this->session->userdata('nif'),
+			'alu_test_test_codi' => $this->session->userdata('codi_test'),
+			'alu_test_nota' => $nota
 		);
 
 		$this->Test->insert($dataTest, $dataRespostes);

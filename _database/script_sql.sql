@@ -14,121 +14,121 @@ drop table if exists cotxes;
 drop table if exists alumne_practiques;
 drop table if exists index_taules;
 
-create table administradors(
-    nif varchar(9),
-    nom varchar(20) not null,
-    cognoms varchar(20) not null,
-    correu varchar(30) unique not null,
-    password varchar(32) not null,
-    rol varchar(10) not null check(tipus in("admin", "professor")),
+CREATE TABLE administradors(
+    admin_nif VARCHAR(9),
+    admin_nom VARCHAR(20) NOT NULL,
+    admin_cognoms VARCHAR(20) NOT NULL,
+    admin_correu VARCHAR(30) unique NOT NULL,
+    admin_password VARCHAR(32) NOT NULL,
+    admin_rol VARCHAR(10) NOT NULL CHECK(admin_rol in("admin", "professor")),
 
-    primary key(nif)
+    PRIMARY KEY(admin_nif)
 );
 
-create table alumnes(
-    nif varchar(9),
-    nom varchar(20) not null,
-    cognoms varchar(20) not null,
-    correu varchar(30) unique not null,
-    password varchar(32) not null,
-    poblacio varchar(20) not null,
-    adreca varchar(20) not null,
-    telefon varchar(9) not null,
-    professor_nif varchar(9),
-    desactivat int(1) not null check(desactivat in(0, 1)),
+CREATE TABLE alumnes(
+    alu_nif VARCHAR(9),
+    alu_nom VARCHAR(20) NOT NULL,
+    alu_cognoms VARCHAR(20) NOT NULL,
+    alu_correu VARCHAR(30) unique NOT NULL,
+    alu_password VARCHAR(32) NOT NULL,
+    alu_poblacio VARCHAR(20) NOT NULL,
+    alu_adreca VARCHAR(20) NOT NULL,
+    alu_telefon VARCHAR(9) NOT NULL,
+    alu_professor_nif VARCHAR(9),
+    alu_desactivat INT(1) NOT NULL CHECK(desactivat IN(0, 1)),
 
-    primary key(nif),
-    foreign key(professor_nif) references administradors(nif)
+    PRIMARY KEY(alu_nif),
+    FOREIGN KEY(alu_professor_nif) REFERENCES administradors(admin_nif)
 );
 
-create table carnets(
-    codi varchar(4),
-    desactivat int(1) not null check(desactivat in(0, 1)),
+CREATE TABLE carnets(
+    carnet_codi VARCHAR(4),
+    carnet_desactivat INT(1) NOT NULL CHECK(carnet_desactivat IN(0, 1)),
 
-    primary key(codi)
+    PRIMARY KEY(carnet_codi)
 );
 
-create table alumne_carnets(
-    alumne_nif varchar(9),
-    carnet_codi varchar(4),
-    data_alta timestamp,
+CREATE TABLE alumne_carnets(
+    alu_carn_alumne_nif VARCHAR(9),
+    alu_carn_carnet_codi VARCHAR(4),
+    alu_carn_data_alta TIMESTAMP,
 
-    primary key(alumne_nif, carnet_codi),
-    foreign key(alumne_nif) references alumnes(nif),
-    foreign key(carnet_codi) references carnets(codi)
+    PRIMARY KEY(alu_carn_alumne_nif, alu_carn_carnet_codi),
+    FOREIGN KEY(alu_carn_alumne_nif) REFERENCES alumnes(alu_nif),
+    FOREIGN KEY(alu_carn_carnet_codi) REFERENCES carnets(carnet_codi)
 );
 
-create table tests(
-    codi varchar(10), -- TEST01, TEST02, ...
-    nom varchar(10), -- TEST 01, TEST 02, ....
-    tipus varchar(10) check(tipus in("basico", "avanzado", "examen")),
-    carnet_codi varchar(4),
+CREATE TABLE tests(
+    test_codi VARCHAR(10), -- TEST01, TEST02, ...
+    test_nom VARCHAR(10), -- TEST 01, TEST 02, ....
+    test_tipus VARCHAR(10) CHECK(test_tipus IN("basico", "avanzado", "examen")),
+    test_carnet_codi VARCHAR(4),
 
-    primary key(codi),
-    foreign key(carnet_codi) references carnets(codi) on delete cascade
+    PRIMARY KEY(test_codi),
+    FOREIGN KEY(test_carnet_codi) REFERENCES carnets(carnet_codi) ON DELETE CASCADE
 );
 
-create table preguntes(
-    codi varchar(10), -- P01, P02, ...
-    pregunta varchar(300) not null,
-    opcio_correcta varchar(255) not null,
-    opcio_2 varchar(255) not null,
-    opcio_3 varchar(255),
-    imatge varchar(50),
-    test_codi varchar(10),
+CREATE TABLE preguntes(
+    preg_codi VARCHAR(10), -- P01, P02, ...
+    preg_pregunta VARCHAR(300) NOT NULL,
+    preg_opcio_correcta VARCHAR(255) NOT NULL,
+    preg_opcio_2 VARCHAR(255) NOT NULL,
+    preg_opcio_3 VARCHAR(255),
+    preg_imatge VARCHAR(50),
+    preg_test_codi VARCHAR(10),
 
-    primary key(codi),
-    foreign key(test_codi) references tests(codi) on delete cascade
+    PRIMARY KEY(preg_codi),
+    FOREIGN KEY(preg_test_codi) REFERENCES tests(test_codi) ON DELETE CASCADE
 );
 
-create table alumne_tests(
-    id int not null,
-    data_fi timestamp,
-    alumne_nif varchar(9),
-    test_codi varchar(10),
-    nota varchar(10) check(nota in ('suspendido', 'aprobado', 'excelente')),
+CREATE TABLE alumne_tests(
+    alu_test_id INT NOT NULL,
+    alu_test_data_fi TIMESTAMP,
+    alu_test_alumne_nif VARCHAR(9),
+    alu_test_test_codi VARCHAR(10),
+    alu_test_nota VARCHAR(10) CHECK(al_test_nota IN('suspendido', 'aprobado', 'excelente')),
 
-    primary key(id),
-    foreign key(alumne_nif) references alumnes(nif),
-    foreign key(test_codi) references tests(codi) on delete cascade
+    PRIMARY KEY(alu_test_id),
+    FOREIGN KEY(alu_test_alumne_nif) REFERENCES alumnes(alu_nif),
+    FOREIGN KEY(alu_test_test_codi) REFERENCES tests(test_codi) ON DELETE CASCADE
 );
 
-create table alumne_preguntes_respostes(
-    id int not null,
-    pregunta_codi varchar(300) not null,
-    resposta_alumne varchar(255) not null,
-    isCorrecta varchar(1) check(isCorrecta in("S", "N")),
-    alumne_test int,
+CREATE TABLE alumne_respostes(
+    alu_resp_id INT NOT NULL,
+    alu_resp_pregunta_codi VARCHAR(300) NOT NULL,
+    alu_resp_resposta_alumne VARCHAR(255) NOT NULL,
+    alu_resp_isCorrecta VARCHAR(1) CHECK(alu_resp_isCorrecta IN("S", "N")),
+    alu_resp_alumne_test INT,
 
-    primary key(id),
-    foreign key(alumne_test) references alumne_tests(id),
-    foreign key(pregunta_codi) references preguntes(codi) on delete cascade
+    PRIMARY KEY(alu_resp_id),
+    FOREIGN KEY(alu_resp_alumne_test) REFERENCES alumne_tests(alu_test_id),
+    FOREIGN KEY(alu_resp_pregunta_codi) REFERENCES preguntes(preg_codi) ON DELETE CASCADE
 );
 
-create table cotxes(
-    matricula varchar(8),
-    marca varchar(30),
-    model varchar(30),
-    combustible varchar(10) check(combustible in("benzina","gasoil")),
+CREATE TABLE cotxes(
+    cotxe_matricula VARCHAR(8),
+    cotxe_marca VARCHAR(30),
+    cotxe_model VARCHAR(30),
+    cotxe_combustible VARCHAR(10) CHECK(cotxe_combustible IN("benzina","gasoil")),
 
-    primary key(matricula)
+    PRIMARY KEY(cotxe_matricula)
 );
 
-create table alumne_practiques(
-    id int not null,
-    data_inici timestamp,
-    duracio int,
-    cotxe varchar(8),
+CREATE TABLE alumne_practiques(
+    alu_prac_id INT NOT NULL,
+    alu_prac_data_inici TIMESTAMP,
+    alu_prac_duracio INT,
+    alu_prac_cotxe VARCHAR(8),
 
-    primary key(id),
-    foreign key(cotxe) references cotxes(matricula)
+    PRIMARY KEY(alu_prac_id),
+    FOREIGN KEY(alu_prac_cotxe) REFERENCES cotxes(cotxe_matricula)
 );
 
-create table index_taules(
-    taula_nom varchar(50),
-    last_id int,
+CREATE TABLE index_taules(
+    taula_nom VARCHAR(50),
+    last_id INT,
 
-    primary key(taula_nom)
+    PRIMARY KEY(taula_nom)
 );
 
 insert into administradors values('11111111A', 'Admin', 'Gotera', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin');
@@ -176,14 +176,12 @@ insert into preguntes values('P000028', 'Pregunta 28', 'Respuesta 1 Pregunta 28'
 insert into preguntes values('P000029', 'Pregunta 29', 'Respuesta 1 Pregunta 29', 'Respuesta 2 Pregunta 29', 'Respuesta 3 Pregunta 29', NULL, 'TEST0001');
 insert into preguntes values('P000030', 'Pregunta 30', 'Respuesta 1 Pregunta 30', 'Respuesta 2 Pregunta 30', 'Respuesta 3 Pregunta 30', NULL, 'TEST0001');
 
-
-
 insert into cotxes values('1010-ABC', 'Honda', 'Civic', 'gasoil');
 insert into cotxes values('2020-ABC', 'Renault', 'Clio', 'benzina');
 
 insert into alumne_practiques values(1, '2017-05-15 15:00:00', 1, '1010-ABC');
 
 insert into index_taules values('alumne_tests', 1);
-insert into index_taules values('alumne_preguntes_respostes', 2);
+insert into index_taules values('alumne_respostes', 2);
 insert into index_taules values('alumne_practiques', 1);
 insert into index_taules values('alumne_carnets', 1);

@@ -20,7 +20,7 @@
                             <label for="carnet">Tipo de carnet</label>
                             <select name="carnet" id="carnet" class="form-control input-sm" required>
                                 <?php foreach($carnets as $carnet): ?>
-                                    <option value="<?php echo $carnet['codi'] ?>"> <?php echo $carnet['codi'] ?> </option>
+                                    <option value="<?php echo $carnet['carnet_codi'] ?>"> <?php echo $carnet['carnet_codi'] ?> </option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -41,7 +41,7 @@
                             </small>
                         </div>
                         <div class="col-xs-12 col-md-12">
-                            <button type="submit" class="btn btn-success btn-sm pull-right">Importar</button>
+                            <button type="submit" class="btn btn-autoescola btn-sm pull-right">Importar</button>
                         </div>
                     </form>
                 </div>
@@ -70,16 +70,16 @@
                         </thead>
                         <tbody>
                             <?php foreach($tests as $test): ?>
-                                <tr style="cursor:pointer" data-id="<?php echo $test['codi']; ?>" class="accordeon" data-toggle="collapse" href="#desplegar_<?php echo $test['codi']; ?>">
-                                    <td> <?php echo $test['codi'] ?> </td>
-                                    <td class="text-center"> <?php echo $test['nom'] ?> </td>
-                                    <td class="text-center"> <?php echo $test['tipus'] ?> </td>
-                                    <td class="text-center"> <?php echo $test['carnet_codi'] ?> </td>
+                                <tr style="cursor:pointer" data-id="<?php echo $test['test_codi']; ?>" class="accordeon" data-toggle="collapse" href="#desplegar_<?php echo $test['test_codi']; ?>">
+                                    <td> <?php echo $test['test_codi'] ?> </td>
+                                    <td class="text-center"> <?php echo $test['test_nom'] ?> </td>
+                                    <td class="text-center"> <?php echo $test['test_tipus'] ?> </td>
+                                    <td class="text-center"> <?php echo $test['test_carnet_codi'] ?> </td>
                                 </tr>
 								<?php if($test['preguntes']): ?>
 								<tr class="tr-no-hover">
 									<td colspan="5" class="quitar-borde-superior">
-										<div id="desplegar_<?php echo $test['codi']; ?>" class="collapse">
+										<div id="desplegar_<?php echo $test['test_codi']; ?>" class="collapse">
 											<table class="table table-condensed taula-respostes-test">
 												<thead>
 													<tr>
@@ -92,10 +92,10 @@
 												<tbody>
 													<?php foreach($test['preguntes'] as $pregunta): ?>
 													<tr>
-														<td> <?php echo $pregunta['pregunta']; ?> </td>
-                                                        <td> <?php echo $pregunta['opcio_correcta']; ?> </td>
-                                                        <td> <?php echo $pregunta['opcio_2']; ?> </td>
-                                                        <td> <?php echo $pregunta['opcio_3']; ?> </td>
+														<td> <?php echo $pregunta['preg_pregunta']; ?> </td>
+                                                        <td> <?php echo $pregunta['preg_opcio_correcta']; ?> </td>
+                                                        <td> <?php echo $pregunta['preg_opcio_2']; ?> </td>
+                                                        <td> <?php echo $pregunta['preg_opcio_3']; ?> </td>
 													</tr>
 													<?php endforeach; ?>
 												</tbody>

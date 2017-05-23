@@ -37,7 +37,7 @@ class GestioTestsController extends MY_Controller {
         {
             foreach($tests as &$test)
             {
-                $test['preguntes'] = $this->Test->select_preguntes($test['codi']);
+                $test['preguntes'] = $this->Test->select_preguntes($test['test_codi']);
             }
         }
 
@@ -56,10 +56,10 @@ class GestioTestsController extends MY_Controller {
         $data = $this->input->post();
 
         $test = array(
-            'codi' => $data['codi'],
-            'nom' => $data['nom'],
-            'tipus' => $data['tipus'],
-            'carnet_codi' => $data['carnet'],
+            'test_codi' => $data['codi'],
+            'test_nom' => $data['nom'],
+            'test_tipus' => $data['tipus'],
+            'test_carnet_codi' => $data['carnet'],
         );
 
         if( ! mkdir('./uploads/' . $data['codi'], 0777, true))
@@ -141,13 +141,13 @@ class GestioTestsController extends MY_Controller {
                     if($linia[5] == 'S') $linia[5] = $linia[0].'.jpg';
 
                     $preguntes[] = array (
-                        'codi' => $linia[0],
-                        'pregunta' => $linia[1],
-                        'opcio_correcta' => $linia[2],
-                        'opcio_2' => $linia[3],
-                        'opcio_3' => $linia[4],
-                        'imatge' => $linia[5],
-                        'test_codi' => $test['codi']
+                        'preg_codi' => $linia[0],
+                        'preg_pregunta' => $linia[1],
+                        'preg_opcio_correcta' => $linia[2],
+                        'preg_opcio_2' => $linia[3],
+                        'preg_opcio_3' => $linia[4],
+                        'preg_imatge' => $linia[5],
+                        'preg_test_codi' => $test['test_codi']
                     );
                 }
                 else
@@ -175,7 +175,7 @@ class GestioTestsController extends MY_Controller {
     */
     private function insert($test, $preguntes)
     {
-        if($this->Test->select_by_codi($test['codi']))
+        if($this->Test->select_by_codi($test['test_codi']))
         {
             $this->session->set_flashdata('errors', '<strong>Error!</strong> Ya existe este test en nuestra base de datos');
 

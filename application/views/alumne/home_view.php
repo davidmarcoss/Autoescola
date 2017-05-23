@@ -60,7 +60,7 @@
 					</form>
 					<hr/>
 					<div class="table-responsive col-md-12">
-						<?php if($tests && isset($tests) && count($tests) > 0): ?>
+						<?php if($tests && isset($tests)): ?>
 						<table class="table table-sm table-hover">
 							<thead>
 								<tr>
@@ -73,22 +73,22 @@
 							</thead>
 							<tbody id="taula-tests-body">
 							<?php foreach($tests as $test): ?>
-								<tr style="cursor:pointer" data-id="<?php echo $test['id']; ?>" class="accordeon" data-toggle="collapse" href="#desplegar_<?php echo $test['id']; ?>">
+								<tr style="cursor:pointer" data-id="<?php echo $test['alu_test_id']; ?>" class="accordeon" data-toggle="collapse" href="#desplegar_<?php echo $test['alu_test_id']; ?>">
 									<td class="text-center"> <i class="fa fa-eye" aria-hidden="true"></i> </td>
-									<td class="text-center"> <?php echo $test['nom']; ?> </td>
-									<td class="text-center"> <?php echo $test['tipus']; ?> </td>
-									<td class="text-center"> <?php echo $test['data_fi']; ?> </td>
+									<td class="text-center"> <?php echo $test['test_nom']; ?> </td>
+									<td class="text-center"> <?php echo $test['test_tipus']; ?> </td>
+									<td class="text-center"> <?php echo $test['alu_test_data_fi']; ?> </td>
 									<?php
-										if($test['nota'] == 'excelente') $respostaFormat = 'label-success';
-										else if($test['nota'] == 'aprobado') $respostaFormat = 'label-warning';
-										else if($test['nota'] == 'suspendido') $respostaFormat = 'label-danger';
+										if($test['alu_test_nota'] == 'excelente') $respostaFormat = 'label-success';
+										else if($test['alu_test_nota'] == 'aprobado') $respostaFormat = 'label-warning';
+										else if($test['alu_test_nota'] == 'suspendido') $respostaFormat = 'label-danger';
 									?>
-									<td class="text-center"> <span class="label <?php echo $respostaFormat; ?>"> <?php echo $test['nota']; ?> </span> </td>
+									<td class="text-center"> <span class="label <?php echo $respostaFormat; ?>"> <?php echo $test['alu_test_nota']; ?> </span> </td>
 								</tr>
 								<?php if($test['preguntes']): ?>
 								<tr class="tr-no-hover">
 									<td colspan="5" class="quitar-borde-superior">
-										<div id="desplegar_<?php echo $test['id']; ?>" class="collapse">
+										<div id="desplegar_<?php echo $test['alu_test_id']; ?>" class="collapse">
 											<table class="table table-condensed taula-respostes-test">
 												<thead>
 													<tr>
@@ -100,10 +100,10 @@
 												<tbody>
 													<?php foreach($test['preguntes'] as $pregunta): ?>
 													<tr>
-														<td> <?php echo $pregunta['pregunta']; ?> </td>
-														<td> <?php echo $pregunta['resposta_alumne']; ?> </td>
+														<td> <?php echo $pregunta['preg_pregunta']; ?> </td>
+														<td> <?php echo $pregunta['alu_resp_resposta_alumne']; ?> </td>
 														<?php
-															if($pregunta['isCorrecta'] == 'N') 
+															if($pregunta['alu_resp_isCorrecta'] == 'N') 
 															{
 																$isCorrectaFormat = "label-danger label-resultat";
 																$text = 'No';

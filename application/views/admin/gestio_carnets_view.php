@@ -14,16 +14,16 @@
 						<table class="table table-condensed table-hover">
 							<thead>
 								<tr>
-									<th class="col-md-4 text-center">Carnet</th>
-									<th class="col-md-8 text-center">Acción</th>
+									<th class="col-md-4 text-left">Carnet</th>
+									<th class="col-md-8 text-right">Acción</th>
 								</tr>
 							</thead>
 							<tbody>
                             <?php foreach($carnets as $carnet): ?>
                                 <tr>
-                                    <td class="col-md-4 text-center"> <?php echo $carnet['codi'] ?></td>
-                                    <td class="col-md-8 text-center">  
-                                        <a class="btn btn-danger btn-sm obrir-modal-del-carnet" role="button" data-toggle="modal" href="#modal-eliminar-carnet" value="<?php echo $carnet['codi'] ?>"> 
+                                    <td class="col-md-4 text-left"> <?php echo $carnet['carnet_codi'] ?></td>
+                                    <td class="col-md-8 text-right">  
+                                        <a class="btn btn-danger btn-sm obrir-modal-del-carnet" role="button" data-toggle="modal" href="#modal-eliminar-carnet" value="<?php echo $carnet['carnet_codi'] ?>"> 
                                             <i class="fa fa-times" aria-hidden="true" ></i> Eliminar
                                         </a>
                                     </td>

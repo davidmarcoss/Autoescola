@@ -38,11 +38,11 @@ class GestioHomeController extends MY_Controller {
         {
             foreach($data as $d)
             {
-                if($d['isCorrecta'] == 'S')
+                if($d['alu_resp_isCorrecta'] == 'S')
                 {
                     $correctes++;
                 }
-                else if($d['isCorrecta'] == 'N')
+                else if($d['alu_resp_isCorrecta'] == 'N')
                 {
                     $incorrectes++;
                 }

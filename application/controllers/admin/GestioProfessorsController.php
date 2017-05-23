@@ -34,7 +34,14 @@ class GestioProfessorsController extends MY_Controller
 
     public function insert()
     {
-        $professor = $this->input->post();
+        $data = $this->input->post();
+
+        $professor = array(
+            'admin_nif' => $data['nif'],
+            'admin_nom' => $data['nom'],
+            'admin_cognoms' => $data['cognoms'],
+            'admin_correu' => $data['correu']
+        );
 
         $this->Administrador->insert($professor, 'professor');
 
@@ -43,7 +50,14 @@ class GestioProfessorsController extends MY_Controller
 
     public function update()
     {
-        $professor = $this->input->post();
+        $data = $this->input->post();
+
+        $professor = array(
+            'admin_nif' => $data['nif'],
+            'admin_nom' => $data['nom'],
+            'admin_cognoms' => $data['cognoms'],
+            'admin_correu' => $data['correu']
+        );
 
         $this->Administrador->update($professor);
 

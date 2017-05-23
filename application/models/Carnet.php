@@ -13,7 +13,7 @@ class Carnet extends MY_Model
 
     function select()
     {
-        $this->db->where('desactivat', 0);
+        $this->db->where('carnet_desactivat', 0);
         
         $query = $this->db->get($this->table_name);
 
@@ -22,8 +22,8 @@ class Carnet extends MY_Model
 
     function select_where($codi)
     {
-        $this->db->where('codi', $codi);
-        $this->db->where('desactivat', 0);
+        $this->db->where('carnet_codi', $codi);
+        $this->db->where('carnet_desactivat', 0);
         
         $query = $this->db->get($this->table_name);
 
@@ -33,8 +33,8 @@ class Carnet extends MY_Model
     function insert($codi)
     {
         $data = array(
-            'codi' => $codi,
-            'desactivat' => 0
+            'carnet_codi' => $codi,
+            'carnet_desactivat' => 0
         );
 
         $this->db->insert('carnets', $data);
@@ -44,9 +44,9 @@ class Carnet extends MY_Model
 
     function delete($codi)
     {
-        $this->db->where('codi', $codi);
+        $this->db->where('carnet_codi', $codi);
         
-        $this->db->update('carnets', array('desactivat' => 1));
+        $this->db->update('carnets', array('carnet_desactivat' => 1));
 
         return ($this->db->affected_rows() != 1) ? false : true;
     }

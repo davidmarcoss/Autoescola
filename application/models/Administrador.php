@@ -14,7 +14,7 @@ class Administrador extends MY_Model
     public function count_professors()
     {
         $this->db->select('count(*) as count');
-        $this->db->where(array('rol' => 'professor'));
+        $this->db->where(array('admin_rol' => 'professor'));
         $query = $this->db->get($this->table);
 
         $data = $query->result_array();
@@ -24,7 +24,7 @@ class Administrador extends MY_Model
 
     function select_professors_limit($limit, $segment)
     {
-        $this->db->where(array('rol' => 'professor'));
+        $this->db->where(array('admin_rol' => 'professor'));
         $query = $this->db->get($this->table, $limit, $segment);
 
         return $query->num_rows() > 0 ? $query->result_array() : false;
@@ -32,7 +32,7 @@ class Administrador extends MY_Model
 
     function select_professors()
     {
-        $this->db->where(array('rol' => 'professor'));
+        $this->db->where(array('admin_rol' => 'professor'));
         $query = $this->db->get($this->table);
 
         return $query->num_rows() > 0 ? $query->result_array() : false;
@@ -40,9 +40,9 @@ class Administrador extends MY_Model
 
     function select_professors_where_like($nif, $nom, $limit, $segment, $rol)
     {
-        $this->db->like('nif', $nif);
-        $this->db->like('nom', $nom);
-        $this->db->where('rol', $rol);
+        $this->db->like('admin_nif', $nif);
+        $this->db->like('admin_nom', $nom);
+        $this->db->where('admin_rol', $rol);
 
         $query = $this->db->get('administradors', $limit, $segment);
 
@@ -51,9 +51,9 @@ class Administrador extends MY_Model
 
     function select_where_like($nif, $nom, $limit, $segment, $rol)
     {
-        $this->db->where('rol', $rol);        
-        $this->db->like('nif', $nif);
-        $this->db->like('nom', $nom);
+        $this->db->where('admin_rol', $rol);        
+        $this->db->like('admin_nif', $nif);
+        $this->db->like('admin_nom', $nom);
 
         $query = $this->db->get('administradors', $limit, $segment);
 
@@ -62,8 +62,8 @@ class Administrador extends MY_Model
 
     function select_where_correu($correu)
     {
-        $this->db->select('nif, nom, cognoms, telefon, data_naix, correu');
-        $this->db->where('correu', $correu);
+        $this->db->select('admin_nif, admin_nom, admin_cognoms, admin_telefon, admin_data_naix, admin_correu');
+        $this->db->where('admin_correu', $correu);
 
         $query = $this->db->get('usuari');
 
@@ -72,7 +72,7 @@ class Administrador extends MY_Model
 
     function insert($administrador, $rol)
     {
-        $administrador['rol'] = $rol;
+        $administrador['admin_rol'] = $rol;
 
         $this->db->insert('administradors', $administrador);
 		
@@ -81,7 +81,7 @@ class Administrador extends MY_Model
 
     function update($administrador)
     {
-        $this->db->where('nif', $administrador['nif']);
+        $this->db->where('admin_nif', $administrador['admin_nif']);
 
         $this->db->update('administradors', $administrador);
 
@@ -90,7 +90,7 @@ class Administrador extends MY_Model
 
     function delete($nif)
     {
-        $this->db->where('nif', $nif);
+        $this->db->where('admin_nif', $nif);
         
         $this->db->delete('administradors');
 

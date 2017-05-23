@@ -39,19 +39,19 @@
 							<tbody>
 							<?php foreach($alumnes as $alumne): ?>
                                 <tr valign="middle">
-                                    <td class="text-center"> <?php echo $alumne['nif'] ?> </td>
-                                    <?php $nomComplet = $alumne['cognoms'] . ', ' . $alumne['nom'] ?>
+                                    <td class="text-center"> <?php echo $alumne['alu_nif'] ?> </td>
+                                    <?php $nomComplet = $alumne['alu_cognoms'] . ', ' . $alumne['alu_nom'] ?>
                                     <td class="text-center"><?php echo $nomComplet ?></td>
-                                    <td class="text-center"><?php echo $alumne['correu'] ?></td>
-                                    <td class="text-center"><?php echo $alumne['telefon'] ?></td>
-                                    <td class="text-center"><?php echo $alumne['carnet_codi'] ?></td>
+                                    <td class="text-center"><?php echo $alumne['alu_correu'] ?></td>
+                                    <td class="text-center"><?php echo $alumne['alu_telefon'] ?></td>
+                                    <td class="text-center"><?php echo $alumne['alu_carn_carnet_codi'] ?></td>
                                     <?php $nomComplet = $alumne['admin_cognoms'] . ', ' . $alumne['admin_nom'] ?>
                                     <td class="text-center"> <?php echo $nomComplet ?> </td>
                                     <td class="text-center">
-                                        <a class="btn btn-warning btn-sm obrir-modal-mod-alumne" role="button" data-toggle="modal" href="#modal-editar-alumne" value="<?php echo $alumne['nif'].':'.$alumne['nom'].':'.$alumne['cognoms'].':'.$alumne['correu'].':'.$alumne['telefon'].':'.$alumne['poblacio'].':'.$alumne['adreca'].':'.$alumne['carnet_codi'].':'.$alumne['professor_nif'].':'.$alumne['password'] ?>"> 
+                                        <a class="btn btn-warning btn-sm obrir-modal-mod-alumne" role="button" data-toggle="modal" href="#modal-editar-alumne" value="<?php echo $alumne['alu_nif'].':'.$alumne['alu_nom'].':'.$alumne['alu_cognoms'].':'.$alumne['alu_correu'].':'.$alumne['alu_telefon'].':'.$alumne['alu_poblacio'].':'.$alumne['alu_adreca'].':'.$alumne['alu_carn_carnet_codi'].':'.$alumne['alu_professor_nif'].':'.$alumne['alu_password'] ?>"> 
                                             <i class="fa fa-pencil" aria-hidden="true" ></i> Editar
                                         </a>
-                                        <a class="btn btn-danger btn-sm obrir-modal-del-alumne" role="button" data-toggle="modal" href="#modal-eliminar-alumne" value="<?php echo $alumne['nif'].':'.$alumne['nom'] ?>"> 
+                                        <a class="btn btn-danger btn-sm obrir-modal-del-alumne" role="button" data-toggle="modal" href="#modal-eliminar-alumne" value="<?php echo $alumne['alu_nif'].':'.$alumne['alu_nom'] ?>"> 
                                             <i class="fa fa-times " aria-hidden="true" ></i> Dar de baja
                                         </a>
                                     </td>
@@ -191,7 +191,7 @@
                             <label for="carnet-populate" class="control-label">Carnet</label>
                             <select class="form-control" name="carnet_codi" id="carnet-populate" required>
                             <?php foreach($carnets as $carnet): ?>
-                                <option value="<?php echo $carnet['codi'] ?>"> <?php echo $carnet['codi'] ?> </option>
+                                <option value="<?php echo $carnet['carnet_codi'] ?>"> <?php echo $carnet['carnet_codi'] ?> </option>
                             <?php endforeach ?>
                             </select>
                         </div>
@@ -201,7 +201,7 @@
                             <label for="professor-populate" class="control-label">Professor</label>
                             <select class="form-control" name="professor_nif" id="professor-populate" required>
                             <?php foreach($professors as $professor): ?>
-                                <option value="<?php echo $professor['nif'] ?>"> <?php echo $professor['cognoms'] . ', ' . $professor['nom'] ?> </option>
+                                <option value="<?php echo $professor['admin_nif'] ?>"> <?php echo $professor['admin_cognoms'] . ', ' . $professor['admin_nom'] ?> </option>
                             <?php endforeach ?>
                             </select>
                         </div>

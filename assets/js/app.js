@@ -17,7 +17,7 @@ $(document).ready(function(){
      */
     $('#test-form').submit(function(e){
         e.preventDefault();
-        console.info("h");
+
         var data = $(this).serializeArray();
         $.ajax({
             url: site_url_check,
@@ -43,14 +43,14 @@ $(document).ready(function(){
         });
 
         $(data).each(function(i){
-            var codiPregunta = data[i].pregunta_codi;
+            var codiPregunta = data[i].alu_resp_pregunta_codi;
 
             $('input[name='+codiPregunta+']').each(function(){
                 var opcio = $('label[for=o'+cont);
                 var opcioContent = opcio.text().trim();
-                if(data[i].resposta_alumne == opcioContent)
+                if(data[i].alu_resp_resposta_alumne == opcioContent)
                 {
-                    if(data[i].isCorrecta == 'S') 
+                    if(data[i].alu_resp_isCorrecta == 'S') 
                     {
                         var encert = "<span class='label label-inline label-success'> <i class='fa fa-check' aria-hidden=true></i> </span>";
                         opcio.append(encert);
@@ -125,19 +125,19 @@ $(document).ready(function(){
         tbody += getHeaderTable([' ', 'Test', 'Tipo de test', 'Fecha de realización', 'Resultado']);
 
         $.each(data, function(i, test) {
-            tbody += '<tr style=cursor:pointer data-id='+test['id']+' class=accordeon data-toggle=collapse href=#desplegar_'+test['id']+'>';
-            tbody += getRowTable(['<i class="fa fa-eye" aria-hidden="true"></i>', test['nom'], test['tipus'], test['data_fi']]);
+            tbody += '<tr style=cursor:pointer data-id='+test['test_id']+' class=accordeon data-toggle=collapse href=#desplegar_'+test['test_id']+'>';
+            tbody += getRowTable(['<i class="fa fa-eye" aria-hidden="true"></i>', test['test_nom'], test['test_tipus'], test['test_data_fi']]);
             if(test['nota'] == 'excelente') var respostaFormat = 'label-success';
             else if(test['nota'] == 'aprobado') var respostaFormat = 'label-warning';
             else if(test['nota'] == 'suspendido') var respostaFormat = 'label-danger';
-            tbody += '<td class=text-center> <span class="label '+respostaFormat+'"> '+test['nota'] +' </td>';
+            tbody += '<td class=text-center> <span class="label '+respostaFormat+'"> '+test['test_nota'] +' </td>';
             tbody += '</tr>';
 
             if(test['preguntes'])
             {
                 tbody += '<tr class=tr-no-hover>';
                 tbody += '<td colspan=5 class=quitar-borde-superior>';
-                tbody += '<div id=desplegar_'+test['id']+' class=collapse>';
+                tbody += '<div id=desplegar_'+test['test_id']+' class=collapse>';
                 tbody += '<table class="table table-condensed table-striped taula-respostes-test">';
                 tbody += '<thead> <tr> <th>Pregunta</th> <th>La meva resposta</th> <th class="text-center">Correcta?</th> </tr> <t/head>';
                 tbody += '<tbody>';
@@ -220,16 +220,16 @@ $(document).ready(function(){
 
         var tbody = '<table class="table table-sm table-hover table-condensed">';
 
-        tbody += getHeaderTable([' ','NIF', 'Nombre', 'Correo electrónico', 'Teléfono de contacto', 'Profesor asignado', 'Acción']);
+        tbody += getHeaderTable(['NIF', 'Nombre', 'Correo electrónico', 'Teléfono de contacto', 'Profesor asignado', 'Acción']);
 
         tbody += "<tbody>";
         $.each(data, function(i, alumne) {
             tbody += '<tr>';
-            var nomComplet = alumne['cognoms'] + ', ' + alumne['nom'];
-            tbody += getRowTable(['<i class="fa fa-eye" aria-hidden="true"></i>', alumne['nif'], nomComplet, alumne['correu'], alumne['telefon'], alumne['admin_nom']]);
+            var nomComplet = alumne['alu_cognoms'] + ', ' + alumne['alu_nom'];
+            tbody += getRowTable([alumne['alu_nif'], nomComplet, alumne['alu_correu'], alumne['alu_telefon'], alumne['admin_nom']]);
             tbody += '<td class="text-center">'
-            tbody += '<a class="btn btn-warning btn-sm obrir-modal-mod-alumne" role="button" data-toggle="modal" href="#modal-editar-alumne" value="'+alumne['nif']+':'+alumne['nom']+':'+alumne['cognoms']+':'+alumne['correu']+':'+alumne['telefon']+':'+alumne['poblacio']+':'+alumne['adreca']+':'+alumne['professor_nif']+'"><i class="fa fa-pencil" aria-hidden="true" ></i> Editar</a> ';
-            tbody += '<a class="btn btn-danger btn-sm obrir-modal-del-alumne" role="button" data-toggle="modal" href="#modal-eliminar-alumne" value='+alumne['nif']+':'+alumne['nom']+'><i class="fa fa-times " aria-hidden="true" ></i> Dar de baja</a>';
+            tbody += '<a class="btn btn-warning btn-sm obrir-modal-mod-alumne" role="button" data-toggle="modal" href="#modal-editar-alumne" value="'+alumne['alu_nif']+':'+alumne['alu_nom']+':'+alumne['cognoms']+':'+alumne['alu_correu']+':'+alumne['alu_telefon']+':'+alumne['alu_poblacio']+':'+alumne['alu_adreca']+':'+alumne['alu_professor_nif']+'"><i class="fa fa-pencil" aria-hidden="true" ></i> Editar</a> ';
+            tbody += '<a class="btn btn-danger btn-sm obrir-modal-del-alumne" role="button" data-toggle="modal" href="#modal-eliminar-alumne" value='+alumne['alu_nif']+':'+alumne['alu_nom']+'><i class="fa fa-times " aria-hidden="true" ></i> Dar de baja</a>';
             tbody += '</td>';
             tbody += '</tr>';
         });
@@ -289,11 +289,11 @@ $(document).ready(function(){
         tbody += "<tbody>";
         $.each(data, function(i, professor) {
             tbody += '<tr>';
-            var nomComplet = professor['cognoms'] + ', ' + professor['nom'];
-            tbody += getRowTable([professor['nif'], nomComplet, professor['correu']]);
+            var nomComplet = professor['admin_cognoms'] + ', ' + professor['admin_nom'];
+            tbody += getRowTable([professor['admin_nif'], nomComplet, professor['admin_correu']]);
             tbody += '<td class="text-center">'
-            tbody += '<a class="btn btn-warning btn-sm obrir-modal-mod-professor" role="button" data-toggle="modal" href="#modal-editar-professor" value='+professor['nif']+':'+professor['nom']+':'+professor['cognoms']+':'+professor['correu']+'><i class="fa fa-pencil" aria-hidden="true" ></i> Editar</a> ';
-            tbody += '<a class="btn btn-danger btn-sm obrir-modal-del-professor" role="button" data-toggle="modal" href="#modal-eliminar-professor" value='+professor['nif']+':'+professor['nom']+'><i class="fa fa-times " aria-hidden="true" ></i> Eliminar</a>';
+            tbody += '<a class="btn btn-warning btn-sm obrir-modal-mod-professor" role="button" data-toggle="modal" href="#modal-editar-professor" value='+professor['admin_nif']+':'+professor['admin_nom']+':'+professor['admin_cognoms']+':'+professor['admin_correu']+'><i class="fa fa-pencil" aria-hidden="true" ></i> Editar</a> ';
+            tbody += '<a class="btn btn-danger btn-sm obrir-modal-del-professor" role="button" data-toggle="modal" href="#modal-eliminar-professor" value='+professor['admin_nif']+':'+professor['admin_nom']+'><i class="fa fa-times " aria-hidden="true" ></i> Eliminar</a>';
             tbody += '</td>';
             tbody += '</tr>';
         });
@@ -355,6 +355,8 @@ $(document).ready(function(){
             $('#adreca-populate').val(dades[6]);
             var professor = dades[7];
             $('select option[value='+professor+']').attr("selected",true);
+            var password = dades[8];
+            $('#password-populate').val(password);
         });
         $('.obrir-modal-del-alumne').on('click', function() {
             dades = $(this).attr('value').split(':');

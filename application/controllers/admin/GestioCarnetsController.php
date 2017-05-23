@@ -29,16 +29,22 @@ class GestioCarnetsController extends MY_Controller {
     public function insert()
     {
         $codi = $this->input->post('codi');
-
-        if( ! $this->Carnet->select_where($codi))
+        if(!empty($codi))
         {
-            $this->Carnet->insert($codi);
+            if( ! $this->Carnet->select_where($codi))
+            {
+                $this->Carnet->insert($codi);
 
-            $this->session->set_flashdata('exits', '<strong>Éxito!</strong> Carnet creado correctamente.');
+                $this->session->set_flashdata('exits', '<strong>Éxito!</strong> Carnet creado correctamente.');
+            }
+            else
+            {
+                $this->session->set_flashdata('errors', '<strong>Error!</strong> Este carnet ya existe en nuestro sistema.');
+            }
         }
         else
         {
-            $this->session->set_flashdata('errors', '<strong>Error!</strong> Este carnet ya existe en nuestro sistema.');
+            $this->session->set_flashdata('errors', '<strong>Error!</strong> El codigo de carnet es obligatorio!');
         }
 
 

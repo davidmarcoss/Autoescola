@@ -26,17 +26,19 @@ class LoginController extends MY_Controller
 
 			if($usuari = $this->Usuari->login($data['correu'], md5($data['password'])))
 			{
-				$this->session->set_userdata(array('nif' => $usuari[0]['nif'], 'nom' => $usuari[0]['nom'], 'cognoms' => $usuari[0]['cognoms'], 'correu' => $usuari[0]['correu'], 'rol' => $usuari[0]['rol']));
-
 				if($this->session->userdata('rol') == 'admin' ||$this->session->userdata('rol') == 'professor')
 				{
+					$this->session->set_userdata(array('nif' => $usuari[0]['admin_nif'], 'nom' => $usuari[0]['admin_nom'], 'cognoms' => $usuari[0]['admin_cognoms'], 'correu' => $usuari[0]['admin_correu']));
 					redirect('admin/GestioHomeController/index');
 				}
-				
-				$carnet = $this->Usuari->carnet_actual($this->session->userdata('nif'));
-				$this->session->set_userdata('carnet', $carnet[0]['carnet_codi']);
+				else
+				{
+					$this->session->set_userdata(array('nif' => $usuari[0]['alu_nif'], 'nom' => $usuari[0]['alu_nom'], 'cognoms' => $usuari[0]['alu_cognoms'], 'correu' => $usuari[0]['alu_correu']));
+					$carnet = $this->Usuari->carnet_actual($this->session->userdata('nif'));
+					$this->session->set_userdata('carnet', $carnet[0]['alu_carn_carnet_codi']);
+					redirect('HomeController/index');
+				}
 
-				redirect('HomeController/index');
 			}
 			else
 			{
