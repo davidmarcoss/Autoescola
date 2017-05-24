@@ -107,10 +107,10 @@ label {
     color: white; }
 
 .btn-autoescola {
-  background-color: #1abc9c !important;
+  background-color: #16a085 !important;
   color: white !important; }
   .btn-autoescola:hover {
-    background-color: #16a085 !important;
+    background-color: #12876f !important;
     color: white !important; }
 
 .breadcrumb {
@@ -120,7 +120,7 @@ label {
   background-color: white;
   padding: 10px; }
   .card-box .card-accent {
-    color: #1abc9c;
+    color: #16a085;
     font-size: 30px; }
   .card-box .card-body-title {
     font-size: 30px; }
@@ -145,7 +145,7 @@ label {
     border-radius: 0px !important; }
 
 .active {
-  color: #1abc9c; }
+  color: #16a085; }
 
 .fa {
   font-size: 16px !important;
@@ -153,26 +153,27 @@ label {
 
 nav {
   background-color: #37474f !important;
-  border: 0 !important; }
+  border: 0 !important;
+  color: white !important; }
   nav .navbar-brand {
     color: white !important;
     font-weight: bold; }
     nav .navbar-brand:hover {
-      color: #1abc9c !important; }
+      color: #16a085 !important; }
   nav .navbar-nav .active {
     background-color: transparent !important;
-    color: #1abc9c !important; }
+    color: #16a085 !important; }
   nav .navbar-nav li a {
     color: white !important; }
     nav .navbar-nav li a:hover {
-      color: #1abc9c !important; }
+      color: #16a085 !important; }
   nav .dropdown li a {
     color: #263238 !important; }
   nav .open > a,
   nav .open > a:hover,
   nav .open > a:focus {
     background-color: transparent !important;
-    color: #1abc9c !important; }
+    color: #16a085 !important; }
   nav .navbar-right .dropdown-menu {
     text-align: right !important;
     min-width: 200px; }
@@ -226,6 +227,6 @@ nav {
   left: 50px; }
 
 li .active {
-  background-color: #1abc9c !important; }
+  background-color: #16a085 !important; }
 
 /*# sourceMappingURL=main.css.map */

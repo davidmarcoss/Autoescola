@@ -129,7 +129,7 @@
 						<div class="text-center"><?php echo $this->pagination->create_links() ?></div>
 					</div>
 					<?php else: ?>
-							<p class="text-muted">No se han encontrado tests realizados. </p> 
+							<p class="text-muted"><b>No se han encontrado tests realizados.</b></p> 
 							<a class="btn btn-autoescola" href="<?php echo site_url('TestsController/index'); ?>">REALIZAR TESTS</a>
 					<?php endif; ?>
 				</div>
