@@ -22,9 +22,9 @@ label
 
 .btn-default
     color: white !important
-    background-color: #9E9E9E !important
+    background-color: $primaryColor !important
     &:hover
-        background-color: #757575 !important
+        background-color: $primaryColorDark !important
         color: white
 
 .btn-autoescola
@@ -34,26 +34,20 @@ label
         background-color: $accentColorHover !important
         color: white !important
 
+.breadcrumb
+    border-radius: 0px !important
+
 .card-box 
     background-color: white
     padding: 10px
-    border-radius: 0px
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
-    
     .card-accent
         color: $accentColor
         font-size: 30px
-
     .card-body-title
         font-size: 30px
 
-
-    .card-body-text
-        font-weight: bold
-
 .card-box-test
     background-color: rgba(0,0,0,0) !important
-    border: 1px solid $primaryColor
     a, span
         color: $primaryColor !important
     &:hover
@@ -65,17 +59,12 @@ label
         font-weight: bold
 
 .panel-default
-    border-radius: 0px !important
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
     border: 0px !important
     .panel-heading
-        background-color: $primaryColor !important
-        color: white !important
+        color: $primaryColor !important
+        background-color: white !important
         border-radius: 0px !important
-
-        h5
-            font-weight: normal !important
-
+    
 .active
     color: $accentColor
 
@@ -85,7 +74,8 @@ label
   
 
 nav 
-    background-color: $primaryColorDark !important
+    background-color: $primaryColor !important
+    border: 0 !important
     .navbar-brand
         color: white !important
         font-weight: bold
@@ -154,16 +144,22 @@ nav
     background-color: $errorColor !important
     font-size: 14px !important
 
-.btn-float-add
+.btn-float
     border-radius: 50% !important
     width: 60px
     height: 60px
-    position: absolute
+    position: fixed
     bottom: 50px
-    right: 50px
     .fa 
         line-height: 45px
         font-size: 20px !important
+
+.btn-float-add
+    right: 50px
+
+
+.btn-float-del
+    left: 50px
 
 li .active
     background-color: $accentColor !important

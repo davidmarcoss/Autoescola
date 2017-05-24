@@ -26,23 +26,22 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="<?php echo site_url('admin/GestioHomeController/index'); ?>">Inicio</a></li>
+                    <li><a href="<?php echo site_url('admin/GestioHomeController/index'); ?>"><b>INICIO</b></a></li>
                     <?php if($this->session->rol == 'admin'): ?>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Gestión de usuarios<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b>GESTIÓN DE USUARIOS</b><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                        <li><a href="<?php echo site_url('admin/GestioProfessorsController/index'); ?>"> Profesores </a></li>
-                        <li><a href="<?php echo site_url('admin/GestioAlumnesController/index'); ?>"> Alumnos </a></li>
+                        <li><a href="<?php echo site_url('admin/GestioProfessorsController/index'); ?>"><b>PROFESORES</b></a></li>
+                        <li><a href="<?php echo site_url('admin/GestioAlumnesController/index'); ?>"><b>ALUMNOS</b></a></li>
                         </ul>
                     </li>
-                    <li><a href="<?php echo site_url('admin/GestioTestsController/index'); ?>">Gestión de tests</a></li>
-                    <li><a href="<?php echo site_url('admin/GestioCarnetsController/index'); ?>">Gestión de carnets</a></li>
+                    <li><a href="<?php echo site_url('admin/GestioTestsController/index'); ?>"><b>GESTIÓN DE TESTS</b></a></li>
+                    <li><a href="<?php echo site_url('admin/GestioCarnetsController/index'); ?>"><b>GESTIÓN DE CARNETS</b></a></li>
                     <?php endif ?>
-                    <li><a href="<?php echo site_url('admin/GestioPractiquesController/index'); ?>">Gestión de prácticas</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $this->session->nom; ?> <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <b><?php echo $this->session->nom; ?></b> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a class="text-muted"> <?php echo $this->session->correu; ?> </a></li>
                             <li><a href="#">Ajustes</a></li>
@@ -55,7 +54,7 @@
         </div>
     </nav>
 
-	<div class="messages-container">
+	
         <div class="container">
             <?php if($this->session->flashdata('errors')): ?>
                 <div class="alert alert-danger">
@@ -73,8 +72,7 @@
         </div>
 
         <?php $this->load->view($content); ?>
-	</div>
-
+	
 
 	<!-- Bootstrap Query -->
 	<script type="text/javascript" src="<?php echo base_url("assets/bootstrap/js/bootstrap.min.js"); ?>"></script>

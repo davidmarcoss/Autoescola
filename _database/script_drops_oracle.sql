@@ -1,0 +1,102 @@
+drop database if exists autoescola;
+create database autoescola;
+use autoescola;
+
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE administradors';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
+
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE alumnes';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
+
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE carnets';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
+
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE alumne_carnets';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
+
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE tests';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
+
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE preguntes';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
+
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE alumne_tests';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
+
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE alumne_respostes';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
+
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE cotxes';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
+
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE alumne_practiques';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
+
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE index_taules';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;

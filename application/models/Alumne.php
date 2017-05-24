@@ -31,6 +31,8 @@ class Alumne extends MY_Model
     function select_where_like($nif, $nom, $limit, $segment)
     {
         $this->db->join('administradors', 'administradors.admin_nif = alumnes.alu_professor_nif');
+        $this->db->join('alumne_carnets', 'alumne_carnets.alu_carn_alumne_nif = alumnes.alu_nif');
+        $this->db->where('alumne_carnets.alu_carn_data_alta in (select max(alu_carn_data_alta) from alumne_carnets ac where ac.alu_carn_alumne_nif = alumnes.alu_nif)', NULL, FALSE);
         $this->db->where('alu_desactivat', 0);        
         $this->db->like('alumnes.alu_nif', $nif);
         $this->db->like('alumnes.alu_nom', $nom);

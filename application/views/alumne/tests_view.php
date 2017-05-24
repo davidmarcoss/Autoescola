@@ -10,13 +10,13 @@
         <div class="col-lg-4 col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h5>Tests básicos</h5>
+                    <h4>Tests básicos</h4>
                 </div>
                 <div class="panel-body">
                 <?php foreach($tests as $test): ?>
                     <?php if($test['test_tipus'] == 'basico'): ?>
                         <?php if($test['test_codi'] == $test['alu_test_test_codi']): ?>
-                            <a class="btn btn-success btn-block" href="<?php echo site_url('TestsController/show/' . $test['test_codi']); ?>"> <?php echo $test['test_nom']; ?></a>
+                            <a class="btn btn-autoescola btn-block" href="<?php echo site_url('TestsController/show/' . $test['test_codi']); ?>"> <?php echo $test['test_nom']; ?></a>
                         <?php else: ?>
                             <a class="btn btn-default btn-block" href="<?php echo site_url('TestsController/show/' . $test['test_codi']); ?>"> <?php echo $test['test_nom']; ?></a>
                         <?php endif ?>
@@ -30,7 +30,7 @@
         <div class="col-lg-4 col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h5>Tests avanzados</h5>
+                    <h4>Tests avanzados</h4>
                 </div>
                 <div class="panel-body">
                 <?php foreach($tests as $test): ?>

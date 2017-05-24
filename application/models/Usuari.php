@@ -19,7 +19,7 @@ class Usuari extends MY_Model
 
         $query = $this->db->get('alumnes');
 
-        if( ! $query->num_rows())
+        if( ! $query->num_rows() > 0)
         {
             $this->db->where('admin_correu', $correu);
             $this->db->where('admin_password', $password);
@@ -28,7 +28,10 @@ class Usuari extends MY_Model
 
             $data = $query->result_array();
 
-            $this->session->set_userdata('rol', $data[0]['admin_rol']);
+            if(count($data) > 0)
+            {
+                $this->session->set_userdata('rol', $data[0]['admin_rol']);
+            }
         }
 
         return $query->num_rows() > 0 ? $query->result_array() : false;

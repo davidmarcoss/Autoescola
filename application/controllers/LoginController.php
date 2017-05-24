@@ -23,7 +23,6 @@ class LoginController extends MY_Controller
 		{
 			$this->load->model('Usuari');
 
-
 			if($usuari = $this->Usuari->login($data['correu'], md5($data['password'])))
 			{
 				if($this->session->userdata('rol') == 'admin' ||$this->session->userdata('rol') == 'professor')
@@ -42,12 +41,10 @@ class LoginController extends MY_Controller
 			}
 			else
 			{
-				$data['error'] = array(
-					'login' => 'Error al iniciar sesión, datos incorrectos.'
-				);
+				$this->session->set_flashdata('errors', '<strong>Error!</strong> Los datos de inicio de sesión son incorrectos.');
 			}
 		}
 
-		$this->load->view('login_view', $data);
+		redirect('LoginController/index');
 	}
 }

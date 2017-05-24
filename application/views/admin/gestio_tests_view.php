@@ -3,22 +3,22 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h5 style="display: inline-block">Importación de tests</h5>
+					<h4 style="display: inline-block">Importación de tests</h4>
 				</div>
                 <div class="panel-body">
                     <form method="post" action="<?php echo site_url('admin/GestioTestsController/upload') ?>" enctype="multipart/form-data">
                         <div class="form-group col-xs-4 col-md-4">
                             <label for="codi">Codigo del test</label>
-                            <input type="text" name="codi" id="codi" class="form-control input-sm" placeholder="TEST0001" required>
+                            <input type="text" name="codi" id="codi" class="form-control" placeholder="TEST0001" required>
                         </div>
                         <div class="form-group col-xs-4 col-md-4">
                             <label for="nom">Nombre</label>
-                            <input type="text" name="nom" id="nom" class="form-control input-sm" placeholder="TEST 0001" required>
+                            <input type="text" name="nom" id="nom" class="form-control" placeholder="TEST 0001" required>
                         </div>
                         <?php if(isset($carnets) && $carnets): ?>
                         <div class="form-group col-xs-2 col-md-2">
                             <label for="carnet">Tipo de carnet</label>
-                            <select name="carnet" id="carnet" class="form-control input-sm" required>
+                            <select name="carnet" id="carnet" class="form-control" required>
                                 <?php foreach($carnets as $carnet): ?>
                                     <option value="<?php echo $carnet['carnet_codi'] ?>"> <?php echo $carnet['carnet_codi'] ?> </option>
                                 <?php endforeach ?>
@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-group col-xs-2 col-md-2">
                             <label for="tipus">Tipo de test</label>
-                            <select name="tipus" id="tipus" class="form-control input-sm" required>
+                            <select name="tipus" id="tipus" class="form-control" required>
                                     <option value="basico"> Basico </option>
                                     <option value="avanzado"> Avanzado </option>
                                     <option value="examen"> Examen </option>
@@ -35,13 +35,13 @@
                         <?php endif ?>
                         <div class="form-group col-xs-12 col-md-12">
                             <label for="rar-file">Importación de preguntas</label>
-                            <input type="file" class="filestyle input-sm" name="rar-file" id="rar-file" required>
+                            <input type="file" class="filestyle" name="rar-file" id="rar-file" required>
                             <small id="fileHelp" class="form-text text-muted">
                                 Solamente está permitido un archivo .zip (Debe contener .csv con preguntas e imagenes). <br/>
                             </small>
                         </div>
                         <div class="col-xs-12 col-md-12">
-                            <button type="submit" class="btn btn-autoescola btn-sm pull-right">Importar</button>
+                            <button type="submit" class="btn btn-autoescola pull-right">Importar</button>
                         </div>
                     </form>
                 </div>
@@ -55,7 +55,7 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h5 style="display: inline-block">Tests importados</h5>
+					<h4 style="display: inline-block">Tests importados</h4>
 				</div>
                 <div class="panel-body">
                     <?php if($tests): ?>

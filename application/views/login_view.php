@@ -17,16 +17,14 @@
                 <h1 class="titol">Autoescola</h1>
             </div>
             <br/><br/>
-            <div id="output">
-                <?php
-                    if(isset($error))
-                    {
-                        foreach($error as $err)
-                        {
-                            echo $err;
-                        }
-                    }
-                ?>
+            <div class="output">
+            <?php if($this->session->flashdata()): ?>
+                <?php if($this->session->flashdata('errors')): ?>
+                    <div class="alert alert-danger">
+                        <?php echo $this->session->flashdata('errors') ?>
+                    </div>
+                <?php endif ?>
+            <?php endif ?>
             </div>
             <div class="form-box">
                 <form method="POST" action="<?php echo site_url("LoginController/login") ?>">

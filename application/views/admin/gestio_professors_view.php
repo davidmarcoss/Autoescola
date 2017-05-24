@@ -1,6 +1,6 @@
 <div id="shadow"></div>
 
-<a class="btn btn-success btn-float-add" id="obrir-modal-afegir-professor" role="button" data-toggle="modal" href="#modal-afegir-professor"> 
+<a class="btn btn-success btn-float btn-float-add" id="obrir-modal-afegir-professor" role="button" data-toggle="modal" href="#modal-afegir-professor"> 
     <i class="fa fa-user-plus" aria-hidden="true"></i>
 </a>
 
@@ -9,23 +9,22 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h5 style="display: inline-block">Gestión de profesores</h5>
+					<h4 style="display: inline-block">Gestión de profesores</h4>
+                    <form id="form-alumne-tests" class="form-inline pull-right" method="post" action="<?php echo site_url('HomeController/index') ?>">
+                    <div class="form-group">
+                        <label for="nif" class="sr-only">NIF</label>
+                        <input type="text" name="nif" id="nif" placeholder="NIF" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="nom" class="sr-only">Nombre </label>
+                        <input type="text" name="nom" id="nom" placeholder="Nombre" class="form-control">
+                    </div>
+                    <button type="button" class="btn btn-success btn-autoescola" id="btn-aplicar-filtres-professors">Aplicar</button>
+                    <div class="form-group" id="div-limpiar-filtros">
+                    </div>
+                </form>
 				</div>
 				<div class="panel-body">
-					<form id="form-alumne-tests" class="form-inline" method="post" action="<?php echo site_url('HomeController/index') ?>">
-						<div class="form-group">
-							<label for="nif" class="sr-only">NIF</label>
-                            <input type="text" name="nif" id="nif" placeholder="NIF" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="nom" class="sr-only">Nombre </label>
-                            <input type="text" name="nom" id="nom" placeholder="Nombre" class="form-control">
-						</div>
-                        <button type="button" class="btn btn-success btn-autoescola" id="btn-aplicar-filtres-professors">Aplicar</button>
-						<div class="form-group" id="div-limpiar-filtros">
-						</div>
-					</form>
-                    <hr/>
                     <?php if(isset($professors)): ?>
 					<div class="table-responsive">
 						<table class="table table-condensed table-hover table-striped">
@@ -45,10 +44,10 @@
                                     <td class="text-center"> <?php echo $nomComplet ?> </td>
                                     <td class="text-center"> <?php echo $professor['admin_correu'] ?> </td>
                                     <td class="text-center">
-                                        <a class="btn btn-warning btn-sm obrir-modal-mod-professor"  role="button" data-toggle="modal" href="#modal-editar-professor" value="<?php echo $professor['admin_nif'].':'.$professor['admin_nom'].':'.$professor['admin_cognoms'].':'.$professor['admin_correu']; ?>">
+                                        <a class="btn btn-warning btn-sm obrir-modal-mod-professor"  role="button" data-toggle="modal" href="#modal-editar-professor" value="<?php echo htmlentities(json_encode($professor)) ?>">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true" ></i> Editar
                                         </a>
-                                        <a class="btn btn-danger btn-sm obrir-modal-del-professor" role="button" data-toggle="modal" href="#modal-eliminar-professor" value="<?php echo $professor['admin_nif'].':'.$professor['admin_nom']; ?>"> 
+                                        <a class="btn btn-danger btn-sm obrir-modal-del-professor" role="button" data-toggle="modal" href="#modal-eliminar-professor" value="<?php echo htmlentities(json_encode($professor)) ?>"> 
                                             <i class="fa fa-times " aria-hidden="true" ></i> Eliminar
                                         </a>
                                     </td>
@@ -67,14 +66,15 @@
 	</div>
 </div>
 
-<!-- MODALS -->
+<!-- Modals -->
+
 <div id="modal-afegir-professor" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <form method="post" action="<?php echo site_url('admin/GestioProfessorsController/insert'); ?>">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Edición del alumno <strong><span id="nom-professor-title"> </span></strong> </h4>
+                    <h4 class="modal-title">Añadir profesor</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-success">Guardar cambios</button>
                 </div>
             </form>
@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-warning">Guardar cambios</button>
                 </div>
             </form>
@@ -155,7 +155,7 @@
                     Estas seguro que quieres eliminar este profesor?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                 </div>
                 <input type="text" name="nif" id="nif-populate-2-professor" hidden>

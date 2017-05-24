@@ -26,13 +26,13 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="<?php echo site_url('HomeController/index'); ?>">Inicio</a></li>
-                    <li><a href="<?php echo site_url('TestsController/index'); ?>">Tests</a></li>
-                    <li><a href="<?php echo site_url('PractiquesController/index'); ?>">Prácticas</a></li>
+                    <li><a href="<?php echo site_url('HomeController/index'); ?>"><b>INICIO</b></a></li>
+                    <li><a href="<?php echo site_url('TestsController/index'); ?>"><b>TESTS</b></a></li>
+                    <li><a href="<?php echo site_url('PractiquesController/index'); ?>"><b>PRÁCTICAS</b></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $this->session->nom; ?> <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <b><?php echo $this->session->nom; ?></b> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a class="text-muted"><?php echo $this->session->correu; ?></a></li>
                             <li><a href="#">Ajustes</a></li>
@@ -45,9 +45,8 @@
         </div>
     </nav>
 
-	<div class="container">
-        <?php $this->load->view($content); ?>
-	</div>
+
+    <?php $this->load->view($content); ?>
 
    
 	<!-- Bootstrap Query -->

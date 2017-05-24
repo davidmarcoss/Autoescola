@@ -3,7 +3,7 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="panel panel-default">
                 <div class="panel-heading">
-					<h5 style="display: inline-block">Gestión de carnets</h5>
+					<h4 style="display: inline-block">Gestión de carnets</h4>
                     <form class="form-inline pull-right"method="post" action="<?php echo site_url('admin/GestioCarnetsController/insert') ?>">
                         <input type="text" name="codi" class="form-control" placeholder="B">
                         <button type="submit" class="btn btn-autoescola">Añadir</button>

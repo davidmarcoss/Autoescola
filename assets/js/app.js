@@ -1,16 +1,9 @@
 $(document).ready(function(){
 
-    $('.alert').fadeOut(5000);
-
-    /**
-     *  Si existeixen les variables site_url i site_url_filtre
-     *  definides a la gestió de professors i alumnes, cridem
-     *  a les funcions per fer populate dels modals.
-     */
-    setPopulateAlumne();
-    setPopulateProfessor();
-    setPopulateCarnet();
-
+    if($('.alert').length > 0)
+    {
+        $('.alert').fadeOut(5000);
+    }
 
     /**
      *  Validació del test realitzat per l'alumne (AJAX)
@@ -72,15 +65,12 @@ $(document).ready(function(){
         
         $('button[type=submit]').prop('disabled', true);
 
-        var enrere = '<a href='+site_url_enrere+' class="btn btn-danger btn-lg btn-block">Sortir</a>';
-        $('#btn-check-test').first().after(enrere);
+        $('#btn-exit-test').attr('href', ""); 
+        $('#btn-exit-test').attr('href', site_url_enrere); 
 
         window.scrollTo(0, 0);
     }
 
-    $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
-        $("#success-alert").slideUp(500);
-    });
 
     /**
      *   Filtres de la taula de tests realitzats (AJAX)
@@ -126,11 +116,11 @@ $(document).ready(function(){
 
         $.each(data, function(i, test) {
             tbody += '<tr style=cursor:pointer data-id='+test['test_id']+' class=accordeon data-toggle=collapse href=#desplegar_'+test['test_id']+'>';
-            tbody += getRowTable(['<i class="fa fa-eye" aria-hidden="true"></i>', test['test_nom'], test['test_tipus'], test['test_data_fi']]);
-            if(test['nota'] == 'excelente') var respostaFormat = 'label-success';
-            else if(test['nota'] == 'aprobado') var respostaFormat = 'label-warning';
-            else if(test['nota'] == 'suspendido') var respostaFormat = 'label-danger';
-            tbody += '<td class=text-center> <span class="label '+respostaFormat+'"> '+test['test_nota'] +' </td>';
+            tbody += getRowTable(['<i class="fa fa-eye" aria-hidden="true"></i>', test['test_nom'], test['test_tipus'], test['alu_test_data_fi']]);
+            if(test['alu_test_nota'] == 'excelente') var respostaFormat = 'label-success';
+            else if(test['alu_test_nota'] == 'aprobado') var respostaFormat = 'label-warning';
+            else if(test['alu_test_nota'] == 'suspendido') var respostaFormat = 'label-danger';
+            tbody += '<td class=text-center> <span class="label '+respostaFormat+'"> '+test['alu_test_nota'] +' </td>';
             tbody += '</tr>';
 
             if(test['preguntes'])
@@ -143,9 +133,9 @@ $(document).ready(function(){
                 tbody += '<tbody>';
                 $.each(test['preguntes'], function(y, pregunta) {
                     tbody += '<tr>';
-                    tbody += '<td>' + pregunta['pregunta'] + '</td>';
-                    tbody += '<td>' + pregunta['resposta_alumne'] + '</td>';
-                    if(pregunta['isCorrecta'] == 'N')
+                    tbody += '<td>' + pregunta['preg_pregunta'] + '</td>';
+                    tbody += '<td>' + pregunta['alu_resp_resposta_alumne'] + '</td>';
+                    if(pregunta['alu_resp_isCorrecta'] == 'N')
                     {
                         var isCorrectaFormat = 'label-danger label-resultat';
                         var text = 'No';
@@ -220,13 +210,14 @@ $(document).ready(function(){
 
         var tbody = '<table class="table table-sm table-hover table-condensed">';
 
-        tbody += getHeaderTable(['NIF', 'Nombre', 'Correo electrónico', 'Teléfono de contacto', 'Profesor asignado', 'Acción']);
+        tbody += getHeaderTable(['NIF', 'Nombre', 'Correo electrónico', 'Teléfono de contacto', 'Carnet actual', 'Profesor asignado', 'Acción']);
 
         tbody += "<tbody>";
         $.each(data, function(i, alumne) {
             tbody += '<tr>';
             var nomComplet = alumne['alu_cognoms'] + ', ' + alumne['alu_nom'];
-            tbody += getRowTable([alumne['alu_nif'], nomComplet, alumne['alu_correu'], alumne['alu_telefon'], alumne['admin_nom']]);
+            var nomCompletProfessor = alumne['admin_cognoms'] + ', ' + alumne['admin_nom']
+            tbody += getRowTable([alumne['alu_nif'], nomComplet, alumne['alu_correu'], alumne['alu_telefon'], alumne['alu_carn_carnet_codi'], nomCompletProfessor]);
             tbody += '<td class="text-center">'
             tbody += '<a class="btn btn-warning btn-sm obrir-modal-mod-alumne" role="button" data-toggle="modal" href="#modal-editar-alumne" value="'+alumne['alu_nif']+':'+alumne['alu_nom']+':'+alumne['cognoms']+':'+alumne['alu_correu']+':'+alumne['alu_telefon']+':'+alumne['alu_poblacio']+':'+alumne['alu_adreca']+':'+alumne['alu_professor_nif']+'"><i class="fa fa-pencil" aria-hidden="true" ></i> Editar</a> ';
             tbody += '<a class="btn btn-danger btn-sm obrir-modal-del-alumne" role="button" data-toggle="modal" href="#modal-eliminar-alumne" value='+alumne['alu_nif']+':'+alumne['alu_nom']+'><i class="fa fa-times " aria-hidden="true" ></i> Dar de baja</a>';
@@ -269,7 +260,7 @@ $(document).ready(function(){
                 }
 
                 $('#btn-limpiar-filtros').remove();
-                $('#div-limpiar-filtros').append(' <a role="button" id="btn-limpiar-filtros" class="btn btn-info pull-right" href='+site_url+'>Limpiar filtros<a>');
+                $('#div-limpiar-filtros').append('<a role="button" id="btn-limpiar-filtros" class="btn btn-info pull-right" href='+site_url+'>Limpiar filtros<a>');
             }),
             error: (function (error) {
                 var message = "<div class='alert alert-danger'> <strong>Error!</strong> en procesar las respuesta</div>"
@@ -341,7 +332,8 @@ $(document).ready(function(){
         return column;
     }
 
-    function setPopulateAlumne()
+
+    if($('.obrir-modal-mod-alumne').length > 0 || $('.obrir-modal-del-alumne').length > 0)
     {
         $('.obrir-modal-mod-alumne').on('click', function() {
             dades = $(this).attr('value').split(':');
@@ -365,28 +357,32 @@ $(document).ready(function(){
         }); 
     }
 
-    function setPopulateProfessor()
+
+
+    if($('.obrir-modal-mod-professor').length > 0 || $('.obrir-modal-del-professor').length > 0)
     {
         $('.obrir-modal-mod-professor').on('click', function() {
-            dades = $(this).attr('value').split(':');
-            $('#nom-professor-title').html(dades[1]);
-            $('#nif-populate').val(dades[0]);
-            $('#nom-populate').val(dades[1]);
-            $('#cognoms-populate').val(dades[2]);
-            $('#correu-populate').val(dades[3]);
+            var dades = jQuery.parseJSON($(this).attr('value'));
+            $('#nom-professor-title').html(dades.admin_nom);
+            $('#nif-populate').val(dades.admin_nif);
+            $('#nom-populate').val(dades.admin_nom);
+            $('#cognoms-populate').val(dades.admin_cognoms);
+            $('#correu-populate').val(dades.admin_correu);
         });
 
         $('.obrir-modal-del-professor').on('click', function() {
-            dades = $(this).attr('value').split(':');
-            $('#nif-populate-2-professor').val(dades[0]);
-            $('#nom-professor-title-2').html(dades[1]);
+            var dades = jQuery.parseJSON($(this).attr('value'));
+            $('#nif-populate-2-professor').val(dades.admin_nif);
+            $('#nom-professor-title-2').html(dades.admin_nom);
         });
     }
 
-    function setPopulateCarnet()
+
+
+    if($('.obrir-modal-del-carnet').length > 0)
     {
         $('.obrir-modal-del-carnet').on('click', function() {
-            codi = $(this).attr('value');
+            var codi = $(this).attr('value');
             $('#nom-carnet-title').html(codi);
             $('#codi-carnet-populate').val(codi);
         });

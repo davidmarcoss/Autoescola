@@ -1,14 +1,12 @@
-<a class="btn btn-success btn-float-add" id="obrir-modal-afegir-alumne" role="button" data-toggle="modal" href="#modal-afegir-alumne"> <i class="fa fa-user-plus" aria-hidden="true"></i></a>
+<a class="btn btn-success btn-float btn-float-add" id="obrir-modal-afegir-alumne" role="button" data-toggle="modal" href="#modal-afegir-alumne"> <i class="fa fa-user-plus" aria-hidden="true"></i></a>
 
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12 col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h5 style="display: inline-block">Gestión de alumnos</h5>
-				</div>
-				<div class="panel-body">
-					<form id="form-alumne-tests" class="form-inline" method="post" action="<?php echo site_url('HomeController/index') ?>">
+					<h4 style="display: inline-block">Gestión de alumnos</h4>
+					<form id="form-alumne-tests" class="form-inline pull-right" method="post" action="<?php echo site_url('HomeController/index') ?>">
 						<div class="form-group">
 							<label for="nif" class="sr-only">NIF</label>
                             <input type="text" name="nif" id="nif" placeholder="NIF" class="form-control">
@@ -21,7 +19,9 @@
 						<div class="form-group" id="div-limpiar-filtros">
 						</div>
 					</form>
-                    <hr/>
+				</div>
+				<div class="panel-body">
+
 					<div class="table-responsive">
 						<?php if(isset($alumnes) && $alumnes): ?>
 						<table class="table table-condensed table-hover">
@@ -69,9 +69,7 @@
 	</div>
 </div>
 
-<!--****************************************************
-    MODALS de gestió d'usuari.
-*****************************************************-->
+<!-- Modals -->
 
 <div id="modal-afegir-alumne" class="modal fade">
     <div class="modal-dialog">
@@ -79,7 +77,7 @@
             <form method="post" action="<?php echo site_url('admin/GestioAlumnesController/insert'); ?>">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"> Añadir alumno </h4>
+                    <h4 class="modal-title">Añadir alumno</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -139,7 +137,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-success">Guardar cambios</button>
                 </div>
             </form>
@@ -209,7 +207,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-warning">Guardar cambios</button>
                 </div>
             </form>
@@ -229,7 +227,7 @@
                     Estas seguro que quieres dar de baja a este alumno? Podrás recuperarlo después
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-danger">Dar de baja</button>
                 </div>
                 <input type="text" name="nif" id="nif-populate-2" hidden>

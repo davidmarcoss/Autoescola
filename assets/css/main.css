@@ -28,7 +28,7 @@
   .container-titol h1 {
     font-size: 60px;
     font-family: Pacifico !important;
-    color: #546E7A !important; }
+    color: #37474f !important; }
 
 #output {
   position: absolute;
@@ -80,7 +80,7 @@
   src: url("../fonts/Roboto-Bold.ttf") format("truetype");
   font-weight: bold; }
 body {
-  background-color: #ECEFF1 !important;
+  background-color: #E5E5E5 !important;
   font-family: Roboto;
   color: #424242 !important;
   font-size: 15px !important; }
@@ -101,9 +101,9 @@ label {
 
 .btn-default {
   color: white !important;
-  background-color: #9E9E9E !important; }
+  background-color: #37474f !important; }
   .btn-default:hover {
-    background-color: #757575 !important;
+    background-color: #263238 !important;
     color: white; }
 
 .btn-autoescola {
@@ -113,26 +113,24 @@ label {
     background-color: #16a085 !important;
     color: white !important; }
 
+.breadcrumb {
+  border-radius: 0px !important; }
+
 .card-box {
   background-color: white;
-  padding: 10px;
-  border-radius: 0px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
+  padding: 10px; }
   .card-box .card-accent {
     color: #1abc9c;
     font-size: 30px; }
   .card-box .card-body-title {
     font-size: 30px; }
-  .card-box .card-body-text {
-    font-weight: bold; }
 
 .card-box-test {
-  background-color: transparent !important;
-  border: 1px solid #546E7A; }
+  background-color: transparent !important; }
   .card-box-test a, .card-box-test span {
-    color: #546E7A !important; }
+    color: #37474f !important; }
   .card-box-test:hover {
-    background-color: #546E7A !important; }
+    background-color: #37474f !important; }
     .card-box-test:hover a, .card-box-test:hover span {
       color: white !important; }
   .card-box-test .card-test-accent {
@@ -140,15 +138,11 @@ label {
     font-weight: bold; }
 
 .panel-default {
-  border-radius: 0px !important;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   border: 0px !important; }
   .panel-default .panel-heading {
-    background-color: #546E7A !important;
-    color: white !important;
+    color: #37474f !important;
+    background-color: white !important;
     border-radius: 0px !important; }
-    .panel-default .panel-heading h5 {
-      font-weight: normal !important; }
 
 .active {
   color: #1abc9c; }
@@ -158,7 +152,8 @@ label {
   vertical-align: middle !important; }
 
 nav {
-  background-color: #455A64 !important; }
+  background-color: #37474f !important;
+  border: 0 !important; }
   nav .navbar-brand {
     color: white !important;
     font-weight: bold; }
@@ -172,7 +167,7 @@ nav {
     nav .navbar-nav li a:hover {
       color: #1abc9c !important; }
   nav .dropdown li a {
-    color: #455A64 !important; }
+    color: #263238 !important; }
   nav .open > a,
   nav .open > a:hover,
   nav .open > a:focus {
@@ -214,16 +209,21 @@ nav {
   background-color: #e74c3c !important;
   font-size: 14px !important; }
 
-.btn-float-add {
+.btn-float {
   border-radius: 50% !important;
   width: 60px;
   height: 60px;
-  position: absolute;
-  bottom: 50px;
-  right: 50px; }
-  .btn-float-add .fa {
+  position: fixed;
+  bottom: 50px; }
+  .btn-float .fa {
     line-height: 45px;
     font-size: 20px !important; }
+
+.btn-float-add {
+  right: 50px; }
+
+.btn-float-del {
+  left: 50px; }
 
 li .active {
   background-color: #1abc9c !important; }

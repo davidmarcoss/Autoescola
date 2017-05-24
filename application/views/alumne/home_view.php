@@ -42,7 +42,7 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h5>Tests realizados</h5>
+					<h4>Tests realizados</h4>
 				</div>
 				<div class="panel-body">
 					<form id="form-alumne-tests" class="form-inline" method="post" action="<?php echo site_url('HomeController/index') ?>">
@@ -59,8 +59,8 @@
 						</div>
 					</form>
 					<hr/>
+					<?php if($tests && isset($tests)): ?>
 					<div class="table-responsive col-md-12">
-						<?php if($tests && isset($tests)): ?>
 						<table class="table table-sm table-hover">
 							<thead>
 								<tr>
@@ -127,10 +127,11 @@
 							</tbody>
 						</table>
 						<div class="text-center"><?php echo $this->pagination->create_links() ?></div>
-						<?php else: ?>
-								<p class="text-muted">No se han encontrado tests</p>
-						<?php endif; ?>
 					</div>
+					<?php else: ?>
+							<p class="text-muted">No se han encontrado tests realizados. </p> 
+							<a class="btn btn-autoescola" href="<?php echo site_url('TestsController/index'); ?>">REALIZAR TESTS</a>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
