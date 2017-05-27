@@ -63,8 +63,8 @@
                         <thead>
                             <tr>
                                 <th>Codi</th>
-                                <th class="text-center">Nom</th>
-                                <th class="text-center">Tipus</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Tipo</th>
                                 <th class="text-center">Carnet</th>
                             </tr>
                         </thead>
@@ -84,9 +84,10 @@
 												<thead>
 													<tr>
 														<th> Pregunta </th>
-														<th> Opció correcta </th>
-                                                        <th> Opció 2 </th>
-                                                        <th> Opció 3 </th>
+														<th> Opción correcta </th>
+                                                        <th> Opción 2 </th>
+                                                        <th> Opción 3 </th>
+                                                        <th> Acción </th>
 													</tr>
 												</thead>
 												<tbody>
@@ -96,6 +97,11 @@
                                                         <td> <?php echo $pregunta['preg_opcio_correcta']; ?> </td>
                                                         <td> <?php echo $pregunta['preg_opcio_2']; ?> </td>
                                                         <td> <?php echo $pregunta['preg_opcio_3']; ?> </td>
+                                                        <td> 
+                                                            <a class="btn btn-warning btn-sm obrir-modal-mod-pregunta" role="button" data-toggle="modal" href="#modal-editar-pregunta" data-value="<?php echo html_escape(json_encode($pregunta)) ?>"> 
+                                                                <i class="fa fa-pencil" aria-hidden="true" ></i> Editar
+                                                            </a>
+                                                        </td>
 													</tr>
 													<?php endforeach; ?>
 												</tbody>
@@ -112,6 +118,44 @@
                     <?php endif ?>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-editar-pregunta" class="modal fade modal-warning">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="<?php echo site_url('admin/GestioTestsController/update_pregunta'); ?>">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Edición de la pregunta <strong><span id="codi-pregunta-populate"> </span></strong> </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="text" id="preg_codi-populate" name="preg_codi" hidden>
+                        <div class="form-group col-xs-12 col-md-12">
+                            <label for="preg_pregunta-populate" class="control-label">Pregunta</label>
+                            <textarea type="text" class="form-control" id="preg_pregunta-populate" name="preg_pregunta" required></textarea>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-12">
+                            <label for="preg_opcio_correcta-populate" class="control-label">Opción correcta</label>
+                            <input type="text" class="form-control" id="preg_opcio_correcta-populate" name="preg_opcio_correcta" required>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-12">
+                            <label for="preg_opcio_2-populate" class="control-label">Opción 2</label>
+                            <input type="text" class="form-control" id="preg_opcio_2-populate" name="preg_opcio_2" required>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-12">
+                            <label for="preg_opcio_3-populate" class="control-label">Opción 3 (Opcional)</label>
+                            <input type="text" class="form-control" id="preg_opcio_3-populate" name="preg_opcio_3">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-warning">Guardar cambios</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -89,25 +89,15 @@ CREATE TABLE alumne_respostes(
     FOREIGN KEY(alu_resp_pregunta_codi) REFERENCES preguntes(preg_codi) ON DELETE CASCADE
 );
 
-CREATE TABLE cotxes(
-    cotxe_matricula VARCHAR(8),
-    cotxe_marca VARCHAR(30) NOT NULL,
-    cotxe_model VARCHAR(30) NOT NULL,
-    cotxe_combustible VARCHAR(10) NOT NULL CHECK(cotxe_combustible IN("benzina","gasoil")),
-
-    PRIMARY KEY(cotxe_matricula)
-);
-
 CREATE TABLE alumne_practiques(
     alu_prac_id INT NOT NULL,
     alu_prac_data_inici TIMESTAMP NOT NULL,
     alu_prac_duracio INT,
     alu_prac_alumne_nif VARCHAR(9) NOT NULL,
-    alu_prac_cotxe VARCHAR(8) NOT NULL,
+    alu_prac_observacions TEXT,
 
     PRIMARY KEY(alu_prac_id),
-    FOREIGN KEY(alu_prac_alumne_nif) REFERENCES alumnes(alu_nif),
-    FOREIGN KEY(alu_prac_cotxe) REFERENCES cotxes(cotxe_matricula)
+    FOREIGN KEY(alu_prac_alumne_nif) REFERENCES alumnes(alu_nif)
 );
 
 CREATE TABLE index_taules(

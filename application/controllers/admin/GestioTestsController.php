@@ -188,4 +188,21 @@ class GestioTestsController extends MY_Controller {
 
         redirect('admin/GestioTestsController/index');
     }
+
+    public function update_pregunta()
+    {
+        $data = $this->input->post();
+
+        $pregunta = array(
+            'preg_codi' => $data['preg_codi'],
+            'preg_pregunta' => $data['preg_pregunta'],
+            'preg_opcio_correcta' => $data['preg_opcio_correcta'],
+            'preg_opcio_2' => $data['preg_opcio_2'],
+            'preg_opcio_3' => $data['preg_opcio_3'],
+        );
+
+        $this->Test->update_pregunta($pregunta);
+
+        redirect('admin/GestioTestsController/index');
+    }
 }

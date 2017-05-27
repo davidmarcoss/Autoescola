@@ -121,4 +121,13 @@ class Test extends MY_Model
                 $this->db->trans_commit();
         }
     }
+
+    function update_pregunta($pregunta)
+    {
+        $this->db->where('preg_codi', $pregunta['preg_codi']);
+        
+        $this->db->update('preguntes', $pregunta);
+
+        return ($this->db->affected_rows() != 1) ? false : true;
+    }
 }

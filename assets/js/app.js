@@ -388,4 +388,18 @@ $(document).ready(function(){
         });
     }
 
+
+    if($('.obrir-modal-mod-pregunta').length > 0)
+    {
+        $('.obrir-modal-mod-pregunta').on('click', function() {
+            var data = $(this).data('value');
+            $('#codi-pregunta-populate').html(data.preg_codi);
+            $('#preg_codi-populate').val(data.preg_codi);
+            $('#preg_pregunta-populate').val(data.preg_pregunta);
+            $('#preg_opcio_correcta-populate').val(data.preg_opcio_correcta);
+            $('#preg_opcio_2-populate').val(data.preg_opcio_2);
+            $('#preg_opcio_3-populate').val(data.preg_opcio_3);
+        });
+    }
+
 });

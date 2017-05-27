@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Contraseña</label>
-                        <input type="password" id="password" name="password" placeholder="********" minlength="4" class="form-control" required>
+                        <input type="password" id="password" name="password" placeholder="********" class="form-control" required>
                     </div>
                     <button type="submit" class="btn btn-success btn-block" name="btnLogin">Entrar</button>
                     <br/>

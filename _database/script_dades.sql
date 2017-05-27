@@ -43,10 +43,8 @@ insert into preguntes values('P000028', 'Pregunta 28', 'Respuesta 1 Pregunta 28'
 insert into preguntes values('P000029', 'Pregunta 29', 'Respuesta 1 Pregunta 29', 'Respuesta 2 Pregunta 29', 'Respuesta 3 Pregunta 29', NULL, 'TEST0001');
 insert into preguntes values('P000030', 'Pregunta 30', 'Respuesta 1 Pregunta 30', 'Respuesta 2 Pregunta 30', 'Respuesta 3 Pregunta 30', NULL, 'TEST0001');
 
-insert into cotxes values('1010-ABC', 'Honda', 'Civic', 'gasoil');
-insert into cotxes values('2020-ABC', 'Renault', 'Clio', 'benzina');
 
-insert into alumne_practiques values(1, '2017-05-15 15:00:00', 1, '1010-ABC');
+insert into alumne_practiques values(1, '2017-05-15 15:00:00', 1, '11111111C', 'Pim pam toma lacasitos jajajajzi');
 
 insert into index_taules values('alumne_tests', 1);
 insert into index_taules values('alumne_respostes', 2);
