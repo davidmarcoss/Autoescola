@@ -27,7 +27,7 @@ class GestioProfessorsController extends MY_Controller
 
         $data['professors'] = $this->Administrador->select_professors_limit($this->per_page, $this->uri->segment(4));	
 
-		$this->set_pagination(count($data['professors']), base_url().'index.php/admin/GestioProfessorsController/index/');
+		$this->set_pagination($count, base_url().'index.php/admin/GestioProfessorsController/index/');
 
 		$this->load->view($this->layout, $data);
 	}

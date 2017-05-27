@@ -82,7 +82,7 @@ class HomeController extends MY_Controller
 		$data['tests'] = $this->get_respostes_per_test($data['tests_sense_preguntes']);
 
 		if(count($data['tests'] > 0)) echo json_encode($data['tests']);
-		else return false;	
+		else return false;
 	}
 
 }

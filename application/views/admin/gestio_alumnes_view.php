@@ -38,7 +38,9 @@
 							</thead>
 							<tbody>
 							<?php foreach($alumnes as $alumne): ?>
-                                <tr valign="middle">
+                                <?php if($alumne['alu_desactivat'] == 1): $bg = 'grey'; ?>
+                                <?php else: $bg = 'black'; endif; ?>
+                                <tr valign="middle" style="color: <?php echo $bg; ?>">
                                     <td class="text-center"> <?php echo $alumne['alu_nif'] ?> </td>
                                     <?php $nomComplet = $alumne['alu_cognoms'] . ', ' . $alumne['alu_nom'] ?>
                                     <td class="text-center"><?php echo $nomComplet ?></td>
@@ -48,17 +50,27 @@
                                     <?php $nomComplet = $alumne['admin_cognoms'] . ', ' . $alumne['admin_nom'] ?>
                                     <td class="text-center"> <?php echo $nomComplet ?> </td>
                                     <td class="text-center">
+                                        <?php if($alumne['alu_desactivat'] == 0): ?>
                                         <a class="btn btn-warning btn-sm obrir-modal-mod-alumne" role="button" data-toggle="modal" href="#modal-editar-alumne" value="<?php echo $alumne['alu_nif'].':'.$alumne['alu_nom'].':'.$alumne['alu_cognoms'].':'.$alumne['alu_correu'].':'.$alumne['alu_telefon'].':'.$alumne['alu_poblacio'].':'.$alumne['alu_adreca'].':'.$alumne['alu_carn_carnet_codi'].':'.$alumne['alu_professor_nif'].':'.$alumne['alu_password'] ?>"> 
                                             <i class="fa fa-pencil" aria-hidden="true" ></i> Editar
                                         </a>
                                         <a class="btn btn-danger btn-sm obrir-modal-del-alumne" role="button" data-toggle="modal" href="#modal-eliminar-alumne" value="<?php echo $alumne['alu_nif'].':'.$alumne['alu_nom'] ?>"> 
-                                            <i class="fa fa-times " aria-hidden="true" ></i> Dar de baja
+                                            <i class="fa fa-times " aria-hidden="true" ></i> Desactivar
                                         </a>
+                                        <?php else: ?>
+                                        <form method="post" action="<?php echo site_url('admin/GestioAlumnesController/activar'); ?>">
+                                            <input type="text" name="nif" value="<?php echo $alumne['alu_nif']; ?>" hidden>
+                                            <button type="submit" class="btn btn-success btn-sm"> 
+                                                <i class="fa fa-check" aria-hidden="true"></i></i> Activar
+                                            </button>
+                                        </form>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
 							<?php endforeach; ?>
 							</tbody>
 						</table>
+                        <div class="text-center"><?php echo $this->pagination->create_links() ?></div>
 						<?php else: ?>
 							<p class="text-muted">No hay alumnos en nuestro sistema</p>
 						<?php endif; ?>
@@ -83,36 +95,36 @@
                     <div class="row">
                         <div class="form-group col-xs-4 col-md-4">
                             <label for="nif" class="control-label">NIF</label>
-                            <input type="text" class="form-control" name="nif" class="form-control" placeholder="00000000A" id="nif" required>
+                            <input type="text" class="form-control" id="nif" name="nif" class="form-control" placeholder="00000000A" pattern="[0-9]{8}[A-Z]{1}" required>
                         </div>
                         <div class="form-group col-xs-4 col-md-4">
                             <label for="nom" class="control-label">Nom</label>
-                            <input type="text" class="form-control" name="nom" placeholder="John" id="nom" required>
+                            <input type="text" class="form-control" id="nom" name="nom" placeholder="John" minlength="1" minlength="20" required>
                         </div>
                         <div class="form-group col-xs-4 col-md-4">
                             <label for="cognoms" class="control-label">Cognoms</label>
-                            <input type="text" class="form-control" name="cognoms" placeholder="Doe" id="cognoms" required>
+                            <input type="text" class="form-control" name="cognoms" placeholder="Doe" minlength="1" minlength="20" id="cognoms" required>
                         </div>
                         <div class="form-group col-xs-8 col-md-8">
                             <label for="correu" class="control-label">Correu</label>
-                            <input type="email" class="form-control" name="correu" placeholder="johndoe@email.com" id="correu" required>
+                            <input type="email" class="form-control" name="correu" placeholder="johndoe@email.com" maxlength="30" id="correu" required>
                         </div>
 
                         <div class="form-group col-xs-4 col-md-4">
                             <label for="telefon" class="control-label">Telefon</label>
-                            <input type="text" class="form-control" name="telefon" placeholder="999999999" id="telefon">
+                            <input type="text" class="form-control" id="telefon" name="telefon" placeholder="999999999" pattern="[0-9]{9}">
                         </div>
                         <div class="form-group col-xs-12 col-md-12">
                             <label for="password" class="control-label">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="*******" id="password" required>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="*******" maxlength="32" required>
                         </div>
                         <div class="form-group col-xs-6 col-md-6">
                             <label for="poblacio" class="control-label">Poblacio</label>
-                            <input type="text" class="form-control" name="poblacio" placeholder="Igualada" id="poblacio" required>
+                            <input type="text" class="form-control" id="poblacio" name="poblacio" placeholder="Igualada" maxlength="20" required>
                         </div>
                         <div class="form-group col-xs-6 col-md-6">
                             <label for="adreca" class="control-label">Adreça</label>
-                            <input type="text" class="form-control" name="adreca" placeholder="Emili Vallès 4" id="carrer" required>
+                            <input type="text" class="form-control" id="carrer" name="adreca" placeholder="Emili Vallès 4" maxlength="20" required>
                         </div>
                         <?php if($carnets): ?>
                         <div class="form-group col-xs-6 col-md-6">

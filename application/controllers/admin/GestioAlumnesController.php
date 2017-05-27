@@ -24,12 +24,13 @@ class GestioAlumnesController extends MY_Controller
 		$data['titol'] = 'Inici';
 		$data['content'] = 'admin/gestio_alumnes_view';
 		
-		$data['alumnes'] = $this->Alumne->select_limit($this->per_page, $this->uri->segment(3));
+		$count = $this->Alumne->count();
+
+		$data['alumnes'] = $this->Alumne->select_limit($this->per_page, $this->uri->segment(4));
 		$data['professors'] = $this->Administrador->select_professors();
 		$data['carnets'] = $this->Carnet->select();
 
-		$this->set_pagination(count($data['alumnes']), base_url().'index.php/HomeController/index/');
-
+		$this->set_pagination($count, base_url().'index.php/admin/GestioAlumnesController/index/');
 
 		$this->load->view($this->layout, $data);
 	}
@@ -48,7 +49,8 @@ class GestioAlumnesController extends MY_Controller
 			'alu_adreca' => $data['adreca'],
 			'alu_telefon' => $data['telefon'],
 			'alu_professor_nif' => $data['professor_nif'],
-			'alu_desactivat' => 0
+			'alu_desactivat' => 0,
+			'alu_token' => md5(rand())
 		);
 
 		$alumne_carnet = array(
@@ -105,6 +107,15 @@ class GestioAlumnesController extends MY_Controller
 		$nif = $this->input->post('nif');
 
 		$this->Alumne->delete($nif);
+
+		redirect('admin/GestioAlumnesController/index');
+	}
+
+	public function activar()
+	{
+		$nif = $this->input->post('nif');
+
+		$this->Alumne->activar($nif);
 
 		redirect('admin/GestioAlumnesController/index');
 	}

@@ -35,7 +35,6 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <b><?php echo $this->session->nom; ?></b> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a class="text-muted"><?php echo $this->session->correu; ?></a></li>
-                            <li><a href="#">Ajustes</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="<?php echo site_url('HomeController/logout'); ?>" class="cerrar-sesion"> Cerrar sesión </a></li>
                         </ul>

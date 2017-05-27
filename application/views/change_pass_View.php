@@ -24,28 +24,33 @@
                         <?php echo $this->session->flashdata('errors') ?>
                     </div>
                 <?php endif ?>
-                <?php if($this->session->flashdata('exits')): ?>
-                    <div class="alert alert-success">
-                        <?php echo $this->session->flashdata('exits') ?>
-                    </div>
-                <?php endif ?>
             <?php endif ?>
             </div>
+            <?php if(isset($usuari) && $usuari): ?>
             <div class="form-box">
-                <form method="POST" action="<?php echo site_url("LoginController/login") ?>">
+                <form method="POST" action="<?php echo site_url("LoginController/update_password") ?>">
                     <div class="form-group">
                         <label for="correu">Correo electrónico</label>
-                        <input type="email" id="correu" name="correu" placeholder="correu@servidor.com" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                        <input type="email" id="correu" name="correu" placeholder="correu@servidor.com" class="form-control" value="<?php echo $usuari[0]['alu_correu'] ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label for="password">Contraseña</label>
                         <input type="password" id="password" name="password" placeholder="********" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn btn-success btn-block" name="btnLogin">Entrar</button>
-                    <br/>
-                    <a name="btnCanviarPassword" href="<?php echo site_url('LoginController/request_mail'); ?>">Has olvidado la contraseña?</a>
+                    <button class="btn btn-success btn-block" >Cambiar contraseña</button>
                 </form>
             </div>
+            <?php else: ?>
+            <div class="form-box">
+                <form method="POST" action="<?php echo site_url("LoginController/send_mail") ?>">
+                    <div class="form-group">
+                        <label for="correu">Correo electrónico</label>
+                        <input type="email" id="correu" name="correu" placeholder="correu@servidor.com" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                    </div>
+                    <button class="btn btn-warning btn-block" >Enviar correo</button>
+                </form>
+            </div>
+            <?php endif ?>
         </div>
     </div>
 

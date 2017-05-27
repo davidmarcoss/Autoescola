@@ -141,8 +141,8 @@ label {
   border: 0 !important;
   border-radius: 0 !important; }
   .panel-default .panel-heading {
-    color: #37474f !important;
-    background-color: white !important;
+    color: white !important;
+    background-color: #37474f !important;
     border-radius: 0px !important; }
 
 .active {
