@@ -4,9 +4,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Test extends MY_Model
 {
-    private $table_tests = 'tests';
-    private $table_preguntes = 'preguntes';
-
     function __construct()
     {
         parent::__construct();
@@ -14,7 +11,7 @@ class Test extends MY_Model
 
     function select_by_carnet($carnet)
     {
-        $this->db->from($this->table_tests);
+        $this->db->from('tests');
         $this->db->where('test_carnet_codi', $carnet);
         $this->db->join('alumne_tests', 'tests.test_codi = alumne_tests.alu_test_test_codi', 'left outer');
         $this->db->group_by('tests.test_codi');
@@ -26,16 +23,16 @@ class Test extends MY_Model
 
     function select()
     {
-        $this->db->from($this->table_tests);
+        $this->db->where('test_desactivat', 0);
 
-        $query = $this->db->get();
+        $query = $this->db->get('tests');
 
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
     function select_preguntes($test)
     {
-        $this->db->from($this->table_preguntes);
+        $this->db->from('preguntes');
         $this->db->where('preg_test_codi', $test);
         
         $query = $this->db->get();
@@ -45,8 +42,8 @@ class Test extends MY_Model
 
     function select_by_codi($codi)
     {
-        $this->db->from($this->table_tests);
-        $this->db->join($this->table_preguntes, 'preguntes.preg_test_codi = tests.test_codi');
+        $this->db->from('tests');
+        $this->db->join('preguntes', 'preguntes.preg_test_codi = tests.test_codi');
         $this->db->where('tests.test_codi', $codi);
         $this->db->order_by('tests.test_codi, preguntes.preg_codi');
 
@@ -57,9 +54,18 @@ class Test extends MY_Model
 
     function select_pregunta($codi)
     {
-        $query = $this->db->get_where($this->table_preguntes, array('preg_codi' => $codi));
+        $query = $this->db->get_where('preguntes', array('preg_codi' => $codi));
 
         return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
+    function delete($codi)
+    {
+        $this->db->where('test_codi', $codi);
+
+        $this->db->update('tests', array('test_desactivat' => 1));
+
+        return ($this->db->affected_rows() != 1) ? false : true;
     }
 
     /**

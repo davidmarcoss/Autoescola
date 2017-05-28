@@ -49,8 +49,48 @@
         </div>
     </div>
 
+    <div class="container-fluid" style="margin: 0; padding: 0">
+        <div id="map" style="width: 100%; height: 400px;"></div>
+    </div>
+
     <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.1.1.min.js"); ?>"></script>
     <!-- Bootstrap Query -->
     <script type="text/javascript" src="<?php echo base_url("assets/bootstrap/js/bootstrap.js"); ?>"></script>
+
+    <script type="text/javascript">
+        function initMap()
+        {
+            var lat = 41.4991378;
+            var long = 1.8096872;
+
+            var locations = ['Masquefa', '41.4991378', '1.8096872'];
+            console.info(locations);
+
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                scrollwheel: false,
+                center: new google.maps.LatLng(lat, long),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+            var marker;
+
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[1], locations[2]),
+                map: map
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker) {
+                return function() {
+                    infowindow.setContent('<b>Autoboxy</b> <br/> <span class="text-muted">'+locations[0]+'</span> <br/> <span class="text-muted">Xic de lAnyè 28</span>');
+                    infowindow.open(map, marker);
+                }
+            })(marker));
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABPwZde8h1cSRUF3VS3DFoUO9CJVS0M78&callback=initMap"></script>
 </body>
 </html>

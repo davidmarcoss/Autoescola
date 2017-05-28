@@ -136,9 +136,18 @@ class GestioTestsController extends MY_Controller {
 
                 if(!empty($linia[0]) && !empty($linia[1]) && !empty($linia[2]) && !empty($linia[3]) && !empty($linia[4]) && !empty($linia[5]))
                 {
-                    if(strlen($linia[0]) < 7 || strlen($linia[0]) > 7) return false;
-                    if($linia[4] == 'N') $linia[4] = null;
-                    if($linia[5] == 'S') $linia[5] = $linia[0].'.jpg';
+                    if(strlen($linia[0]) < 7 || strlen($linia[0]) > 7) 
+                    {
+                        return false;
+                    }
+                    if($linia[4] == 'N') 
+                    {
+                        $linia[4] = null;
+                    }
+                    if($linia[5] == 'S') 
+                    {
+                        $linia[5] = $linia[0].'.jpg';
+                    }
 
                     $preguntes[] = array (
                         'preg_codi' => $linia[0],
@@ -202,6 +211,22 @@ class GestioTestsController extends MY_Controller {
         );
 
         $this->Test->update_pregunta($pregunta);
+
+        redirect('admin/GestioTestsController/index');
+    }
+
+    public function delete()
+    {
+        $test_codi = $this->input->post('test_codi');
+
+        if($this->Test->delete($test_codi))
+        {
+            $this->session->set_flashdata('exits', '<strong>Éxito!</strong> El test se ha desactivado correctamente.');
+        }
+        else
+        {
+            $this->session->set_flashdata('errors', '<strong>Error!</strong> No se ha podido desactivar el test.');
+        }
 
         redirect('admin/GestioTestsController/index');
     }

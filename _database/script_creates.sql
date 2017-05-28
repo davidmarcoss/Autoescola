@@ -51,10 +51,12 @@ CREATE TABLE tests(
     test_nom VARCHAR(10) UNIQUE NOT NULL, -- TEST 01, TEST 02, ....
     test_tipus VARCHAR(10) NOT NULL ,
     test_carnet_codi VARCHAR(4) NOT NULL,
+    test_desactivat int NOT NULL,
 
     CONSTRAINT tests_pk PRIMARY KEY(test_codi),
     CONSTRAINT tests_fk_carnet FOREIGN KEY(test_carnet_codi) REFERENCES carnets(carnet_codi) ON DELETE CASCADE,
-    CONSTRAINT test_tipus_check CHECK(test_tipus IN('basico', 'avanzado', 'examen'))
+    CONSTRAINT test_tipus_check CHECK(test_tipus IN('basico', 'avanzado', 'examen')),
+    CONSTRAINT test_desactivat_check CHECK(test_desactivat IN(0, 1))
 );
 
 CREATE TABLE preguntes(

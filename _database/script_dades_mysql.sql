@@ -42,7 +42,7 @@ insert into alumne_carnets values('22222222M', 'A2', '2017-01-08 17:00:00');
 insert into alumne_carnets values('22222222N', 'B', '2017-03-09 17:00:00');
 insert into alumne_carnets values('22222222P', 'A', '2017-03-15 17:00:00');
 
-insert into tests values('TEST0001', 'TEST 0001', 'basico', 'B');
+insert into tests values('TEST0001', 'TEST 0001', 'basico', 'B', 0);
 
 insert into preguntes values('P000001', 'Pregunta 1', 'Respuesta 1 Pregunta 1', 'Respuesta 2 Pregunta 1', 'Respuesta 3 Pregunta 1', NULL, 'TEST0001');
 insert into preguntes values('P000002', 'Pregunta 2', 'Respuesta 1 Pregunta 2', 'Respuesta 2 Pregunta 2', 'Respuesta 3 Pregunta 2', NULL, 'TEST0001');

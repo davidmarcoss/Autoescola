@@ -402,4 +402,10 @@ $(document).ready(function(){
         });
     }
 
+    $('.obrir-modal-del-test').on('click', function() {
+        dades = $(this).attr('value').split(':');
+        $('#test-codi').html(dades[0]);
+        $('#test-codi-populate').val(dades[0]);
+    }); 
+
 });

@@ -66,15 +66,21 @@
                                 <th class="text-center">Nombre</th>
                                 <th class="text-center">Tipo</th>
                                 <th class="text-center">Carnet</th>
+                                <th class="text-center">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach($tests as $test): ?>
-                                <tr style="cursor:pointer" data-id="<?php echo $test['test_codi']; ?>" class="accordeon" data-toggle="collapse" href="#desplegar_<?php echo $test['test_codi']; ?>">
+                                <tr style="cursor:pointer" data-id="<?php echo $test['test_codi']; ?>" class="accordeon" data-toggle="collapse" href="#desplegar_<?php echo $test['test_codi'] ?>">
                                     <td> <?php echo $test['test_codi'] ?> </td>
                                     <td class="text-center"> <?php echo $test['test_nom'] ?> </td>
                                     <td class="text-center"> <?php echo $test['test_tipus'] ?> </td>
                                     <td class="text-center"> <?php echo $test['test_carnet_codi'] ?> </td>
+                                    <td class="text-center"> 
+                                        <a class="btn btn-danger btn-sm obrir-modal-del-test" role="button" data-toggle="modal" href="#modal-eliminar-test" value="<?php echo $test['test_codi'] ?>"> 
+                                            <i class="fa fa-times " aria-hidden="true" ></i> Desactivar
+                                        </a>
+                                    </td>
                                 </tr>
 								<?php if($test['preguntes']): ?>
 								<tr class="tr-no-hover">
@@ -155,6 +161,27 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-warning">Guardar cambios</button>
                 </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="modal-eliminar-test" class="modal fade modal-danger">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="<?php echo site_url('admin/GestioTestsController/delete') ?>">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Desactivación del test <strong><span id="test-codi"> </span></strong></h4>
+                </div>
+                <div class="modal-body">
+                    <p>Estas seguro que quieres desactivar este test? Esto NO afectará a los tests realizados por los alumnos.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Desactivar</button>
+                </div>
+                <input type="text" name="test_codi" id="test-codi-populate" hidden>
             </form>
         </div>
     </div>
