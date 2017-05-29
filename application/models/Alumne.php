@@ -28,6 +28,13 @@ class Alumne extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    function select()
+    {
+        $query = $this->db->get('alumnes');
+
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
     function count()
     {
         $this->db->select('count(*) as count');

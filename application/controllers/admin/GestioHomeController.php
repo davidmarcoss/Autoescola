@@ -22,6 +22,7 @@ class GestioHomeController extends MY_Controller {
 		$data['content'] = 'admin/gestio_home_view';
 
         $data['quantitat_alumnes'] = $this->Alumne->count();
+        $data['alumnes'] = $this->Alumne->select();
         $data['carnets'] = $this->Carnet->select();
         $data['estadistiques_respostes'] = $this->calcular_mitja_acerts($this->Alumne->count_respostes());
 
@@ -57,4 +58,5 @@ class GestioHomeController extends MY_Controller {
 
         return $res;
     }
+
 }

@@ -22,7 +22,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo site_url('HomeController/index'); ?>">Autoescola</a>
+                <a class="navbar-brand" href="<?php echo site_url('HomeController/index'); ?>">Autoboxx</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

@@ -39,4 +39,26 @@ class AutoboxyWebservice extends MY_Controller
 		}
 	}
 
+	public function jasper()
+	{
+		$data = $this->input->post();
+
+		$request = null;
+		foreach($data['alumnes'] as $d)
+		{
+			$request .= "&alumne=".$d;
+		}
+
+		$url = "http://92.222.27.83:8080/jasperserver/rest_v2/reports/w2-dmarcos/autoboxTestsAlumnes.html?j_username=w2-dmarcos&j_password=23844512K".$request;
+
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_RETURNTRANSFER => 0,
+			CURLOPT_URL => $url
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+	}
 }

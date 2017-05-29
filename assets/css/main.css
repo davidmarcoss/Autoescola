@@ -158,7 +158,8 @@ nav {
   color: white !important; }
   nav .navbar-brand {
     color: white !important;
-    font-weight: bold; }
+    font-size: 30px;
+    font-family: Pacifico !important; }
     nav .navbar-brand:hover {
       color: #16a085 !important; }
   nav .navbar-nav .active {
@@ -229,5 +230,11 @@ nav {
 
 li .active {
   background-color: #16a085 !important; }
+
+.img-pregunta {
+  border: 2px solid #37474f;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%; }
 
 /*# sourceMappingURL=main.css.map */

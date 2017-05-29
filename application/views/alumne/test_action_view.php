@@ -30,7 +30,7 @@
                             <div class="col-md-9">
                                 <?php foreach($opcions as $opcio): ?>
                                 <label for="o<?php echo $cont; ?>" class="radio-inline">
-                                    <input type="radio"  name="<?php echo $pregunta['preg_codi']; ?>" id="o<?php echo $cont; ?>" value="<?php echo $opcio; ?>"/> 
+                                    <input type="radio"  name="<?php echo $pregunta['preg_codi']; ?>" id="o<?php echo $cont; ?>" value="<?php echo $opcio; ?>" /> 
                                     <?php echo $opcio; ?>
                                 </label>
                                 <br/><br/>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-md-2 pull-right">
                                 <?php if($pregunta['preg_imatge'] != 'N'): ?>
-                                    <img src="<?php echo base_url() . 'uploads/'.$this->session->codi_test.'/'.$pregunta['preg_imatge'] ?>" width="150px" class="pull-right">
+                                    <img src="<?php echo base_url() . 'uploads/'.$this->session->codi_test.'/'.$pregunta['preg_codi'].'.jpg' ?>" width="150px" class="pull-right img-pregunta">
                                 <?php endif ?>
                             </div>
                         </div>

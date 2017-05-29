@@ -14,7 +14,7 @@
     <div class="container">
         <div class="login-container">
             <div class="container-titol">
-                <h1 class="titol">Autoescola</h1>
+                <h1 class="titol">Autoboxx</h1>
             </div>
             <br/><br/>
             <div class="output">

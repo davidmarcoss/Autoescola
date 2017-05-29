@@ -1,4 +1,4 @@
-	<div class="container">
+<div class="container">
 	<div class="row">
 		<div class="col-lg-4 col-md-4">
 			<div class="card-box">
@@ -28,6 +28,25 @@
 		</div>
 	</div>
 </div>
+
+<br/>
+
+<?php if(isset($alumnes) && $alumnes): ?>
+<div class="container">
+	<div class="card-box">
+		<p class="card-body-text">
+			<form method="post" action="<?php echo site_url('api/AutoboxyWebservice/jasper') ?>">
+				<select name="alumnes[]" multiple="multiple">
+					<?php foreach($alumnes as $alumne): ?>
+						<option value="<?php echo $alumne['alu_nif'] ?>"><?php echo $alumne['alu_nom'] . ' , ' . $alumne['alu_cognoms'] ?></option>
+					<?php endforeach ?>
+				</select>
+				<button type="submit" class="btn btn-autoescola">Enviar</button>
+			</form>
+		</div>
+	</div>
+</div>
+<?php endif ?>
 
 <br/>
 

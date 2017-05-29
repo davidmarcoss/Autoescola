@@ -144,9 +144,13 @@ class GestioTestsController extends MY_Controller {
                     {
                         $linia[4] = null;
                     }
+
                     if($linia[5] == 'S') 
                     {
                         $linia[5] = $linia[0].'.jpg';
+                    }
+                    else {
+                        $linia[5] = 'N';
                     }
 
                     $preguntes[] = array (
