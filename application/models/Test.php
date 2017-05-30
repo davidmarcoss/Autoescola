@@ -9,6 +9,11 @@ class Test extends MY_Model
         parent::__construct();
     }
 
+    /**
+    * Funció per a seleccionar els tests d'un carnet específic.
+    *
+    * @param String $carnet Codi de carnet.
+    */
     function select_by_carnet($carnet)
     {
         $this->db->from('tests');
@@ -21,6 +26,9 @@ class Test extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a seleccionar tots els tests
+    */
     function select()
     {
         $this->db->where('test_desactivat', 0);
@@ -30,6 +38,9 @@ class Test extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a seleccionar totes les preguntes d'un test.
+    */
     function select_preguntes($test)
     {
         $this->db->from('preguntes');
@@ -40,6 +51,9 @@ class Test extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a seleccionat un test a partir del seu codi.
+    */
     function select_by_codi($codi)
     {
         $this->db->from('tests');
@@ -52,6 +66,9 @@ class Test extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a seleccionar una pregunta a partir del seu codi.
+    */
     function select_pregunta($codi)
     {
         $query = $this->db->get_where('preguntes', array('preg_codi' => $codi));
@@ -59,6 +76,9 @@ class Test extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a eliminar un test.
+    */
     function delete($codi)
     {
         $this->db->where('test_codi', $codi);
@@ -69,7 +89,10 @@ class Test extends MY_Model
     }
 
     /**
-    *   Inserció d'un test per part de l'administrador
+    * Inserció d'un test per part de l'administrador.
+    *
+    * @param Array $dataTest Les dades del test.
+    * @param Array $dataPreguntes Les dades de les preguntes.
     */
     function insert_test($dataTest, $dataPreguntes)
     {
@@ -95,7 +118,10 @@ class Test extends MY_Model
     }
 
     /**
-    *   Inserció d'un test realitzat per l'alumne
+    * Funció per a inserir un test realitzat per un alumne.
+    *
+    * @param Array $dataTest Dades del test.
+    * @param Array $dataRespostes Dades de les respostes.
     */
     function insert($dataTest, $dataRespostes)
     {
@@ -128,6 +154,11 @@ class Test extends MY_Model
         }
     }
 
+    /**
+    * Funció per a modificar una pregunta.
+    *
+    * @param Array $pregunta Dades de la pregunta.
+    */
     function update_pregunta($pregunta)
     {
         $this->db->where('preg_codi', $pregunta['preg_codi']);

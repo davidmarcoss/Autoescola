@@ -4,14 +4,17 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Usuari extends MY_Model
 {
-    private $table_alumnes = 'alumnes';
-    private $table_professors = 'administradors';
-
     function __construct()
     {
         parent::__construct();
     }
 
+    /**
+    * Funció per al login a l'aplicació, a través del correu i contrassenya.
+    *
+    * @param String $correu Correu de l'alumne.
+    * @param String $password Contrassenya de l'alumne.
+    */
     public function login($correu, $password)
     {
         $this->db->where('alu_correu', $correu);
@@ -37,6 +40,11 @@ class Usuari extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a seleccionat el carnet actual d'un alumne.
+    *
+    * @param String $nif NIF de l'alumne.
+    */
     public function carnet_actual($nif)
     {
         $this->db->where('alu_carn_alumne_nif', $nif);
