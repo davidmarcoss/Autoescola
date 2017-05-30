@@ -34,14 +34,18 @@
 <?php if(isset($alumnes) && $alumnes): ?>
 <div class="container">
 	<div class="card-box">
+		<p class="card-body-title">  Informe de usuarios y sus tests  </p>
+		<hr>
 		<p class="card-body-text">
-			<form method="post" action="<?php echo site_url('api/AutoboxyWebservice/jasper') ?>">
-				<select name="alumnes[]" multiple="multiple">
+			<form method="post" action="<?php echo site_url('api/AutoboxxWebservice/jasper') ?>">
+				<select name="alumnes[]" multiple="multiple" class="form-control" size=10>
 					<?php foreach($alumnes as $alumne): ?>
 						<option value="<?php echo $alumne['alu_nif'] ?>"><?php echo $alumne['alu_nom'] . ' , ' . $alumne['alu_cognoms'] ?></option>
 					<?php endforeach ?>
 				</select>
-				<button type="submit" class="btn btn-autoescola">Enviar</button>
+				<span class="text-muted">Selecciona varios usuarios con Ctrl + Click</span>
+				<br/><br/>
+				<button type="submit" class="btn btn-autoescola">Consultar</button>
 			</form>
 		</div>
 	</div>

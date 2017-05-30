@@ -10,7 +10,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 style="display: inline-block">Gestión de profesores</h4>
-                    <form id="form-alumne-tests" class="form-inline pull-right" method="post" action="<?php echo site_url('HomeController/index') ?>">
+                    <form id="form-alumne-tests" class="form-inline pull-right valign-form" method="post" action="<?php echo site_url('HomeController/index') ?>">
                     <div class="form-group">
                         <label for="nif" class="sr-only">NIF</label>
                         <input type="text" name="nif" id="nif" placeholder="NIF" class="form-control">

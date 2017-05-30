@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class AutoboxyWebservice extends MY_Controller 
+class AutoboxxWebservice extends MY_Controller 
 {
 
 	function __construct()
@@ -10,14 +10,6 @@ class AutoboxyWebservice extends MY_Controller
 		parent::__construct();
 	}
 	
-	/*
-	*	Webservice per a obtenir els resultats dels tests
-	*	d'un carnet en concret d'un usuari.
-	*
-	*	Els paràmetres són:
-	*	$carnet -> Tipus de carnet.
-	*	$token -> Token de l'usuari a la base de dades.
-	*/
 	public function results($carnet, $token)
 	{
         $this->load->model('Alumne');
@@ -46,7 +38,7 @@ class AutoboxyWebservice extends MY_Controller
 		$request = null;
 		foreach($data['alumnes'] as $d)
 		{
-			$request .= "&alumne=".$d;
+			$request .= "&alumnes=".$d;
 		}
 
 		$url = "http://92.222.27.83:8080/jasperserver/rest_v2/reports/w2-dmarcos/autoboxTestsAlumnes.html?j_username=w2-dmarcos&j_password=23844512K".$request;

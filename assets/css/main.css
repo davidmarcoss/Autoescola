@@ -186,14 +186,15 @@ nav {
     nav .navbar-right .dropdown-menu .cerrar-sesion {
       color: red !important; }
   nav .navbar-right .cerrar-sesion {
-    color: #e74c3c !important; }
+    color: #c62828 !important; }
 
 .table > tbody > tr > td {
   vertical-align: middle; }
 
 .taula-respostes-test {
-  width: 85% !important;
-  margin: 0 auto !important; }
+  width: 90% !important;
+  margin: 10px auto !important;
+  margin-bottom: 30px !important; }
 
 .taula-respostes-test tr,
 .taula-respostes-test td,
@@ -204,13 +205,26 @@ nav {
 .tr-no-hover:hover {
   background-color: white !important; }
 
+.label {
+  vertical-align: middle; }
+
 .label-success {
   background-color: #2ecc71 !important;
   font-size: 14px !important; }
 
 .label-danger {
-  background-color: #e74c3c !important;
+  background-color: #c62828 !important;
   font-size: 14px !important; }
+
+.label-warning {
+  background-color: #F9A825 !important;
+  font-size: 14px !important; }
+
+.label-resposta {
+  display: block;
+  width: 90px !important;
+  padding: 5px !important;
+  vertical-align: middle; }
 
 .btn-float {
   border-radius: 50% !important;
@@ -236,5 +250,25 @@ li .active {
   width: 125px;
   height: 125px;
   border-radius: 50%; }
+
+.valign-form {
+  margin-top: 3px; }
+
+.caixa-semafor {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin-bottom: -500px;
+  z-index: -1;
+  animation: show-semafor;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards; }
+
+@keyframes show-semafor {
+  0% {
+    margin-bottom: -500px; }
+  100% {
+    margin-bottom: 0px; } }
 
 /*# sourceMappingURL=main.css.map */

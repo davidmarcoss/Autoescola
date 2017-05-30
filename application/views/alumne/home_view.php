@@ -93,8 +93,8 @@
 												<thead>
 													<tr>
 														<th> Pregunta </th>
-														<th> La meva resposta </th>
-														<th class="text-center"> Correcta? </th>
+														<th> Mi respuesta </th>
+														<th class="text-center"> Resultado </th>
 													</tr>
 												</thead>
 												<tbody>
@@ -105,13 +105,13 @@
 														<?php
 															if($pregunta['alu_resp_isCorrecta'] == 'N') 
 															{
-																$isCorrectaFormat = "label-danger label-resultat";
-																$text = 'No';
+																$isCorrectaFormat = "label-danger label-resultat label-resposta";
+																$text = 'Incorrecta';
 															}
 															else 
 															{
-																$isCorrectaFormat = 'label-success label-resultat';
-																$text = 'Si';
+																$isCorrectaFormat = 'label-success label-resultat label-resposta';
+																$text = 'Correcta';
 															}
 														?>
 														<td class="text-center"> <span class="label <?php echo $isCorrectaFormat; ?>"><?php echo $text; ?></span> </td>

@@ -127,8 +127,9 @@ nav
 
 
 .taula-respostes-test
-    width: 85% !important
-    margin: 0 auto !important
+    width: 90% !important
+    margin: 10px auto !important
+    margin-bottom: 30px !important
 
 .taula-respostes-test tr, 
 .taula-respostes-test td, 
@@ -139,6 +140,9 @@ nav
 .tr-no-hover:hover 
     background-color: white !important
 
+.label
+    vertical-align: middle
+
 .label-success
     background-color: $successColor !important
     font-size: 14px !important
@@ -146,6 +150,16 @@ nav
 .label-danger
     background-color: $errorColor !important
     font-size: 14px !important
+
+.label-warning
+    background-color: $warningColor !important
+    font-size: 14px !important
+
+.label-resposta
+    display: block
+    width: 90px !important
+    padding: 5px !important
+    vertical-align: middle
 
 .btn-float
     border-radius: 50% !important
@@ -172,3 +186,24 @@ li .active
     width: 125px
     height: 125px
     border-radius: 50%
+
+.valign-form
+    margin-top: 3px
+
+.caixa-semafor
+    position: fixed
+    right: 0
+    bottom: 0
+    margin-bottom: -500px
+    
+    z-index: -1
+    animation: show-semafor
+    animation-duration: 2s
+    animation-timing-function: ease-in-out
+    animation-fill-mode: forwards
+
+@keyframes show-semafor 
+    0%
+        margin-bottom: -500px
+    100%
+        margin-bottom: 0px
