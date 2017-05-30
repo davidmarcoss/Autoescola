@@ -38,7 +38,7 @@ class HomeController extends MY_Controller
 	{
 		$testsAprobats = 0;
 		
-		if($tests && count($tests) > 0)
+		if(isset($tests) && $tests)
 		{
 			foreach($tests as $test)
 			{
@@ -54,7 +54,7 @@ class HomeController extends MY_Controller
 
 	private function get_respostes_per_test($tests)
 	{
-		if($tests && count($tests) > 0)
+		if(isset($tests) && $tests)
 		{
 			foreach($tests as &$test)
 			{
@@ -69,7 +69,7 @@ class HomeController extends MY_Controller
 	{
 		$filtre = $this->input->post('filtre-alumne-tests');
 		
-		if(isset($filtre) && !empty($filtre))
+		if(isset($filtre) && !empty($filtre) && $filtre)
 		{
 			$this->session->set_flashdata('filtre', $filtre);
 			$data['tests_sense_preguntes'] = $this->Alumne->select_tests_alumne($this->session->userdata('nif'), $this->per_page, $this->uri->segment(3), $filtre);

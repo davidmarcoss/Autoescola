@@ -19,7 +19,7 @@ class LoginController extends MY_Controller
 	{
 		$data = $this->input->post();
 
-		if(isset($data) && count($data) > 0)
+		if(isset($data) && $data)
 		{
 			$this->load->model('Usuari');
 

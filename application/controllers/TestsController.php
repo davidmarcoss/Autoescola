@@ -29,55 +29,61 @@ class TestsController extends MY_Controller
 
 	public function show($codi)
     {
-		$data['titol'] = 'Tests';
-		$data['content'] = 'alumne/test_action_view';
+		if($codi)
+		{
+			$data['titol'] = 'Tests';
+			$data['content'] = 'alumne/test_action_view';
 
-		$data['test'] = $this->Test->select_by_codi($codi);
+			$data['test'] = $this->Test->select_by_codi($codi);
 
-		$this->session->set_userdata(array('codi_test' => $codi, 'nom_test' => $data['test'][0]['test_nom']));
+			$this->session->set_userdata(array('codi_test' => $codi, 'nom_test' => $data['test'][0]['test_nom']));
 
-		$this->load->view($this->layout, $data);
+			$this->load->view($this->layout, $data);
+		}
     }
 
 	public function check()
 	{
 		$data = $this->input->post();
 		
-		$dataRespostes = array();
-		$errades = 0;
-		$nota = 0;
-
-		foreach($data as $key => $value)
+		if(isset($data) && $data)
 		{
-			$pregunta = $this->Test->select_pregunta($key);
+			$dataRespostes = array();
+			$errades = 0;
+			$nota = 0;
 
-			if($value == $pregunta[0]['preg_opcio_correcta'])
+			foreach($data as $key => $value)
 			{
-				$isCorrecta = 'S';
-				$correcta = null;
-			}
-			else
-			{
-				$isCorrecta = 'N';
-				$correcta = $pregunta[0]['preg_opcio_correcta'];
-				$errades++;
+				$pregunta = $this->Test->select_pregunta($key);
+
+				if($value == $pregunta[0]['preg_opcio_correcta'])
+				{
+					$isCorrecta = 'S';
+					$correcta = null;
+				}
+				else
+				{
+					$isCorrecta = 'N';
+					$correcta = $pregunta[0]['preg_opcio_correcta'];
+					$errades++;
+				}
+
+				$dataRespostes[] = array(
+					'alu_resp_pregunta_codi' => $key,
+					'alu_resp_resposta_alumne' => $value,
+					'alu_resp_isCorrecta' => $isCorrecta,
+					'correcta' => $correcta
+				);
 			}
 
-			$dataRespostes[] = array(
-				'alu_resp_pregunta_codi' => $key,
-				'alu_resp_resposta_alumne' => $value,
-				'alu_resp_isCorrecta' => $isCorrecta,
-				'correcta' => $correcta
-			);
+			if($errades == 0) $nota = 'excelente';
+			else if($errades > 0 && $errades <= 3) $nota = 'aprobado';
+			else $nota = 'suspendido';
+
+			$this->insert($dataRespostes, $nota);
+			
+			echo json_encode($dataRespostes);
 		}
-
-		if($errades == 0) $nota = 'excelente';
-		else if($errades > 0 && $errades <= 3) $nota = 'aprobado';
-		else $nota = 'suspendido';
-
-		$this->insert($dataRespostes, $nota);
-		
-		echo json_encode($dataRespostes);
 	}
 
 	private function insert($dataRespostes, $nota)
