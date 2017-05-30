@@ -15,26 +15,11 @@ class Alumne extends MY_Model
         parent::__construct();
     }
 
-    function select_limit($limit, $segment)
-    {
-        $this->db->join('administradors', 'administradors.admin_nif = alumnes.alu_professor_nif');
-        $this->db->join('alumne_carnets', 'alumne_carnets.alu_carn_alumne_nif = alumnes.alu_nif');
-        $this->db->where('alumne_carnets.alu_carn_data_alta in (select max(alu_carn_data_alta) from alumne_carnets ac where ac.alu_carn_alumne_nif = alumnes.alu_nif)', NULL, FALSE);
-        $this->db->where('administradors.admin_rol', 'professor');
-        //$this->db->where('alu_desactivat', 0);
-
-        $query = $this->db->get('alumnes', $limit, $segment);
-
-        return $query->num_rows() > 0 ? $query->result_array() : false;
-    }
-
-    function select()
-    {
-        $query = $this->db->get('alumnes');
-
-        return $query->num_rows() > 0 ? $query->result_array() : false;
-    }
-
+    /**
+    * Funció per a contar tots els alumnes de la base de dades
+    * 
+    * @return int quantitat d'alumnes.
+    */
     function count()
     {
         $this->db->select('count(*) as count');
@@ -42,7 +27,6 @@ class Alumne extends MY_Model
         $this->db->join('alumne_carnets', 'alumne_carnets.alu_carn_alumne_nif = alumnes.alu_nif');
         $this->db->where('alumne_carnets.alu_carn_data_alta in (select max(alu_carn_data_alta) from alumne_carnets ac where ac.alu_carn_alumne_nif = alumnes.alu_nif)', NULL, FALSE);
         $this->db->where('administradors.admin_rol', 'professor');
-        //$this->db->where('alu_desactivat', 0);
 
         $query = $this->db->get('alumnes');
         $data = $query->result_array();
@@ -50,12 +34,50 @@ class Alumne extends MY_Model
         return $data[0]['count'];
     }
 
-    function select_where_like($nif, $nom, $limit, $segment)
+    /**
+    * Funció per a seleccionar els alumnes amb límit de paginació i segment.
+    * 
+    * @return Array amb les dades dels registres.
+    */
+    function select_limit($limit, $segment)
     {
         $this->db->join('administradors', 'administradors.admin_nif = alumnes.alu_professor_nif');
         $this->db->join('alumne_carnets', 'alumne_carnets.alu_carn_alumne_nif = alumnes.alu_nif');
         $this->db->where('alumne_carnets.alu_carn_data_alta in (select max(alu_carn_data_alta) from alumne_carnets ac where ac.alu_carn_alumne_nif = alumnes.alu_nif)', NULL, FALSE);
-        //$this->db->where('alu_desactivat', 0);        
+        $this->db->where('administradors.admin_rol', 'professor');
+
+        $query = $this->db->get('alumnes', $limit, $segment);
+
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
+    /**
+    * Funció per a seleccionar tots els alumnes de la base de dades.
+    * 
+    * @return Array amb les dades dels registres.
+    */
+    function select()
+    {
+        $query = $this->db->get('alumnes');
+
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
+    /**
+    * Funció per a seleccionar els alumnes amb filtres.
+    * 
+    * @param String $nif NIF de l'alumne.
+    * @param String $nom Nom de l'alumne.
+    * @param int $limit Número de límit. 
+    * @param int $segment Número de segment.
+    *
+    * @return Array amb les dades dels registres.
+    */
+    function select_where_like($nif, $nom, $limit, $segment)
+    {
+        $this->db->join('administradors', 'administradors.admin_nif = alumnes.alu_professor_nif');
+        $this->db->join('alumne_carnets', 'alumne_carnets.alu_carn_alumne_nif = alumnes.alu_nif');
+        $this->db->where('alumne_carnets.alu_carn_data_alta in (select max(alu_carn_data_alta) from alumne_carnets ac where ac.alu_carn_alumne_nif = alumnes.alu_nif)', NULL, FALSE);   
         $this->db->like('alumnes.alu_nif', $nif);
         $this->db->like('alumnes.alu_nom', $nom);
 
@@ -64,6 +86,11 @@ class Alumne extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a seleccionar un alumne a partir del seu correu.
+    * 
+    * @return Array amb les dades del registre.
+    */
     function select_where_correu($correu)
     {
 
@@ -74,6 +101,11 @@ class Alumne extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a seleccionar un alumne a partir del seu token de seguretat.
+    * 
+    * @return Array amb les dades del registre.
+    */
     function select_where_token($token)
     {
         $this->db->select('alu_nif, alu_nom, alu_cognoms, alu_correu, alu_token');
@@ -84,6 +116,12 @@ class Alumne extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a comprobar si cert alumne s'ha tret cert carnet.
+    * 
+    * @param String $alumneNIF NIF de l'alumne.
+    * @param String $carnet_codi Codi del carnet.
+    */
     function select_carnet($alumneNIF, $carnet_codi)
     {
         $this->db->where(array('alu_carn_alumne_nif' => $alumneNIF, 'alu_carn_carnet_codi' => $carnet_codi));
@@ -92,6 +130,12 @@ class Alumne extends MY_Model
         return $query->num_rows() > 0 ? true : false;
     }
 
+    /**
+    * Funció per a inserir un alumne a la base de dades.
+    *
+    * @param Array $alumne amb les dades de l'alumne a inserir.
+    * @param String $alumne_carnet amb el carnet del curs que comença.
+    */
     function insert($alumne, $alumne_carnet)
     {
         $this->db->trans_begin();
@@ -112,6 +156,13 @@ class Alumne extends MY_Model
         }
     }
 
+    /**
+    * Funció per a modificar un alumne a la base de dades.
+    *
+    * @param Array $alumne amb les dades de l'alumne a inserir.
+    * @param String $alumne_carnet amb el carnet del curs que comença.
+    *        El carnet es null per defecte.
+    */
     function update($alumne, $alumne_carnet = null)
     {
         $this->db->where('alu_nif', $alumne['alu_nif']);
@@ -125,6 +176,12 @@ class Alumne extends MY_Model
         return ($this->db->affected_rows() != 1) ? false : true;
     }
 
+    /**
+    * Funció per a modificar la contrassenya d'un alumne a la base de dades.
+    *
+    * @param String $correu de l'alumne.
+    * @param String $password nova a inserir.
+    */
     function update_password($correu, $password)
     {
         $this->db->where('alu_correu', $correu);
@@ -134,6 +191,11 @@ class Alumne extends MY_Model
         return ($this->db->affected_rows() != 1) ? false : true;
     }
 
+    /**
+    * Funció per a eliminar un alumne de la base de dades.
+    *
+    * @param String $nif NIF de l'alumne.
+    */
     function delete($nif)
     {
         $this->db->where('alu_nif', $nif);
@@ -143,6 +205,11 @@ class Alumne extends MY_Model
         return ($this->db->affected_rows() != 1) ? false : true;
     }
 
+    /**
+    * Funció per a activar l'alumne.
+    *
+    * @param String $nif NIF de l'alumne.
+    */
     function activar($nif)
     {
         $this->db->where('alu_nif', $nif);
@@ -152,6 +219,11 @@ class Alumne extends MY_Model
         return ($this->db->affected_rows() != 1) ? false : true;
     }
 
+    /**
+    * Funció per a modificar el token d'un l'alumne.
+    *
+    * @param String $nif NIF de l'alumne.
+    */
     function update_token($nif)
     {
         $newToken = md5(rand());
@@ -165,6 +237,11 @@ class Alumne extends MY_Model
 
     // ------------------------------------------------------------------------------------------------------//
 
+    /**
+    * Funció per a seleccionar totes les respostes d'un test.
+    *
+    * @param String $testCodi codi del test.
+    */
     function select_respostes_test($testCodi)
     {
         $this->db->from($this->table_alumne_respostes);
@@ -177,6 +254,14 @@ class Alumne extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a seleccionat els tests que ha fet un alumne.
+    *
+    * @param String $alumneNIF NIF de l'alumne.
+    * @param int $limit Número de límit.
+    * @param int $segment Número de segment.
+    * @param String $filtre filtre a demanar.
+    */
     function select_tests_alumne($alumneNIF, $limit, $segment, $filtre = null)
     {
         $this->db->join($this->table_tests, 'tests.test_codi = alumne_tests.alu_test_test_codi');
@@ -200,6 +285,11 @@ class Alumne extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a contar els tests que ha realitzat l'alumne.
+    *
+    * @param String $alumneNIF NIF de l'alumne.
+    */
     function select_tests_alumne_count($alumneNIF)
     {
         $this->db->from($this->table_alumne_tests);
@@ -212,6 +302,9 @@ class Alumne extends MY_Model
         return count($data);
     }
 
+    /**
+    * Funció per a contar les respostes totals que han fet els alumnes.
+    */
     function count_respostes()
     {
         $query = $this->db->get('alumne_respostes');
@@ -219,6 +312,10 @@ class Alumne extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a seleccionar els tests d'un alumne en un carnet concret.
+    * La crida es fa des del webservice.
+    */
     function get_tests_webservice($carnet, $nif)
     {
         $this->db->select('tests.test_codi, alu_test_nota');

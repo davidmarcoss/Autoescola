@@ -9,6 +9,11 @@ class Administrador extends MY_Model
         parent::__construct();
     }
 
+    /**
+    * Funció per a contar tots els professors del sistema.
+    * 
+    * @return Num de professors.
+    */
     public function count_professors()
     {
         $this->db->select('count(*) as count');
@@ -21,6 +26,14 @@ class Administrador extends MY_Model
         return $data[0]['count'];
     }
 
+    /**
+    * Funció per a seleccionar els professors amb un límit per a la paginació.
+    * 
+    * @param int $limit número de límit.
+    * @param int $segment número de segment.
+    *
+    * @return Object Array amb els valors de la base de dades.
+    */
     function select_professors_limit($limit, $segment)
     {
         $this->db->select('admin_nif, admin_nom, admin_cognoms, admin_correu, admin_rol');
@@ -31,6 +44,11 @@ class Administrador extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a contar tots els professors del sistema.
+    * 
+    * @return Num de professors.
+    */
     function select_professors()
     {
         $this->db->select('admin_nif, admin_nom, admin_cognoms, admin_correu, admin_rol');
@@ -41,18 +59,14 @@ class Administrador extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
-    function select_professors_where_like($nif, $nom, $limit, $segment, $rol)
-    {
-        $this->db->select('admin_nif, admin_nom, admin_cognoms, admin_correu, admin_rol');
-        $this->db->like('admin_nif', $nif);
-        $this->db->like('admin_nom', $nom);
-        $this->db->where('admin_rol', $rol);
-
-        $query = $this->db->get('administradors', $limit, $segment);
-
-        return $query->num_rows() > 0 ? $query->result_array() : false;
-    }
-
+    /**
+    * Funció per a seleccionar els professors amb filtres.
+    * 
+    * @param String $nif NIF del professor
+    * @param String $nom Nom del professor.
+    *
+    * @return Object Array amb els valors de la base de dades.
+    */
     function select_where_like($nif, $nom, $limit, $segment, $rol)
     {
         $this->db->where('admin_rol', $rol);        
@@ -64,6 +78,14 @@ class Administrador extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    /**
+    * Funció per a inserir un registre d'un administrador a la base de dades.
+    * 
+    * @param Array $administrador Array amb les dades de l'administrador.
+    * @param String $nom Nom del professor.
+    *
+    * @return Boolean si s'ha inserit o no el registre.
+    */
     function insert($administrador, $rol)
     {
         $administrador['admin_rol'] = $rol;
@@ -73,6 +95,13 @@ class Administrador extends MY_Model
 		return ($this->db->affected_rows() != 1) ? false : true;
     }
 
+    /**
+    * Funció per a modificar les dades d'un administrador a la base de dades.
+    * 
+    * @param Array $administrador Array amb les dades de l'administrador.
+    *
+    * @return Boolean si s'ha modificat o no el registre.
+    */
     function update($administrador)
     {
         $this->db->where('admin_nif', $administrador['admin_nif']);
@@ -82,6 +111,14 @@ class Administrador extends MY_Model
         return ($this->db->affected_rows() != 1) ? false : true;
     }
 
+    /**
+    * Funció per a eliminar (desactivar) les dades d'un administrador a la base
+    * de dades.
+    * 
+    * @param int $nif NIF de l'administrador.
+    *
+    * @return Boolean si s'ha modificat o no el registre.
+    */
     function delete($nif)
     {
         $this->db->where('admin_nif', $nif);
