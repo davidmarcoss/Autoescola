@@ -68,7 +68,7 @@ class GestioAlumnesController extends MY_Controller
 	{
 		$data = $this->input->post();
 
-		if($data['password'] < 32) $password = md5($data['password']);
+		if(strlen($data['password']) < 32 || strlen($data['password']) > 32) $password = md5($data['password']);
 		else $password = $data['password'];
 
 		$alumne = array(

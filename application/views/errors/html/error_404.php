@@ -1,8 +1,9 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-$base_url = load_class('Config')->config['base_url'];
-$img = $base_url . '/assets/img/error404.jpg';
-?><!DOCTYPE html>
+	defined('BASEPATH') OR exit('No direct script access allowed');
+	$base_url = load_class('Config')->config['base_url'];
+	$img = $base_url . '/assets/img/error404.jpg';
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">

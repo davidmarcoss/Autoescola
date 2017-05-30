@@ -345,9 +345,11 @@ $(document).ready(function(){
             $('#telefon-populate').val(dades[4]);
             $('#poblacio-populate').val(dades[5]);
             $('#adreca-populate').val(dades[6]);
-            var professor = dades[7];
+            var professor = dades[8];
             $('select option[value='+professor+']').attr("selected",true);
-            var password = dades[8];
+            var carnet = dades[7];
+            $('select option[value='+carnet+']').attr("selected",true);
+            var password = dades[9];
             $('#password-populate').val(password);
         });
         $('.obrir-modal-del-alumne').on('click', function() {
