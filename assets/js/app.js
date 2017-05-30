@@ -5,6 +5,11 @@ $(document).ready(function(){
         $('.alert').fadeOut(5000);
     }
 
+    $('#caixa-semafor').removeClass('anim-semafor');
+    $('#llum-semafor').removeClass('semafor-vermell');
+    $('#llum-semafor').removeClass('semafor-taronja');
+    $('#llum-semafor').removeClass('semafor-verd');
+
     /**
      *  Validació del test realitzat per l'alumne (AJAX)
      */
@@ -30,6 +35,8 @@ $(document).ready(function(){
     function mostrarResultat(data)
     {
         var cont = 0;
+        var errors = 0;
+
         $('input[type=radio]').each(function(){
             $(this).prop("disabled", true);
             var opcio = $('label[for=o'+cont).text().trim();
@@ -52,6 +59,7 @@ $(document).ready(function(){
                     {
                         var error = "<span class='label label-inline label-danger'> <i class='fa fa-times' aria-hidden=true></i> </span>";
                         opcio.append(error);
+                        errors++;
                     }
                 }
                 else if(data[i].correcta == opcioContent)
@@ -67,6 +75,13 @@ $(document).ready(function(){
 
         $('#btn-exit-test').attr('href', ""); 
         $('#btn-exit-test').attr('href', site_url_enrere); 
+
+        $('#caixa-semafor').removeClass('caixa-semafor');
+        $('#caixa-semafor').addClass('anim-semafor');
+        if(errors > 3) $('#llum-semafor').addClass('semafor-vermell');
+        else if(errors > 0 && errors <= 3) $('#llum-semafor').addClass('semafor-taronja');
+        else if(errors == 0) $('#llum-semafor').addClass('semafor-verd');
+        $('#bg-semafor').show();
 
         window.scrollTo(0, 0);
     }

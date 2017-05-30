@@ -30,7 +30,7 @@
                             <div class="col-md-9">
                                 <?php foreach($opcions as $opcio): ?>
                                 <label for="o<?php echo $cont; ?>" class="radio-inline">
-                                    <input type="radio"  name="<?php echo $pregunta['preg_codi']; ?>" id="o<?php echo $cont; ?>" value="<?php echo $opcio; ?>" required /> 
+                                    <input type="radio"  name="<?php echo $pregunta['preg_codi']; ?>" id="o<?php echo $cont; ?>" value="<?php echo $opcio; ?>"  /> 
                                     <?php echo $opcio; ?>
                                 </label>
                                 <br/><br/>
@@ -75,7 +75,9 @@
     </div>
 </div>
 
-<div class="caixa-semafor">
+<div id="bg-semafor" class="bg"></div>
+<div id="caixa-semafor" class="caixa-semafor">
+    <div id="llum-semafor"></div>
     <img src="<?php echo base_url('assets/img/semafor.png') ?>">
 </div>
 
