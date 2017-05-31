@@ -83,7 +83,7 @@ body {
   background-color: #E5E5E5 !important;
   font-family: Roboto;
   color: #424242 !important;
-  font-size: 15px !important; }
+  font-size: 16px !important; }
 
 .breadcrumb {
   background-color: white !important; }
@@ -121,9 +121,9 @@ label {
   padding: 10px; }
   .card-box .card-accent {
     color: #16a085;
-    font-size: 30px; }
+    font-size: 35px; }
   .card-box .card-body-title {
-    font-size: 30px; }
+    font-size: 35px; }
 
 .card-box-test {
   background-color: transparent !important; }
@@ -156,6 +156,11 @@ nav {
   background-color: #37474f !important;
   border: 0 !important;
   color: white !important; }
+  nav .icon-bar {
+    color: white !important;
+    background-color: white !important; }
+  nav .collapsed:hover, nav .collapsed:active, nav .collapsed:visited, nav .collapsed:link {
+    background-color: transparent !important; }
   nav .navbar-brand {
     color: white !important;
     font-size: 30px;

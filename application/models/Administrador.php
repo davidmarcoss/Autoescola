@@ -92,7 +92,7 @@ class Administrador extends MY_Model
 
         $this->db->insert('administradors', $administrador);
 		
-		return ($this->db->affected_rows() != 1) ? false : true;
+        return ($this->db->affected_rows() != 1) ? false : true;
     }
 
     /**

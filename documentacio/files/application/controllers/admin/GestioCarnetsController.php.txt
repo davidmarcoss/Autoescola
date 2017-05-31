@@ -1,0 +1,73 @@
+<?php 
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class GestioCarnetsController extends MY_Controller {
+
+    function __construct()
+    {
+        parent::__construct();
+		
+        if ( ! $this->is_logged_in())
+        {
+            redirect('LoginController/index');
+        }
+
+        $this->load->model('Alumne');
+        $this->load->model('Carnet');
+    }
+
+    public function index()
+    {
+        $data['content'] = 'admin/gestio_carnets_view';
+        
+        $data['carnets'] = $this->Carnet->select();
+
+        $this->load->view($this->layout, $data);
+    }
+
+    public function insert()
+    {
+        $codi = $this->input->post('codi');
+
+        if($this->check_codi_carnet($codi))
+        {
+            if( ! $this->Carnet->select_where($codi))
+            {
+                $this->Carnet->insert($codi);
+
+                $this->session->set_flashdata('exits', '<strong>Éxito!</strong> Carnet creado correctamente.');
+            }
+            else
+            {
+                $this->session->set_flashdata('errors', '<strong>Error!</strong> Este carnet ya existe en nuestro sistema.');
+            }
+        }
+        else
+        {
+            $this->session->set_flashdata('errors', '<strong>Error!</strong> El codigo de carnet es obligatorio!');
+        }
+
+
+        redirect('admin/GestioCarnetsController/index');
+    }
+
+    public function delete()
+    {
+        $codi = $this->input->post('codi');
+
+        if($this->Carnet->delete($codi))
+        {
+            $this->session->set_flashdata('exits', '<strong>Éxito!</strong> Carnet eliminado correctamente.');
+        }
+
+        redirect('admin/GestioCarnetsController/index');
+    }
+
+    public function check_codi_carnet($codi)
+    {
+        return (!empty($codi) && ($codi == 'A1' || $codi == 'A2' || $codi == 'A' || $codi == 'B' || $codi == "BTP"));
+    }
+
+}
+

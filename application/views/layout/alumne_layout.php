@@ -28,7 +28,6 @@
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo site_url('HomeController/index'); ?>"><b>INICIO</b></a></li>
                     <li><a href="<?php echo site_url('TestsController/index'); ?>"><b>TESTS</b></a></li>
-                    <li><a href="<?php echo site_url('PractiquesController/index'); ?>"><b>PRÁCTICAS</b></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -39,6 +38,7 @@
                             <li><a href="<?php echo site_url('HomeController/logout'); ?>" class="cerrar-sesion"> Cerrar sesión </a></li>
                         </ul>
                     </li>
+                    <a href="<?php echo site_url('api/AutoboxxWebservice/results/B/'.$this->session->token) ?>" class="btn btn-autoescola" style="margin-top: 8px">Consultar resultats</a>
                 </ul>
             </div>
         </div>

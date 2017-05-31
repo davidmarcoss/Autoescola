@@ -34,9 +34,9 @@ class LoginController extends MY_Controller
 				{
 					// Refrescar token a l'alumne.
 					$this->load->model('Alumne');
-					$this->Alumne->update_token($usuari[0]['alu_nif']);
+					$token = $this->Alumne->update_token($usuari[0]['alu_nif']);
 
-					$this->session->set_userdata(array('nif' => $usuari[0]['alu_nif'], 'nom' => $usuari[0]['alu_nom'], 'cognoms' => $usuari[0]['alu_cognoms'], 'correu' => $usuari[0]['alu_correu']));
+					$this->session->set_userdata(array('nif' => $usuari[0]['alu_nif'], 'nom' => $usuari[0]['alu_nom'], 'cognoms' => $usuari[0]['alu_cognoms'], 'correu' => $usuari[0]['alu_correu'], 'token' => $token));
 					
 					// Assignem el carnet actual a l'alumne.
 					$carnet = $this->Usuari->carnet_actual($this->session->userdata('nif'));

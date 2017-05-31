@@ -232,7 +232,7 @@ class Alumne extends MY_Model
 
         $this->db->update('alumnes', array('alu_token' => $newToken));
 
-        return ($this->db->affected_rows() != 1) ? false : true;
+        return ($this->db->affected_rows() != 1) ? false : $newToken;
     }
 
     // ------------------------------------------------------------------------------------------------------//
