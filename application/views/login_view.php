@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo base_url("/assets/bootstrap/css/bootstrap.css"); ?>" />
     <link rel="stylesheet" href="<?php echo base_url("/assets/css/estils-login.css"); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url("/assets/font-awesome/css/font-awesome.min.css"); ?>" />
 </head>
 <body class="bodyLogin">
-
     <div class="container">
         <div class="login-container">
             <div class="container-titol">
@@ -47,10 +47,11 @@
                 </form>
             </div>
         </div>
+        <a href="#map"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
     </div>
 
-    <div class="container-fluid" style="margin: 0; padding: 0">
-        <div id="map" style="width: 100%; height: 400px;"></div>
+    <div>
+        <div id="map" style="width: 100%; height: 400px; margin: 0px; margin-top: 300px"></div>
     </div>
 
     <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.1.1.min.js"); ?>"></script>

@@ -29,6 +29,7 @@ class GestioCarnetsController extends MY_Controller {
     public function insert()
     {
         $codi = $this->input->post('codi');
+        $return = $this->check_codi_carnet($codi);
 
         if($this->check_codi_carnet($codi))
         {
@@ -49,7 +50,7 @@ class GestioCarnetsController extends MY_Controller {
         }
 
 
-        redirect('admin/GestioCarnetsController/index');
+        redirect(site_url('admin/GestioCarnetsController/index'));
     }
 
     public function delete()
@@ -64,9 +65,10 @@ class GestioCarnetsController extends MY_Controller {
         redirect('admin/GestioCarnetsController/index');
     }
 
-    public function check_codi_carnet($codi)
+    private function check_codi_carnet($codi)
     {
-        return (!empty($codi) && ($codi == 'A1' || $codi == 'A2' || $codi == 'A' || $codi == 'B' || $codi == "BTP"));
+        if(isset($codi) && $codi && ($codi == 'A1' || $codi == 'A2' || $codi == 'A' || $codi == 'B' || $codi == "BTP")) return true;
+        else return false;
     }
 
 }
