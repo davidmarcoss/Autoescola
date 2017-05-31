@@ -57,7 +57,7 @@
                                         <a class="btn btn-danger btn-sm obrir-modal-del-alumne" role="button" data-toggle="modal" href="#modal-eliminar-alumne" value="<?php echo $alumne['alu_nif'].':'.$alumne['alu_nom'] ?>"> 
                                             <i class="fa fa-times " aria-hidden="true" ></i> Desactivar
                                         </a>
-                                        <?php else: ?>
+                                        <?php elseif($alumne['alu_desactivat'] == 1): ?>
                                         <form method="post" action="<?php echo site_url('admin/GestioAlumnesController/activar'); ?>">
                                             <input type="text" name="nif" value="<?php echo $alumne['alu_nif']; ?>" hidden>
                                             <button type="submit" class="btn btn-success btn-sm"> 

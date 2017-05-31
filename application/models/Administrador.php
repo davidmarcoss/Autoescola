@@ -127,4 +127,13 @@ class Administrador extends MY_Model
 
         return ($this->db->affected_rows() != 1) ? false : true;
     }
+
+    function is_professor_assignat($nif)
+    {
+        $this->db->where('alu_professor_nif', $nif);
+
+        $query = $this->db->get('alumnes');
+
+        return $query->num_rows() > 0 ? true : false;
+    }
 }

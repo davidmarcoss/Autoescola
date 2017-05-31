@@ -41,8 +41,8 @@ class Alumne extends MY_Model
     */
     function select_limit($limit, $segment)
     {
-        $this->db->join('administradors', 'administradors.admin_nif = alumnes.alu_professor_nif');
-        $this->db->join('alumne_carnets', 'alumne_carnets.alu_carn_alumne_nif = alumnes.alu_nif');
+        $this->db->join('administradors', 'administradors.admin_nif = alumnes.alu_professor_nif', 'left outer');
+        $this->db->join('alumne_carnets', 'alumne_carnets.alu_carn_alumne_nif = alumnes.alu_nif', 'right outer');
         $this->db->where('alumne_carnets.alu_carn_data_alta in (select max(alu_carn_data_alta) from alumne_carnets ac where ac.alu_carn_alumne_nif = alumnes.alu_nif)', NULL, FALSE);
         $this->db->where('administradors.admin_rol', 'professor');
 

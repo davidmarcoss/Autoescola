@@ -54,23 +54,23 @@
     </nav>
 
 	
-        <div class="container">
-            <?php if($this->session->flashdata('errors')): ?>
-                <div class="alert alert-danger">
-                    <?php echo $this->session->flashdata('errors') ?>
-                </div>
-            <?php endif ?>
-        </div>
+    <div class="container">
+        <?php if($this->session->flashdata('errors')): ?>
+            <div class="alert alert-danger">
+                <?php echo $this->session->flashdata('errors') ?>
+            </div>
+        <?php endif ?>
+    </div>
 
-        <div class="container">
-            <?php if($this->session->flashdata('exits')): ?>
-                <div class="alert alert-success">
-                    <?php echo $this->session->flashdata('exits') ?>
-                </div>
-            <?php endif ?>
-        </div>
+    <div class="container">
+        <?php if($this->session->flashdata('exits')): ?>
+            <div class="alert alert-success">
+                <?php echo $this->session->flashdata('exits') ?>
+            </div>
+        <?php endif ?>
+    </div>
 
-        <?php $this->load->view($content); ?>
+    <?php $this->load->view($content); ?>
 	
 
 	<!-- Bootstrap Query -->

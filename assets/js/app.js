@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     if($('.alert').length > 0)
     {
-        $('.alert').fadeOut(5000);
+        $('.alert').fadeOut(10000);
     }
 
     $('#caixa-semafor').removeClass('anim-semafor');
@@ -15,6 +15,7 @@ $(document).ready(function(){
      */
     $('#test-form').submit(function(e){
         e.preventDefault();
+        $('button[type=submit]').prop('disabled', true);
 
         var data = $(this).serializeArray();
         $.ajax({
@@ -23,6 +24,7 @@ $(document).ready(function(){
             dataType: 'json',
             data: data,
             success: (function (response) {
+                console.info(response);
                 mostrarResultat(response);
             }),
             error: (function (error) {
@@ -71,7 +73,7 @@ $(document).ready(function(){
             });
         });
         
-        $('button[type=submit]').prop('disabled', true);
+        
 
         $('#btn-exit-test').attr('href', ""); 
         $('#btn-exit-test').attr('href', site_url_enrere); 

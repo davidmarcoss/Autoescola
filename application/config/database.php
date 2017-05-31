@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'autoescola',
+	'hostname' => '92.222.27.83',
+	'username' => 'w2-dmarcos',
+	'password' => '23844512K',
+	'database' => 'w2_dmarcos',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

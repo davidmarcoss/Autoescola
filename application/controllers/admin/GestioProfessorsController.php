@@ -68,7 +68,21 @@ class GestioProfessorsController extends MY_Controller
     {
         $nif = $this->input->post('nif');
 
-        $this->Administrador->delete($nif);
+        if($this->Administrador->is_professor_assignat($nif))
+        {
+            $this->session->set_flashdata('errors', '<strong>Error!</strong> Este profesor ya esta asignado a uno o más alumnos!');
+        }
+        else
+        {
+            if($this->Administrador->delete($nif))
+            {
+                $this->session->set_flashdata('exits', '<strong>Éxito!</strong> Profesor eliminado correctamente!');
+            }
+            else
+            {
+                $this->session->set_flashdata('errors', '<strong>Error!</strong> No se ha podido eliminar este profesor! Inténtelo de nuevo más tarde.');
+            }
+        }
 
         redirect('admin/GestioProfessorsController/index');
     }

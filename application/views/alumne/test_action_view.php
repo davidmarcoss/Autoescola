@@ -83,5 +83,6 @@
 
 <script>
     var site_url_check = "<?php echo site_url('TestsController/check'); ?>";
+    console.info(site_url_check);
     var site_url_enrere= "<?php echo site_url('TestsController/index'); ?>";
 </script>
