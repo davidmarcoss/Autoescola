@@ -31,8 +31,6 @@ class Test extends MY_Model
     */
     function select()
     {
-        $this->db->where('test_desactivat', 0);
-
         $query = $this->db->get('tests');
 
         return $query->num_rows() > 0 ? $query->result_array() : false;
@@ -164,6 +162,20 @@ class Test extends MY_Model
         $this->db->where('preg_codi', $pregunta['preg_codi']);
         
         $this->db->update('preguntes', $pregunta);
+
+        return ($this->db->affected_rows() != 1) ? false : true;
+    }
+
+    /**
+    * Funció per a activar un test.
+    *
+    * @param String $test_codi Codi del test.
+    */
+    function activar($test_codi)
+    {
+        $this->db->where('test_codi', $test_codi);
+
+        $this->db->update('tests', array('test_desactivat' => 0));
 
         return ($this->db->affected_rows() != 1) ? false : true;
     }

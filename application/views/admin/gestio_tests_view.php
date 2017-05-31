@@ -77,9 +77,15 @@
                                     <td class="text-center"> <?php echo $test['test_tipus'] ?> </td>
                                     <td class="text-center"> <?php echo $test['test_carnet_codi'] ?> </td>
                                     <td class="text-center"> 
+                                        <?php if($test['test_desactivat'] == 0): ?>
                                         <a class="btn btn-danger btn-sm obrir-modal-del-test" role="button" data-toggle="modal" href="#modal-eliminar-test" value="<?php echo $test['test_codi'] ?>"> 
                                             <i class="fa fa-times " aria-hidden="true" ></i> Desactivar
                                         </a>
+                                        <?php elseif($test['test_desactivat'] == 1): ?>
+                                        <a class="btn btn-success btn-sm obrir-modal-activar-test" role="button" data-toggle="modal" href="#modal-activar-test" value="<?php echo $test['test_codi'] ?>"> 
+                                            <i class="fa fa-times " aria-hidden="true" ></i> Activar
+                                        </a>
+                                        <?php endif ?>
                                     </td>
                                 </tr>
 								<?php if($test['preguntes']): ?>
@@ -182,6 +188,27 @@
                     <button type="submit" class="btn btn-danger">Desactivar</button>
                 </div>
                 <input type="text" name="test_codi" id="test-codi-populate" hidden>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="modal-activar-test" class="modal fade modal-danger">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="<?php echo site_url('admin/GestioTestsController/activar') ?>">
+                <input type="text" name="test_codi" id="test_codi-populate-2" hidden>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Activación del test <strong><span id="test-codi-populate-2"> </span></strong></h4>
+                </div>
+                <div class="modal-body">
+                    <p>Estas seguro que desea volver a activar este test?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Activar</button>
+                </div>
             </form>
         </div>
     </div>

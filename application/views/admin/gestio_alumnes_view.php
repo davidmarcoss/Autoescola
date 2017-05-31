@@ -61,7 +61,7 @@
                                         <form method="post" action="<?php echo site_url('admin/GestioAlumnesController/activar'); ?>">
                                             <input type="text" name="nif" value="<?php echo $alumne['alu_nif']; ?>" hidden>
                                             <button type="submit" class="btn btn-success btn-sm"> 
-                                                <i class="fa fa-check" aria-hidden="true"></i></i> Activar
+                                                <i class="fa fa-check" aria-hidden="true"></i> Activar
                                             </button>
                                         </form>
                                         <?php endif; ?>

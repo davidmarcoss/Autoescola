@@ -234,4 +234,20 @@ class GestioTestsController extends MY_Controller {
 
         redirect('admin/GestioTestsController/index');
     }
+    
+    public function activar()
+    {
+        $test_codi = $this->input->post('test_codi');
+
+		if($this->Test->activar($test_codi))
+        {
+            $this->session->set_flashdata('exits', '<strong>Éxito!</strong> El test se ha activado correctamente.');
+        }
+        else
+        {
+            $this->session->set_flashdata('errors', '<strong>Error!</strong> No se ha podido activar el test.');
+        }
+
+		redirect('admin/GestioTestsController/index');
+    }
 }

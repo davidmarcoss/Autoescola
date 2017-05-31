@@ -427,4 +427,11 @@ $(document).ready(function(){
         $('#test-codi-populate').val(dades[0]);
     }); 
 
+    $('.obrir-modal-activar-test').on('click', function() {
+        dades = $(this).attr('value').split(':');
+        console.info(dades);
+        $('#test-codi-populate-2').html(dades[0]);
+        $('#test_codi-populate-2').val(dades[0]);
+    }); 
+
 });
