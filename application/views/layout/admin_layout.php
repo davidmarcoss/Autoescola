@@ -26,22 +26,22 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="<?php echo site_url('admin/GestioHomeController/index'); ?>"><b>INICIO</b></a></li>
+                    <li><a href="<?php echo site_url('admin/GestioHomeController/index'); ?>">INICIO</a></li>
                     <?php if($this->session->rol == 'admin'): ?>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b>GESTIÓN DE USUARIOS</b><span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">GESTIÓN DE USUARIOS<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                        <li><a href="<?php echo site_url('admin/GestioProfessorsController/index'); ?>"><b>PROFESORES</b></a></li>
-                        <li><a href="<?php echo site_url('admin/GestioAlumnesController/index'); ?>"><b>ALUMNOS</b></a></li>
+                        <li><a href="<?php echo site_url('admin/GestioProfessorsController/index'); ?>">PROFESORES</a></li>
+                        <li><a href="<?php echo site_url('admin/GestioAlumnesController/index'); ?>">ALUMNOS</a></li>
                         </ul>
                     </li>
-                    <li><a href="<?php echo site_url('admin/GestioTestsController/index'); ?>"><b>GESTIÓN DE TESTS</b></a></li>
-                    <li><a href="<?php echo site_url('admin/GestioCarnetsController/index'); ?>"><b>GESTIÓN DE CARNETS</b></a></li>
+                    <li><a href="<?php echo site_url('admin/GestioTestsController/index'); ?>">GESTIÓN DE TESTS</a></li>
+                    <li><a href="<?php echo site_url('admin/GestioCarnetsController/index'); ?>">GESTIÓN DE CARNETS</a></li>
                     <?php endif ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <b><?php echo $this->session->nom; ?></b> <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $this->session->nom; ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a class="text-muted"> <?php echo $this->session->correu; ?> </a></li>
                             <li role="separator" class="divider"></li>

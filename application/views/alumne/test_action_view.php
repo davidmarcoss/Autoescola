@@ -11,6 +11,7 @@
             <div class="col-lg-12 col-md-12" id="contenidor-preguntes">
                 <?php if(isset($test) && $test): ?>
                     <?php $cont = 0 ?>
+                    <?php $contPreg = 1 ?>
                     <?php foreach($test as $pregunta): ?>
                     <?php
                         $opcions = array();
@@ -24,7 +25,8 @@
                     ?>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4> <?php echo $pregunta['preg_pregunta']; ?></h4>
+                            <h4> <?php echo $contPreg . ' - ' . $pregunta['preg_pregunta']; ?></h4>
+                            <?php $contPreg++ ?>
                         </div>
                         <div class="panel-body">
                             <div class="col-md-9">

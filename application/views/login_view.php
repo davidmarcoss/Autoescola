@@ -47,11 +47,14 @@
                 </form>
             </div>
         </div>
-        <a href="#map"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+        <a href="#map">
+            <span style="color: white; font-size: 20px"> Nuestra ubicación </span>  <br/><br/>
+            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+        </a>
     </div>
 
     <div>
-        <div id="map" style="width: 100%; height: 400px; margin: 0px; margin-top: 300px"></div>
+        <div id="map" style="position: absolute; width: 100%; height: 100%; margin: 0px; margin-top: 300px"></div>
     </div>
 
     <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.1.1.min.js"); ?>"></script>
